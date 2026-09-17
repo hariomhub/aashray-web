@@ -31,7 +31,7 @@ export default function AboutPage() {
             About Us
           </h1>
           <p className="text-lg text-text-secondary dark:text-gray-300 max-w-2xl mx-auto">
-            We are dedicated to providing AI and Agentic-first compliance products and services to help your organization reach DPDP compliance more intuitively.
+            We are dedicated to providing AI and Agentic-first compliance products to help your organization reach DPDP compliance more intuitively.
           </p>
         </div>
       </div>

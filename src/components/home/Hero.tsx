@@ -70,12 +70,16 @@ export default function Hero() {
           </div>
 
           {/* Right Column (Video) */}
-          <div className="lg:w-1/2 w-full mt-12 lg:mt-0">
+          <div className="lg:w-1/2 w-full mt-12 lg:mt-0 relative">
+            {/* Strong halation glow behind the video */}
+            <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
+            <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
+            
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="w-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white/10 relative bg-black aspect-video"
+              className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
             >
               <video 
                 src="/dpdp_v1.mp4" 
@@ -94,7 +98,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-16 bg-white/5 border border-white/10 p-10 md:p-12 lg:p-16 rounded-[2rem] backdrop-blur-md w-full max-w-6xl relative overflow-hidden group shadow-2xl"
+            className="mt-16 bg-white/5 border border-white/10 p-10 md:p-12 lg:p-16 rounded-[2rem] backdrop-blur-md w-full relative overflow-hidden group shadow-2xl"
           >
             <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px] pointer-events-none group-hover:bg-accent/20 transition-colors duration-700"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/30 transition-colors duration-700"></div>

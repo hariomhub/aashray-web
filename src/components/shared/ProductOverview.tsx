@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, PlayCircle, MessageCircle, ArrowRight } from "lucide-react";
@@ -20,6 +21,8 @@ interface ProductOverviewProps {
 }
 
 export default function ProductOverview({ name, slug, features, description }: ProductOverviewProps) {
+  const [activeTab, setActiveTab] = useState("overview");
+
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
       {/* 2. Breadcrumbs */}
@@ -34,36 +37,77 @@ export default function ProductOverview({ name, slug, features, description }: P
       {/* 3. Hero Section */}
       <section className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-20 lg:py-32 overflow-hidden bg-primary-dark">
         <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 pointer-events-none"></div>
-        <div className="relative z-10 max-w-4xl">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-6"
-          >
-            {name}
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-6xl text-gray-200 mb-8 leading-relaxed font-light"
-          >
-            {description}
-          </motion.p>
-          
-          <div className="flex gap-4 mb-12">
-            <Link href="/book-a-demo" className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 h-[50px] rounded-md font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl">
-              Explore {name}
-            </Link>
+        <div className="relative z-10 w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full mb-12">
+            
+            {/* Left Column (Text) */}
+            <div className={`${slug === 'esehmati' || slug === 'e-sehmati' ? 'lg:w-1/2' : 'max-w-4xl'} flex flex-col items-start text-left`}>
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                className="text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-6"
+              >
+                {name}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                className="text-4xl md:text-5xl lg:text-6xl text-gray-200 mb-8 leading-relaxed font-light"
+              >
+                {description}
+              </motion.p>
+              
+              <div className="flex gap-4">
+                <Link href="/book-a-demo" className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 h-[50px] rounded-md font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl">
+                  Explore {name}
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column (Video) */}
+            {(slug === 'esehmati' || slug === 'e-sehmati') && (
+              <div className="lg:w-1/2 w-full mt-12 lg:mt-0 relative">
+                {/* Strong halation glow behind the video */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
+                <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
+                
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                  className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
+                >
+                  <video 
+                    src="/esehmati.mp4" 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline 
+                    className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                  />
+                </motion.div>
+              </div>
+            )}
           </div>
           
           {/* Tabs */}
-          <div className="flex gap-8 border-b border-white/20">
-            <button className="px-1 py-3 border-b-2 border-white text-white font-medium">Overview</button>
-            <button className="px-1 py-3 border-b-2 border-transparent text-gray-400 hover:text-white font-medium transition-colors">Resources</button>
+          <div className="flex gap-8 border-b border-white/20 w-full lg:w-fit">
+            <button 
+              onClick={() => setActiveTab("overview")}
+              className={`px-1 py-3 border-b-2 font-medium transition-colors ${activeTab === "overview" ? "border-white text-white" : "border-transparent text-gray-400 hover:text-white"}`}>
+              Overview
+            </button>
+            <button 
+              onClick={() => setActiveTab("resources")}
+              className={`px-1 py-3 border-b-2 font-medium transition-colors ${activeTab === "resources" ? "border-white text-white" : "border-transparent text-gray-400 hover:text-white"}`}>
+              Resources
+            </button>
           </div>
         </div>
       </section>
 
-      {/* 4. Value Proposition Block */}
-      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-white dark:bg-gray-950">
+      {activeTab === "overview" ? (
+        <>
+          {/* 4. Value Proposition Block */}
+          <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-white dark:bg-gray-950">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
             <h2 className="text-3xl lg:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-6">
@@ -128,6 +172,19 @@ export default function ProductOverview({ name, slug, features, description }: P
           </div>
         </div>
       </section>
+        </>
+      ) : (
+        <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-32 bg-white dark:bg-gray-950 flex flex-col items-center justify-center min-h-[40vh]">
+          <div className="text-center max-w-2xl bg-gray-50 dark:bg-gray-900 rounded-[2.5rem] p-12 border border-gray-100 dark:border-gray-800 shadow-xl">
+            <h2 className="text-4xl font-serif font-bold text-neutral-text dark:text-white mb-6">
+              Resources Coming Soon
+            </h2>
+            <p className="text-xl text-text-secondary dark:text-gray-400 font-light leading-relaxed">
+              We are working hard to gather the best guides, case studies, and documentation for {name}. Check back later!
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 6. Cross-Sell / Solutions Carousel */}
       <RelatedProductsGrid currentSlug={slug} productName={name} />
