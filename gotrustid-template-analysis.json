@@ -1,0 +1,183 @@
+{
+  "meta": {
+    "title": "GoTrustID.com — Website Template & Design Analysis",
+    "source": "https://gotrustid.com/",
+    "generatedFor": "Use as a reusable template/config for building a new website",
+    "note": "Fields marked confirmed were pulled directly from the live page (structure, nav, headings order, image/video assets, theme-color meta tag). Fields marked recommended are a professional design-system fill-in in the same visual register, since exact compiled CSS (font-family, pixel margins) could not be read without a browser-inspector tool.",
+    "disclaimer": "Reference template only. Not affiliated with GoTrustID Inc. Swap colors, type, copy, and imagery before shipping."
+  },
+
+  "colorSystem": {
+    "status": "brandColor confirmed via theme-color meta tag; rest recommended",
+    "palette": [
+      { "name": "brandBlue",       "hex": "#1A47B0", "status": "confirmed",    "usage": "Primary buttons, links, active states, dropdown chevrons" },
+      { "name": "brandBlueDark",   "hex": "#123480", "status": "recommended",  "usage": "Hover/active state for primary blue" },
+      { "name": "brandBlueTint",   "hex": "#E8EDFB", "status": "recommended",  "usage": "Eyebrow badges, sparing feature-section backgrounds" },
+      { "name": "footerNavy",      "hex": "#10193A", "status": "recommended",  "usage": "Footer background (only dark block on the page)" },
+      { "name": "ink",             "hex": "#10162B", "status": "recommended",  "usage": "Primary body/heading text" },
+      { "name": "inkMuted",        "hex": "#5B6472", "status": "recommended",  "usage": "Subheads, paragraph copy, meta text" },
+      { "name": "sectionAltBg",    "hex": "#F5F7FC", "status": "recommended",  "usage": "Alternating section background for rhythm" },
+      { "name": "baseWhite",       "hex": "#FFFFFF", "status": "recommended",  "usage": "Default page/card background" }
+    ],
+    "usagePattern": "White/near-white backgrounds through most sections; brand blue reserved almost entirely for buttons/links, not large fills; one dark navy block used only for the footer to bookend the page."
+  },
+
+  "typography": {
+    "status": "recommended (font-family could not be read from compiled CSS)",
+    "fontFamily": {
+      "primary": "Inter",
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      "reasoning": "Clean, high-legibility grotesque common to enterprise security/identity products; matches the tone of the source page"
+    },
+    "scale": [
+      { "role": "h1_hero",        "sizePx": 48, "sizeRem": 3,     "weight": 800, "lineHeight": 1.15, "letterSpacing": "-0.02em", "usedFor": "Primary hero headline" },
+      { "role": "h2_sectionTitle","sizePx": 36, "sizeRem": 2.25,  "weight": 700, "lineHeight": 1.2,  "usedFor": "Section headings (Testimonials, Blog, etc.)" },
+      { "role": "h3_cardTitle",   "sizePx": 24, "sizeRem": 1.5,   "weight": 600, "lineHeight": 1.3,  "usedFor": "Subsection/product spotlight headings" },
+      { "role": "h4_gridLabel",   "sizePx": 20, "sizeRem": 1.25,  "weight": 600, "usedFor": "Use-case grid item labels" },
+      { "role": "bodyLarge",      "sizePx": 18, "sizeRem": 1.125, "weight": 400, "lineHeight": 1.6,  "usedFor": "Hero subhead paragraph" },
+      { "role": "body",           "sizePx": 16, "sizeRem": 1,     "weight": 400, "lineHeight": 1.6,  "usedFor": "Standard paragraph copy" },
+      { "role": "small",          "sizePx": 14, "sizeRem": 0.875, "weight": 500, "usedFor": "Footer links, meta text" },
+      { "role": "eyebrow",        "sizePx": 13, "sizeRem": 0.8125,"weight": 600, "letterSpacing": "0.06em", "textTransform": "uppercase", "usedFor": "Small label above section headings (e.g. 'Testimonials')" }
+    ]
+  },
+
+  "gridAndSpacing": {
+    "status": "recommended",
+    "maxContentWidthPx": [1200, 1280],
+    "sideGutterPx": { "mobile": 24, "desktop": 40 },
+    "sectionPaddingYPx": { "mobile": 48, "desktop": 96 },
+    "spacingScalePx": [4, 8, 12, 16, 24, 32, 48, 64, 96],
+    "cardRadiusPx": [12, 14],
+    "buttonRadiusPx": 8,
+    "gridGapPx": [18, 24]
+  },
+
+  "header": {
+    "status": "confirmed",
+    "layout": "split, logo-centered — two link clusters flank a centered logo",
+    "leftCluster": [
+      { "label": "Why GoTrust", "type": "mega-menu", "children": ["Why GoTrust", "Our Company", "Investor Relationship"] },
+      { "label": "Products", "type": "mega-menu", "children": ["GoTrust ID", "Idem Key", "IDEM Key Plus", "IdemPass"] },
+      { "label": "Solutions", "type": "mega-menu", "children": ["K-12 Education", "State & Local Government", "Corporate", "IT Integrator & Consulting Firm"] }
+    ],
+    "center": { "label": "Logo", "linksTo": "home" },
+    "rightCluster": [
+      { "label": "Support", "type": "mega-menu", "children": ["FAQs", "Resource Page", "Contact Us"] },
+      { "label": "Press", "type": "link" },
+      { "label": "Language", "type": "flag-dropdown", "children": ["English", "繁體中文", "日本語"] },
+      { "label": "Contact Us", "type": "filled-button", "note": "Only solid button in the header" }
+    ],
+    "note": "The live DOM renders this link set twice back-to-back — likely one copy for desktop bar and one for a mobile off-canvas menu sharing the same data."
+  },
+
+  "pageFlow": [
+    {
+      "order": 1,
+      "section": "Proof band",
+      "elements": ["looping background video", "stat-driven H2 headline", "horizontal strip of ~15 partner/customer logos"],
+      "purpose": "Immediate social proof before the main pitch"
+    },
+    {
+      "order": 2,
+      "section": "Primary hero",
+      "elements": ["full-bleed background video", "H1 headline", "one-paragraph subhead", "single primary CTA button ('Learn More')"],
+      "purpose": "Core value proposition"
+    },
+    {
+      "order": 3,
+      "section": "Use-case grid",
+      "heading": "Applications We Can Protect",
+      "elements": ["5 equal-width icon+label cards: Windows Server, Email, VPN & VDI, Desktop Login, Hybrid Applications"],
+      "purpose": "Show breadth of coverage at a glance"
+    },
+    {
+      "order": 4,
+      "section": "Split feature",
+      "elements": ["heading + paragraph on one side", "two supporting images (device + lifestyle photo) on the other"],
+      "purpose": "Explain access methods (phone or hardware key)"
+    },
+    {
+      "order": 5,
+      "section": "Product spotlight",
+      "elements": ["heading", "two paragraphs (first has inline text link to product page)", "two product render images"],
+      "purpose": "Deep dive on flagship hardware product"
+    },
+    {
+      "order": 6,
+      "section": "Testimonials",
+      "elements": ["eyebrow label", "H2 heading", "3 quote cards: quote text, avatar/logo, name, role + company"],
+      "purpose": "Third-party credibility"
+    },
+    {
+      "order": 7,
+      "section": "Blog / news",
+      "elements": ["eyebrow label", "H2 heading", "3 article cards: thumbnail + title, fully clickable"],
+      "purpose": "Content marketing / SEO / recency signal"
+    },
+    {
+      "order": 8,
+      "section": "Footer",
+      "columns": [
+        { "name": "Brand", "contains": ["logo", "one-line tagline paragraph"] },
+        { "name": "Quick Links", "contains": ["5 nav links"] },
+        { "name": "Explore", "contains": ["3 nav links"] },
+        { "name": "Follow Us", "contains": ["3 social icons: Facebook, X, LinkedIn"] }
+      ],
+      "bottomBar": "copyright line, divider above it"
+    }
+  ],
+
+  "components": {
+    "buttons": {
+      "primary": { "background": "brandBlue", "textColor": "#FFFFFF", "paddingPx": "12 26", "radiusPx": 8, "fontWeight": 600 },
+      "outline": { "border": "2px solid brandBlue", "textColor": "brandBlue", "background": "transparent", "radiusPx": 8 },
+      "text": { "textColor": "ink", "background": "transparent", "usedFor": "e.g. 'Read article →' style links" }
+    },
+    "testimonialCard": {
+      "background": "baseWhite",
+      "border": "1px solid border-color",
+      "radiusPx": 14,
+      "contains": ["avatar/logo (circle, ~44-56px)", "quote text", "name (bold)", "role + company (muted, smaller)"]
+    },
+    "blogCard": {
+      "thumbnailAspectRatio": "16:9",
+      "radiusPx": 14,
+      "clickTarget": "entire card (image + title both link to post)"
+    },
+    "restraintPrinciple": "Exactly one solid-filled button appears in the header, and exactly one in the hero. Every other interactive element is a plain text link — do not style more than 1-2 elements per screen as filled buttons."
+  },
+
+  "buttonInventory": [
+    { "order": 1, "element": "Why GoTrust / Products / Solutions", "location": "Header, left cluster", "style": "plain text + dropdown chevron" },
+    { "order": 2, "element": "Logo", "location": "Header, centered", "style": "image, links home" },
+    { "order": 3, "element": "Support / Press / Language", "location": "Header, right cluster", "style": "plain text + dropdown chevron; language item has flag icon" },
+    { "order": 4, "element": "Contact Us", "location": "Header, far right", "style": "filled button" },
+    { "order": 5, "element": "Learn More", "location": "Primary hero, below subhead", "style": "filled primary button, sole CTA" },
+    { "order": 6, "element": "Idem Key (inline text link)", "location": "Mid-paragraph, product spotlight", "style": "underlined/colored inline link" },
+    { "order": 7, "element": "3x article title + thumbnail", "location": "Blog/news section", "style": "full-card click target" },
+    { "order": 8, "element": "Quick Links (5 items)", "location": "Footer, column 2", "style": "stacked plain-text list" },
+    { "order": 9, "element": "Explore (3 items)", "location": "Footer, column 3", "style": "stacked plain-text list" },
+    { "order": 10, "element": "Facebook / X / LinkedIn", "location": "Footer, column 4", "style": "row of 3 social icons" }
+  ],
+
+  "imagery": {
+    "status": "confirmed",
+    "assets": [
+      { "type": "background video", "count": 2, "location": "proof band + primary hero", "treatment": "full-bleed, looping, muted, no controls, text overlaid" },
+      { "type": "partner/customer logos", "count": 15, "location": "proof band", "treatment": "uniform small height, wrapping/scrolling row, mixed file formats (png/jpg/gif)" },
+      { "type": "product photography", "count": 2, "location": "access-methods split section", "treatment": "one hardware shot, one lifestyle photo, side by side" },
+      { "type": "product renders", "count": 2, "location": "product spotlight", "treatment": "isolated graphic + supporting illustration, no photography" },
+      { "type": "headshots/company logos", "count": 3, "location": "testimonials", "treatment": "small circular/square avatar beside each quote" },
+      { "type": "article thumbnails", "count": 3, "location": "blog/news", "treatment": "landscape ~16:9 crop, one per card" }
+    ]
+  },
+
+  "responsive": {
+    "status": "recommended",
+    "breakpoints": [
+      { "range": "<640px", "header": "hamburger menu, logo left-aligned", "grids": "all grids collapse to 1 column" },
+      { "range": "640-1024px", "header": "hamburger or condensed nav", "grids": "3-up becomes 2-up; 5-up use-case grid becomes 2-3 per row" },
+      { "range": ">1024px", "header": "full split nav with mega-menus", "grids": "full grids as designed (5-up, 3-up)" }
+    ]
+  }
+}
