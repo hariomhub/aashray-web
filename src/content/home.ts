@@ -1,3 +1,22 @@
+interface PlatformResource {
+  title: string;
+  type: "pdf" | "faq" | "video";
+  url: string;
+}
+
+interface PlatformItem {
+  name: string;
+  tagline: string;
+  description?: string;
+  slug: string;
+  category: string;
+  image: string;
+  features: { bold: string; text: string }[];
+  isPlaceholder: boolean;
+  placeholderText?: string;
+  resources?: PlatformResource[];
+}
+
 export const homeContent = {
   hero: {
     headline: "Building a Safer Digital Planet",
@@ -140,7 +159,7 @@ export const homeContent = {
         ],
         isPlaceholder: false
       }
-    ]
+    ] as PlatformItem[]
   },
   howItWorks: {
     heading: "HOW IT WORKS",
