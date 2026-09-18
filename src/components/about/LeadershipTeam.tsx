@@ -30,9 +30,7 @@ export default function LeadershipTeam() {
             transition={{ delay: 0.1 }}
             className="bg-gray-50 dark:bg-gray-900 rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-800 p-12 text-center relative"
           >
-            <div className="absolute top-4 right-4 bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded shadow-sm border border-yellow-200">
-              Pending Client Copy
-            </div>
+
             
             <div className="w-16 h-16 bg-gray-200 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
               <Users className="w-8 h-8 text-gray-400" />

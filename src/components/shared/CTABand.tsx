@@ -18,7 +18,7 @@ export default function CTABand({ productName, slug }: CTABandProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-primary rounded-3xl p-12 text-center relative overflow-hidden my-24"
+      className="bg-primary rounded-3xl p-10 md:p-12 text-center relative overflow-hidden mx-4 sm:mx-6 lg:mx-12 xl:mx-16"
     >
       <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-10"></div>
       <div className="relative z-10 max-w-2xl mx-auto">

@@ -40,6 +40,7 @@ export default function IntroVideo() {
             className="absolute inset-0 w-full h-full object-cover z-10"
             controls
             playsInline
+            muted
             preload="metadata"
             poster="/circuit-pattern.svg" // Fallback poster
           >
