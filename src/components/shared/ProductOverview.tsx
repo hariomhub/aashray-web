@@ -79,7 +79,7 @@ export default function ProductOverview({ name, slug, features, description }: P
                     src="/esehmati.mp4" 
                     autoPlay 
                     loop 
-                    muted 
+                    controls 
                     playsInline 
                     className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                   />

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function BookADemoPage() {
   return (
-    <div className="pt-12 pb-24">
+    <div className="pt-32 pb-24 md:pt-40">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-serif font-bold text-neutral-text dark:text-white mb-6">
           Book a Demo
