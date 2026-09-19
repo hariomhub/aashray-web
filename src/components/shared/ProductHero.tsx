@@ -33,11 +33,7 @@ export default function ProductHero({
           transition={{ duration: 0.6 }}
           className="lg:w-1/2 flex flex-col relative w-full"
         >
-          {isPlaceholder && (
-            <div className="absolute -top-6 -left-4 bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded shadow-sm border border-yellow-200 z-10 flex items-center gap-1">
-              <span className="text-[10px]">Pending Client Copy:</span> {placeholderText}
-            </div>
-          )}
+
           
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">
             {name}

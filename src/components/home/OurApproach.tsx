@@ -84,7 +84,7 @@ export default function OurApproach() {
                      onMouseEnter={() => setActiveStep(index)}>
                   
                   {/* Step Title above the bar */}
-                  <div className="absolute w-full flex justify-center z-20" style={{ bottom: `${40 + (index * 25)}%`, marginBottom: '2.5rem' }}>
+                  <div className="absolute w-full flex justify-center z-20" style={{ bottom: `${30 + (index * 20)}%`, marginBottom: '2.5rem' }}>
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function OurApproach() {
                   {/* Rising Step Block */}
                   <motion.div 
                     initial={{ height: 0 }}
-                    whileInView={{ height: `${40 + (index * 25)}%` }}
+                    whileInView={{ height: `${30 + (index * 20)}%` }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: index * 0.3, ease: "easeOut" }}
                     className={`w-full relative border-r border-primary/20 transition-all duration-500 ${index === 0 ? 'rounded-tl-xl' : ''} ${index === ourApproach.steps.length - 1 ? 'rounded-tr-xl border-r-0' : ''} ${activeStep === index ? 'bg-primary/20 border-t-4 border-accent' : 'bg-primary/5 border-t-4 border-primary'}`}

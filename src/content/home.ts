@@ -47,7 +47,7 @@ export const homeContent = {
         description: "Every compliance journey starts with understanding the regulations. Our free app uses AI to turn the DPDP Act into learning that's simple, fast, and made for you.",
         slug: "compliancequest",
         category: "platforms",
-        image: "/products/dpdpquest.png",
+        image: "/products/Complaince quest.mp4",
         features: [
           { bold: "Know exactly what applies to you", text: "Learn what your role (CEO, CFO, CISCO, CMO, DPO, CLO) actually needs" },
           { bold: "Never lose a study minute", text: "Learning even continues when you’re on the move - flight, train, or cab — it syncs the second you're back online" },
@@ -64,7 +64,7 @@ export const homeContent = {
         description: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start. Our AI tool tells you exactly what it takes and where you currently stand.",
         slug: "niyamsaathi",
         category: "platforms",
-        image: "/products/niyamsaathi.jpeg",
+        image: "/products/Niyamsathi.mp4",
         features: [
           { bold: "Always know where you stand", text: "Real-time risk and compliance dashboards mean you're never waiting on a quarterly report to know your posture" },
           { bold: "An asset register that builds itself", text: "Connect to any cloud like AWS, Azure, GCP, Microsoft 365, or Google Workspace, and your assets are discovered and proposed automatically" },
@@ -81,7 +81,7 @@ export const homeContent = {
         description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
         slug: "e-sehmati",
         category: "platforms",
-        image: "/products/esehmati.png",
+        image: "/products/Esehmati.mp4",
         features: [
           { bold: "Know where every piece of data lives", text: "Graph API-powered mapping that surfaces every system, vendor, and data point across your business, eliminating need for spreadsheets and guesswork" },
           { bold: "RoPA that is generated, not written from scratch", text: "Once your data is mapped, the legally required Record of Processing Activities builds itself, ready for any auditor" },
@@ -93,7 +93,7 @@ export const homeContent = {
         isPlaceholder: false
       },
       {
-        name: "Product 4: TPRM",
+        name: "TPRM",
         tagline: "Manage vendors without the chaos — invitations, contracts, and compliance tracking, together",
         slug: "tprm",
         category: "products",
@@ -106,17 +106,7 @@ export const homeContent = {
         isPlaceholder: true,
         placeholderText: "will add name"
       },
-      {
-        name: "Product 5: Cyber Insurance",
-        tagline: "",
-        slug: "cyber-insurance",
-        category: "products",
-        image: "/products/cyber_insurance.png",
-        description: "Stay one step ahead and protect yourself against potential vendor risks and breaches, resulting in penalties for your organisation. At Tango, we have partnered with a trusted cyber insurance firm, saving you from massive fines.",
-        features: [],
-        isPlaceholder: true,
-        placeholderText: "needs full write-up, not just heading"
-      },
+
       {
         name: "Surveillance",
         tagline: "Global monitoring and real-time threat detection.",
@@ -132,17 +122,13 @@ export const homeContent = {
         isPlaceholder: false
       },
       {
-        name: "SAFE GEN",
-        tagline: "Secure and govern your Generative AI deployments.",
+        name: "SafeGen",
+        tagline: "",
         slug: "safe-gen",
         category: "products",
         image: "/products/safe-gen.jpg",
-        description: "Deploy Generative AI with confidence. SAFE GEN acts as a protective shield around your LLMs, ensuring data privacy, preventing prompt injection, and maintaining compliance with AI safety standards.",
-        features: [
-          { bold: "Prompt Injection Defense", text: " — actively filters out malicious inputs." },
-          { bold: "Data Privacy Shield", text: " — prevents sensitive data from leaking into model training." },
-          { bold: "Compliance Checks", text: " — built-in auditing for AI regulatory frameworks." }
-        ],
+        description: "In today’s world students are surrounded by technology, making it important for educational institutions and parents to limit their usage to promote collective mental health of the upcoming generation.",
+        features: [],
         isPlaceholder: false
       },
       {

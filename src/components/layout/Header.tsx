@@ -30,12 +30,13 @@ export default function Header() {
       
       // Handle transparent to solid background transition
       setIsScrolled(currentScrollY > 20);
-      // Only show header at the very top (e.g. scrollY < 50)
-      if (currentScrollY > 50) {
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
         setIsHidden(true);
       } else {
         setIsHidden(false);
       }
+      lastScrollY = currentScrollY;
     };
     
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -43,6 +44,7 @@ export default function Header() {
   }, []);
 
   return (
+    <>
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 transform ${
         isHidden ? "-translate-y-full" : "translate-y-0"
@@ -142,8 +144,9 @@ export default function Header() {
           </div>
         </div>
       </div>
+    </header>
 
-      {/* Mobile Menu */}
+    {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
@@ -151,7 +154,7 @@ export default function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+              className="fixed inset-0 bg-black/20 z-40 xl:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -159,15 +162,15 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-950 z-50 shadow-xl flex flex-col lg:hidden"
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-950 z-50 shadow-xl flex flex-col xl:hidden"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-100 dark:border-gray-800">
                 <Image
                   src="/logo.jpg"
                   alt="Aashray Infotech Logo"
-                  width={120}
-                  height={32}
-                  className="w-auto h-6 object-contain rounded-md"
+                  width={40}
+                  height={40}
+                  className="w-[40px] h-[40px] object-contain rounded-md"
                 />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
@@ -230,6 +233,6 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

@@ -58,6 +58,16 @@ export default function HowItWorks() {
                 onClick={() => setActiveStep(idx)}
                 onMouseEnter={() => setActiveStep(idx)}
               >
+                {/* Mobile Connecting Line */}
+                {idx < howItWorks.timeline.length - 1 && (
+                  <div className="md:hidden absolute w-[2px] bg-white/20 top-7 h-[calc(100%+4rem)] left-1/2 -translate-x-1/2 -z-10"></div>
+                )}
+                {/* Mobile Active Line */}
+                {idx < howItWorks.timeline.length - 1 && activeStep > idx && (
+                  <div className="md:hidden absolute w-[2px] bg-accent top-7 h-[calc(100%+4rem)] left-1/2 -translate-x-1/2 -z-10 shadow-[0_0_12px_rgba(212,175,55,0.9)]">
+                    <div className="absolute inset-0 bg-accent blur-[4px] opacity-60"></div>
+                  </div>
+                )}
                 <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center font-bold z-10 relative text-xl transition-all duration-300 ${
                   activeStep >= idx 
                     ? "bg-accent border-accent text-primary-dark shadow-[0_0_15px_rgba(212,175,55,0.6)]" 

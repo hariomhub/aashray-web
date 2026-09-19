@@ -44,13 +44,13 @@ export default function ProductOverview({ name, slug, features, description }: P
             <div className={`${slug === 'esehmati' || slug === 'e-sehmati' ? 'lg:w-1/2' : 'max-w-4xl'} flex flex-col items-start text-left`}>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-                className="text-7xl md:text-8xl lg:text-9xl font-serif font-bold text-white mb-6"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-serif font-bold text-white mb-6 break-words hyphens-auto"
               >
                 {name}
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                className="text-4xl md:text-5xl lg:text-6xl text-gray-200 mb-8 leading-relaxed font-light"
+                className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-8 leading-relaxed font-light"
               >
                 {description}
               </motion.p>
@@ -63,7 +63,7 @@ export default function ProductOverview({ name, slug, features, description }: P
             </div>
 
             {/* Right Column (Video) */}
-            {(slug === 'esehmati' || slug === 'e-sehmati') && (
+            {(slug === 'esehmati' || slug === 'e-sehmati' || slug === 'compliance-quest' || slug === 'compliancequest' || slug === 'niyamsathi' || slug === 'niyam-sathi' || slug === 'niyamsaathi') && (
               <div className="lg:w-1/2 w-full mt-12 lg:mt-0 relative">
                 {/* Strong halation glow behind the video */}
                 <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
@@ -76,9 +76,10 @@ export default function ProductOverview({ name, slug, features, description }: P
                   className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
                 >
                   <video 
-                    src="/esehmati.mp4" 
+                    src={slug === 'esehmati' || slug === 'e-sehmati' ? "/esehmati.mp4" : (slug === 'compliance-quest' || slug === 'compliancequest' ? "/compliancequest.mp4" : "/niyamsathi.mp4")} 
                     autoPlay 
                     loop 
+                    muted
                     controls 
                     playsInline 
                     className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
@@ -110,15 +111,15 @@ export default function ProductOverview({ name, slug, features, description }: P
           <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-white dark:bg-gray-950">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/2">
-            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-6">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-6">
               Empower your compliance journey
             </h2>
-            <p className="text-2xl md:text-3xl text-text-secondary dark:text-gray-300 leading-relaxed mb-8 font-light">
+            <p className="text-lg md:text-xl text-text-secondary dark:text-gray-300 leading-relaxed mb-8 font-light">
               {description} We've designed {name} to eliminate the friction between stringent regulatory requirements and your daily operations. Transform manual overhead into automated, secure workflows instantly.
             </p>
           </div>
-          <div className="lg:w-5/12 w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-lg aspect-video bg-gray-100 dark:bg-gray-900 rounded-[2rem] overflow-hidden group cursor-pointer border-4 border-gray-50 dark:border-gray-800 shadow-2xl">
+          <div className="lg:w-1/2 w-full flex flex-col items-center lg:items-end mt-12 lg:mt-0">
+            <div className="relative w-full max-w-2xl aspect-video bg-gray-100 dark:bg-gray-900 rounded-[2rem] overflow-hidden group cursor-pointer border-4 border-gray-50 dark:border-gray-800 shadow-2xl">
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors z-20">
                 <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <PlayCircle className="w-8 h-8 text-primary" />
@@ -130,12 +131,13 @@ export default function ProductOverview({ name, slug, features, description }: P
                 2:45
               </div>
             </div>
-            <p className="text-sm text-center text-gray-500 mt-3">Watch: See {name} in action</p>
+            <p className="text-sm text-gray-500 mt-4 font-medium tracking-wide">Watch: See {name} in action</p>
           </div>
         </div>
       </section>
 
       {/* 5. Segmented Product Grid (Adapted to Features) */}
+      {features && features.length > 0 && (
       <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-neutral-bg dark:bg-gray-900/50 border-y border-gray-100 dark:border-gray-800">
         <h2 className="text-3xl lg:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-16">
           Core Capabilities
@@ -172,6 +174,7 @@ export default function ProductOverview({ name, slug, features, description }: P
           </div>
         </div>
       </section>
+      )}
         </>
       ) : (
         <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-32 bg-white dark:bg-gray-950 flex flex-col items-center justify-center min-h-[40vh]">
@@ -190,12 +193,12 @@ export default function ProductOverview({ name, slug, features, description }: P
       <RelatedProductsGrid currentSlug={slug} productName={name} />
 
       {/* 7. Services/Guidance Split Section */}
-      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-primary text-white">
+      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 pt-24 pb-8 bg-primary text-white">
         <div className="grid md:grid-cols-2 gap-16 divide-y md:divide-y-0 md:divide-x divide-white/20">
           <div className="pr-8">
             <span className="text-accent text-sm font-bold tracking-widest uppercase mb-4 block">Deployment Services</span>
-            <h3 className="text-3xl font-serif font-bold mb-6">Expert Implementation</h3>
-            <p className="text-lg text-gray-200 mb-8 leading-relaxed">
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-6">Expert Implementation</h3>
+            <p className="text-base md:text-lg text-gray-200 mb-8 leading-relaxed">
               Let our experts deploy {name} directly into your on-premise or cloud environment, ensuring perfect integration with your existing architecture.
             </p>
             <Link href="/book-a-demo" className="inline-flex items-center text-accent hover:text-white font-bold transition-colors">
@@ -204,8 +207,8 @@ export default function ProductOverview({ name, slug, features, description }: P
           </div>
           <div className="md:pl-16 pt-16 md:pt-0">
             <span className="text-accent text-sm font-bold tracking-widest uppercase mb-4 block">Ongoing Support</span>
-            <h3 className="text-3xl font-serif font-bold mb-6">24/7 Managed Governance</h3>
-            <p className="text-lg text-gray-200 mb-8 leading-relaxed">
+            <h3 className="text-2xl md:text-3xl font-serif font-bold mb-6">24/7 Managed Governance</h3>
+            <p className="text-base md:text-lg text-gray-200 mb-8 leading-relaxed">
               Don't want to manage it yourself? Our managed services team will monitor, update, and manage your compliance posture around the clock.
             </p>
             <Link href="/book-a-demo" className="inline-flex items-center text-accent hover:text-white font-bold transition-colors">
@@ -216,7 +219,7 @@ export default function ProductOverview({ name, slug, features, description }: P
       </section>
 
       {/* 8. Closing Tool CTA */}
-      <section className="w-full">
+      <section className="w-full bg-primary pb-16">
         <CTABand productName={name} slug={slug} />
       </section>
 
