@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/consent/CookieBanner";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import FloatingFAQButton from "@/components/shared/FloatingFAQButton";
 
 const lexendDeca = Lexend_Deca({
   variable: "--font-lexend-deca",
@@ -48,6 +49,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <CookieBanner />
+          <FloatingFAQButton />
         </ThemeProvider>
       </body>
     </html>

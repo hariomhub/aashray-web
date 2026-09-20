@@ -39,7 +39,7 @@ export const homeContent = {
     footer: "One journey. Multiple platforms. Zero guesswork."
   },
   ourPlatforms: {
-    heading: "OUR PLATFORMS",
+    heading: "OUR PRODUCTS",
     items: [
       {
         name: "ComplianceQuest",
@@ -93,55 +93,64 @@ export const homeContent = {
         isPlaceholder: false
       },
       {
-        name: "TPRM",
-        tagline: "Manage vendors without the chaos — invitations, contracts, and compliance tracking, together",
+        name: "Parakh 360",
+        tagline: "Know the risk behind every third party.",
+        description: "Assess vendors, validate evidence and manage third-party risk from onboarding through offboarding.",
         slug: "tprm",
         category: "products",
-        image: "/products/tprm.png",
+        image: "/products/parakh 360.mp4",
         features: [
-          { bold: "", text: "Manage Agreements (formation and cancellation)" },
-          { bold: "", text: "Suppression of data" },
-          { bold: "", text: "Manage ROPA" }
+          { bold: "AI Vendor Assessment", text: "AI reads evidence, compares with control requirements, and flags missing or expired documents" },
+          { bold: "Vendor Lifecycle", text: "Periodic reassessments, contract renewal alerts, and automated offboarding tasks" },
+          { bold: "Executive Risk Dashboard", text: "Real-time visibility into vendor risk scores and compliance status" },
+          { bold: "NiyamSaathi integration", text: "Link third-party data to your internal Record of Processing Activities (RoPA)" },
+          { bold: "Contract AI", text: "Identify important privacy/security clauses and detect missing regulatory requirements" }
         ],
-        isPlaceholder: true,
-        placeholderText: "will add name"
+        isPlaceholder: false
       },
 
       {
-        name: "Surveillance",
-        tagline: "Global monitoring and real-time threat detection.",
+        name: "Drishti AI",
+        tagline: "Bring DLP thinking to video.",
         slug: "surveillance",
         category: "products",
-        image: "/products/surveillance.jpg",
-        description: "Maintain complete visibility over your digital infrastructure. Our Surveillance product offers 24/7 monitoring, anomaly detection, and predictive threat analytics to keep your organization secure.",
+        image: "/products/drishti ai.mp4",
+        description: "Monitor multiple camera feeds, define contextual video policies and generate policy matches for human action.",
         features: [
-          { bold: "24/7 Threat Monitoring", text: " — continuous oversight of your entire network." },
-          { bold: "Predictive Analytics", text: " — AI-driven models to anticipate and neutralize attacks." },
-          { bold: "Global Heatmap", text: " — visualize threats across different regions in real-time." }
+          { bold: "Multi-vendor cameras", text: "No vendor-specific camera SDK required to integrate and monitor feeds" },
+          { bold: "Natural-language policy", text: "Simply type a policy in plain English and VDLP creates the visual rule" },
+          { bold: "Contextual Video Policies", text: "Create rules based on objects, color, speed, sequence, and time windows" },
+          { bold: "Human-in-the-loop", text: "AI generates and prioritizes incidents, while a human decides what action to take" }
         ],
         isPlaceholder: false
       },
       {
-        name: "SafeGen",
-        tagline: "",
+        name: "E-Pragati",
+        tagline: "Teach healthy digital habits. Don’t just block screens.",
         slug: "safe-gen",
         category: "products",
-        image: "/products/safe-gen.jpg",
-        description: "In today’s world students are surrounded by technology, making it important for educational institutions and parents to limit their usage to promote collective mental health of the upcoming generation.",
-        features: [],
+        image: "/products/E-pragati.mp4",
+        description: "Help children become aware of their digital behavior, self-correct and gradually build healthier habits across home and school.",
+        features: [
+          { bold: "Behavioral Loop", text: "Awareness → Personalized Nudge → Child Reflects → Self-Correction" },
+          { bold: "Child-First Philosophy", text: "Give the child an opportunity to understand and self-correct before involving a parent" },
+          { bold: "School Privacy", text: "Anonymous class-level insights for teachers, protecting individual student identity" },
+          { bold: "Adaptive Guidance", text: "Age-aware digital wellbeing guidance that learns what style of nudge works best" }
+        ],
         isPlaceholder: false
       },
       {
-        name: "PROTECTION MARK",
-        tagline: "The ultimate certification of digital trust.",
+        name: "Suraksha Chinh",
+        tagline: "Visible deterrence. Invisible protection.",
         slug: "protection-mark",
         category: "products",
-        image: "/products/protection-mark.jpg",
-        description: "Display your commitment to security. The Protection Mark is a high-tech certification badge that dynamically updates based on your real-time security posture, building unparalleled trust with your clients.",
+        image: "/products/suraksha chinh.mp4",
+        description: "Protect sensitive information displayed on screen using configurable visible watermarks and Invisible Ink.",
         features: [
-          { bold: "Dynamic Certification", text: " — badge status reflects your live security score." },
-          { bold: "Trust Building", text: " — show customers that their data is protected by the best." },
-          { bold: "Automated Auditing", text: " — continuous verification of your security claims." }
+          { bold: "Configurable Watermark", text: "Display user name, IP, time, or custom text on screen at all times" },
+          { bold: "Invisible Ink", text: "Embed a hidden pattern/code across displayed content for added traceability" },
+          { bold: "Address the Camera Gap", text: "Protects against external phone photos, print screen, and snipping tools" },
+          { bold: "Screen Sharing Protection", text: "Watermark remains visible on displayed content during Teams or Zoom screen sharing" }
         ],
         isPlaceholder: false
       }

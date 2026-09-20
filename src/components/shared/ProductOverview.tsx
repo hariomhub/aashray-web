@@ -18,10 +18,12 @@ interface ProductOverviewProps {
   slug: string;
   features: Feature[];
   description?: string;
+  image?: string;
 }
 
-export default function ProductOverview({ name, slug, features, description }: ProductOverviewProps) {
+export default function ProductOverview({ name, slug, features, description, image }: ProductOverviewProps) {
   const [activeTab, setActiveTab] = useState("overview");
+  const isVideo = image?.endsWith('.mp4');
 
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
@@ -62,10 +64,10 @@ export default function ProductOverview({ name, slug, features, description }: P
               </div>
             </div>
 
-            {/* Right Column (Video) */}
-            {(slug === 'esehmati' || slug === 'e-sehmati' || slug === 'compliance-quest' || slug === 'compliancequest' || slug === 'niyamsathi' || slug === 'niyam-sathi' || slug === 'niyamsaathi') && (
+            {/* Right Column (Media) */}
+            {image && (
               <div className="lg:w-1/2 w-full mt-12 lg:mt-0 relative">
-                {/* Strong halation glow behind the video */}
+                {/* Strong halation glow behind the media */}
                 <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
                 <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
                 
@@ -75,15 +77,23 @@ export default function ProductOverview({ name, slug, features, description }: P
                   transition={{ duration: 0.5, delay: 0.35 }}
                   className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
                 >
-                  <video 
-                    src={slug === 'esehmati' || slug === 'e-sehmati' ? "/esehmati.mp4" : (slug === 'compliance-quest' || slug === 'compliancequest' ? "/compliancequest.mp4" : "/niyamsathi.mp4")} 
-                    autoPlay 
-                    loop 
-                    muted
-                    controls 
-                    playsInline 
-                    className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
-                  />
+                  {isVideo ? (
+                    <video 
+                      src={image} 
+                      autoPlay 
+                      loop 
+                      muted
+                      controls 
+                      playsInline 
+                      className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                    />
+                  ) : (
+                    <img 
+                      src={image} 
+                      alt={name} 
+                      className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                    />
+                  )}
                 </motion.div>
               </div>
             )}
@@ -144,34 +154,32 @@ export default function ProductOverview({ name, slug, features, description }: P
         </h2>
         
         <div className="mb-12">
-          <h3 className="text-2xl font-bold text-neutral-text dark:text-white mb-8 border-b border-gray-200 dark:border-gray-700 pb-4">
-            Key Features
-          </h3>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-gray-200 dark:border-gray-700 pb-4 gap-4">
+            <h3 className="text-2xl font-bold text-neutral-text dark:text-white">
+              Key Features
+            </h3>
+            <Link href="/book-a-demo" className="inline-flex items-center justify-center gap-2 bg-primary text-white px-6 py-2.5 rounded-md font-semibold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg text-sm">
+              Book a Demo
+            </Link>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {features.map((feature, idx) => (
-              <div key={idx} className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col h-full hover:shadow-md transition-shadow">
+              <div key={idx} className="bg-[linear-gradient(135deg,rgba(215,235,255,0.95)_0%,rgba(160,200,255,0.9)_100%)] dark:bg-[linear-gradient(135deg,rgba(30,58,138,0.7)_0%,rgba(15,23,42,0.95)_100%)] backdrop-blur-[12px] border border-[rgba(90,120,220,0.2)] shadow-[0_15px_50px_rgba(50,80,150,0.15)] p-8 rounded-[24px] flex flex-col h-full hover:-translate-y-1 transition-all duration-300">
                 <h4 className="text-xl font-bold text-neutral-text dark:text-white mb-3">
                   {feature.bold?.replace(/^[-—\s]+/, "").trim() || `Capability 0${idx + 1}`}
                 </h4>
                 <p className="text-text-secondary dark:text-gray-400 mb-6 flex-grow">
                   {feature.text?.replace(/^[-—\s]+/, "").trim()}
                 </p>
-                <Link href="/book-a-demo" className="inline-flex items-center text-primary font-medium hover:underline mt-auto">
+                <Link href="/book-a-demo" className="inline-flex items-center text-primary dark:text-white font-medium hover:underline mt-auto">
                   Explore feature <ChevronRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             ))}
           </div>
           
-          <div className="flex gap-8 mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <Link href="/book-a-demo" className="text-primary font-bold hover:underline inline-flex items-center">
-              Explore all features <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-            <Link href="/#products" className="text-text-secondary dark:text-gray-400 hover:text-primary dark:hover:text-white font-medium inline-flex items-center transition-colors">
-              See all products <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </div>
+
         </div>
       </section>
       )}
@@ -223,15 +231,7 @@ export default function ProductOverview({ name, slug, features, description }: P
         <CTABand productName={name} slug={slug} />
       </section>
 
-      {/* 9. Chat Widget (Floating) */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="flex items-center gap-3 bg-primary text-white px-6 py-4 rounded-full shadow-2xl hover:bg-primary-dark transition-all hover:-translate-y-1 group">
-          <MessageCircle className="w-6 h-6" />
-          <span className="font-semibold text-lg max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap">
-            How can I help?
-          </span>
-        </button>
-      </div>
+
 
     </div>
   );

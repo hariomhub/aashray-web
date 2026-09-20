@@ -1,5 +1,7 @@
 import Image from "next/image";
 import OurValues from "@/components/about/OurValues";
+import AboutHero from "@/components/about/AboutHero";
+import OurAashray from "@/components/about/OurAashray";
 
 export default function AboutPage() {
   const leaders = [
@@ -25,21 +27,8 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-neutral-bg dark:bg-gray-950">
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 pt-28 pb-24 bg-primary dark:bg-gray-900 shadow-lg relative overflow-hidden">
-        {/* Optional decorative blobs */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-dark rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 dark:bg-primary/20"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 translate-x-1/3 translate-y-1/3 dark:bg-accent/10"></div>
-        
-        <div className="text-center relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-white mb-6 tracking-tight">
-            About Us
-          </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-medium">
-            We are dedicated to providing AI and Agentic-first compliance products to help your organization reach DPDP compliance more intuitively.
-          </p>
-        </div>
-      </div>
-
+      <AboutHero />
+      <OurAashray />
       <OurValues />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-12">
@@ -51,7 +40,7 @@ export default function AboutPage() {
             {leaders.map((leader, idx) => (
               <div
                 key={idx}
-                className="group bg-white dark:bg-gray-900 rounded-3xl shadow-sm hover:shadow-[0_0_40px_rgba(212,175,55,0.2)] dark:hover:shadow-[0_0_40px_rgba(212,175,55,0.1)] transition-all duration-300 border border-gray-100 dark:border-gray-800 overflow-hidden transform hover:-translate-y-2"
+                className="group bg-white dark:bg-gray-900 rounded-3xl shadow-sm hover:shadow-[0_0_40px_rgba(59,130,246,0.2)] dark:hover:shadow-[0_0_40px_rgba(59,130,246,0.15)] transition-all duration-300 border border-gray-100 dark:border-gray-800 overflow-hidden transform hover:-translate-y-2"
               >
                 <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <Image
