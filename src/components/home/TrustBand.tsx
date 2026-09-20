@@ -26,7 +26,7 @@ export default function TrustBand() {
                 <img 
                   src="/client_logos.jpg" 
                   alt="Trusted by leading organizations" 
-                  className="h-28 md:h-40 w-auto object-contain mix-blend-multiply dark:mix-blend-screen dark:invert"
+                  className="h-28 md:h-40 w-auto object-contain grayscale brightness-110 contrast-125 dark:brightness-[2] dark:contrast-[3] mix-blend-multiply dark:mix-blend-screen dark:invert opacity-80"
                 />
               </div>
             ))}

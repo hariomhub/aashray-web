@@ -60,12 +60,16 @@ export default function Hero() {
                 {hero.primaryCTA}
                 <ArrowRight className="w-6 h-6" />
               </Link>
-              <Link
+              <a
                 href="#products"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-flex items-center justify-center bg-transparent text-white border-2 border-primary px-10 h-[64px] text-lg rounded-xl font-bold hover:bg-primary/10 transition-all w-full sm:w-auto"
               >
                 {hero.secondaryCTA}
-              </Link>
+              </a>
             </motion.div>
           </div>
 

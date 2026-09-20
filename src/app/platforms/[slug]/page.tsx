@@ -1,4 +1,5 @@
 import { homeContent } from "@/content/home";
+import { productDetails } from "@/content/productDetails";
 import ProductOverview from "@/components/shared/ProductOverview";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
@@ -32,6 +33,7 @@ export default async function PlatformPage({ params }: { params: Promise<{ slug:
 
   // Derive the description from tagline or manual description
   const description = product.description || product.tagline;
+  const detailedFeatures = productDetails[product.slug] || product.features;
 
-  return <ProductOverview name={product.name} slug={product.slug} features={product.features} description={description} />;
+  return <ProductOverview name={product.name} slug={product.slug} features={detailedFeatures} description={description} image={product.image} />;
 }
