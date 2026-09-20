@@ -6,6 +6,7 @@ import { aboutContent } from "@/content/about";
 export default function AboutHero() {
   const { hero } = aboutContent;
 
+  return (
     <section className="relative pt-32 pb-12 lg:pt-40 lg:pb-16 overflow-hidden bg-primary-dark">
       <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 z-0 pointer-events-none"></div>
       
@@ -59,4 +60,5 @@ export default function AboutHero() {
         </div>
       </div>
     </section>
+  );
 }
