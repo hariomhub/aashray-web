@@ -2,6 +2,7 @@ import Image from "next/image";
 import OurValues from "@/components/about/OurValues";
 import AboutHero from "@/components/about/AboutHero";
 import OurAashray from "@/components/about/OurAashray";
+import AboutParagraphs from "@/components/about/AboutParagraphs";
 
 export default function AboutPage() {
   const leaders = [
@@ -28,8 +29,8 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-neutral-bg dark:bg-gray-950">
       <AboutHero />
-      <OurAashray />
       <OurValues />
+      <OurAashray />
 
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-12">
         <div className="mb-10">
@@ -67,6 +68,8 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
+      
+      <AboutParagraphs />
     </div>
   );
 }
