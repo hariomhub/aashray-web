@@ -46,10 +46,10 @@ export default function OurApproach() {
             className="space-y-12"
           >
             <div className="relative">
-              <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-primary/20"></div>
+              <div className="absolute left-6 top-6 bottom-6 w-0.5 bg-primary/20 hidden xl:block"></div>
               {ourApproach.steps.map((step, index) => (
-                <div key={step.title} className="relative pl-16 pb-12 last:pb-0">
-                  <div className="absolute left-2 top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-lg shadow-lg">
+                <div key={step.title} className="relative xl:pl-16 pb-12 last:pb-0 flex flex-col items-center xl:items-start text-center xl:text-left">
+                  <div className="relative xl:absolute xl:left-2 xl:top-0 w-12 h-12 mb-4 xl:mb-0 xl:w-8 xl:h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xl xl:text-lg shadow-lg shrink-0">
                     {index + 1}
                   </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{step.title}</h3>
@@ -58,7 +58,7 @@ export default function OurApproach() {
               ))}
             </div>
             
-            <div className="pt-8 border-t border-gray-200">
+            <div className="pt-8 border-t border-gray-200 text-center xl:text-left">
               <p className="text-xl font-medium text-primary italic">
                 {ourApproach.footer}
               </p>

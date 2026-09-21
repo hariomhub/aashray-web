@@ -29,12 +29,12 @@ export const homeContent = {
   },
   ourApproach: {
     heading: "Our Approach",
-    description: "Compliance doesn't happen overnight, and we don't pretend it does. We built our platforms around how the journey actually unfolds.",
+    description: "True digital safety doesn't happen overnight, and we don't pretend it does. We built our platforms around how the security journey actually unfolds.",
     imageAlt: "Ascending journey map: Learn, then Assess, then Operationalize, each step higher than the last",
     steps: [
-      { title: "Learn", description: "build capability first so your team actually understands what they're doing" },
-      { title: "Assess", description: "know where you really stand with our assessment tools" },
-      { title: "Operationalize", description: "governance goes live with software that fits how you work" }
+      { title: "Learn", description: "Build internal capability first so your team understands threat landscapes, privacy standards, and safe practices." },
+      { title: "Assess", description: "Identify vulnerabilities, policy gaps, and risks to know exactly where your digital posture stands." },
+      { title: "Operationalize", description: "Deploy automated protection and safety controls with software that fits seamlessly into how you work." }
     ],
     footer: "One journey. Multiple platforms. Zero guesswork."
   },
@@ -169,8 +169,8 @@ export const homeContent = {
   constantInnovation: {
     heading: "Constant Innovation",
     paragraphs: [
-      "We're already using AI to take the manual, repetitive parts of compliance off your team's plate. And we're just getting started.",
-      "Regulations change, threats change, technology changes, and honestly, so do we. Every new version we ship brings smarter AI and better tools, so staying compliant gets easier over time, not harder. You'll never have to start from scratch."
+      "We're already using AI to take the manual, repetitive parts of compliance off your team's plate. And we're just getting\u00A0started.",
+      "Regulations change, threats change, technology changes, and honestly, so do we. Every new version we ship brings smarter AI and better tools, so staying compliant gets easier over time, not harder. You'll never have to start from\u00A0scratch."
     ],
     attribution: "— Aashray Infotech Private Limited"
   },

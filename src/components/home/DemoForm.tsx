@@ -52,7 +52,7 @@ export default function DemoForm() {
             <div className="relative z-10">
               <h2 className="text-3xl font-serif font-semibold mb-6">Request a Demo</h2>
               <p className="text-gray-300 leading-relaxed mb-20">
-                See how Aashray Infotech can automate your DPDP compliance on your own infrastructure, keeping your data completely under your control.
+                See how Aashray Infotech strengthens your digital safety and data governance on your own infrastructure, keeping your systems and data completely under your control.
               </p>
               
               <div className="space-y-6 mt-auto">

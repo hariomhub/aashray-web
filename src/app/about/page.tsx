@@ -2,7 +2,6 @@ import Image from "next/image";
 import OurValues from "@/components/about/OurValues";
 import AboutHero from "@/components/about/AboutHero";
 import OurAashray from "@/components/about/OurAashray";
-import AboutParagraphs from "@/components/about/AboutParagraphs";
 
 export default function AboutPage() {
   const leaders = [
@@ -68,8 +67,6 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-      
-      <AboutParagraphs />
     </div>
   );
 }

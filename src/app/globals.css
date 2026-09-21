@@ -32,14 +32,25 @@
   --color-accent: #D4AF37;
 }
 
-body {
+html, body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Ensure images don't exceed container */
 img, video {
   max-width: 100%;
   height: auto;
+}
+
+/* Hide native video captions to prevent overlapping text bugs on mobile (e.g. iOS Safari) */
+video::-webkit-media-text-track-container {
+  display: none !important;
+}
+video::cue {
+  display: none !important;
 }

@@ -32,7 +32,7 @@ export default function Learning() {
               <PlayCircle className="w-10 h-10 text-white" />
             </div>
           </div>
-          <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+          <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center xl:text-left">
             <h3 className="text-2xl font-serif font-bold text-neutral-text dark:text-white mb-4">
               Official YouTube Channel
             </h3>
@@ -43,7 +43,7 @@ export default function Learning() {
               href="https://www.youtube.com/@AASHRAYINFOTECH" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#FF0000] text-white px-6 h-[48px] rounded-md font-semibold hover:bg-[#CC0000] transition-colors self-start shadow-md hover:shadow-lg"
+              className="inline-flex items-center justify-center gap-2 bg-[#FF0000] text-white px-6 h-[48px] rounded-md font-semibold hover:bg-[#CC0000] transition-colors self-center xl:self-start shadow-md hover:shadow-lg"
             >
               <PlayCircle className="w-5 h-5" />
               Visit Channel

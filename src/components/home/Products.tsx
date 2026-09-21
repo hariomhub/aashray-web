@@ -8,7 +8,7 @@ export default function Products() {
   const { ourPlatforms } = homeContent;
 
   return (
-    <section id="products" className="py-20 md:py-32 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 border border-[rgba(70,110,220,0.12)] rounded-[28px] shadow-[0_20px_60px_rgba(40,70,140,0.08)] mx-4 sm:mx-6 lg:mx-8 mb-24">
+    <section id="products" className="py-20 md:py-32 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 border-y border-[rgba(70,110,220,0.12)] shadow-[0_20px_60px_rgba(40,70,140,0.08)] w-full mb-24">
       
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

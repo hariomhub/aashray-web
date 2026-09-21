@@ -46,14 +46,14 @@ export default function Header() {
   return (
     <>
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 transform ${
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 transform ${
         isHidden ? "-translate-y-full" : "translate-y-0"
       } bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-sm h-24 md:h-36 flex items-center border-b border-gray-100 dark:border-gray-800`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 flex justify-between items-center relative">
         
         {/* Mobile Header Layout */}
-        <div className="flex xl:hidden w-full justify-between items-center">
+        <div className="flex 2xl:hidden w-full justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.jpg"
@@ -63,26 +63,27 @@ export default function Header() {
               className="w-[60px] h-[60px] object-contain rounded-md"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             <button
-              className="p-2 text-neutral-text dark:text-white"
+              className="p-2 text-neutral-text dark:text-white flex items-center gap-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-800 mr-2 sm:mr-3 lg:mr-4 shadow-sm"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open menu"
             >
               <Menu className="w-6 h-6" />
+              <span className="text-sm font-semibold pr-1">Menu</span>
             </button>
           </div>
         </div>
 
         {/* Desktop Layout - Exact Center Logo & Equidistant */}
-        <div className="hidden xl:flex w-full items-center relative">
+        <div className="hidden 2xl:flex w-full items-center relative">
           
           {/* Left Nav */}
           <div className="flex-1 flex justify-end items-center gap-8 xl:gap-12 pr-12 xl:pr-24">
             {navLinks.slice(0, 3).map((link) => (
               <div key={link.name} className="relative group">
-                <Link href={link.href} className="text-2xl font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
+                <Link href={link.href} className="text-base xl:text-lg font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
                   {link.name}
                 </Link>
               </div>
@@ -106,7 +107,7 @@ export default function Header() {
           <div className="flex-1 flex justify-start items-center gap-8 xl:gap-12 pl-12 xl:pl-24">
             {navLinks.slice(3).map((link) => (
               <div key={link.name} className="relative group" onMouseEnter={() => link.hasDropdown && setProductsOpen(true)} onMouseLeave={() => link.hasDropdown && setProductsOpen(false)}>
-                <Link href={link.href} className="flex items-center gap-1 text-2xl font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
+                <Link href={link.href} className="flex items-center gap-1 text-base xl:text-lg font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
                   {link.name}
                   {link.hasDropdown && <ChevronDown className="w-5 h-5" />}
                 </Link>
@@ -138,8 +139,16 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <div className="flex items-center border-l border-gray-200 dark:border-gray-800 pl-8 h-8">
+            <div className="flex items-center border-l border-gray-200 dark:border-gray-800 pl-8 h-8 gap-4">
               <ThemeToggle />
+              <button
+                className="p-2 text-neutral-text dark:text-white flex items-center gap-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-sm transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Open menu"
+              >
+                <Menu className="w-6 h-6" />
+                <span className="text-sm font-semibold pr-1">Menu</span>
+              </button>
             </div>
           </div>
         </div>
@@ -154,7 +163,7 @@ export default function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/20 z-40 xl:hidden"
+              className="fixed inset-0 bg-black/20 z-40 2xl:hidden"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -162,7 +171,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-950 z-50 shadow-xl flex flex-col xl:hidden"
+              className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-950 z-50 shadow-xl flex flex-col 2xl:hidden"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-100 dark:border-gray-800">
                 <Image

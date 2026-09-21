@@ -2,7 +2,6 @@ import AboutHero from "@/components/about/AboutHero";
 import LeadershipTeam from "@/components/about/LeadershipTeam";
 import OurValues from "@/components/about/OurValues";
 import OurAashray from "@/components/about/OurAashray";
-import AboutParagraphs from "@/components/about/AboutParagraphs";
 
 export default function AboutUs() {
   return (
@@ -11,7 +10,6 @@ export default function AboutUs() {
       <OurValues />
       <OurAashray />
       <LeadershipTeam />
-      <AboutParagraphs />
     </div>
   );
 }

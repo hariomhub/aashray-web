@@ -29,7 +29,7 @@ export default function RootLayout({
       className={`${lexendDeca.variable} h-full antialiased scroll-smooth`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-gray-950 text-neutral-text transition-colors duration-300">
+      <body className="min-h-full flex flex-col font-sans bg-white dark:bg-gray-950 text-neutral-text transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -44,7 +44,7 @@ export default function RootLayout({
           </div>
 
           <Header />
-          <main className="flex-1 pt-20">
+          <main className="flex-1 w-full !max-w-none !m-0 pt-20">
             {children}
           </main>
           <Footer />

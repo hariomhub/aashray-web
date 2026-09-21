@@ -11,9 +11,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
           {/* Brand & Tagline */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
             <Link href="/" className="inline-block">
-              <div className="bg-white p-2 rounded-md w-fit">
+              <div className="bg-white p-2 rounded-md w-fit mx-auto md:mx-0">
                 <Image
                   src="/logo.jpg"
                   alt="Aashray Infotech Logo"
@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-white font-semibold mb-6">Quick Links</h3>
             <ul className="space-y-4">
               <li><Link href="#about" className="hover:text-white transition-colors text-sm">About Us</Link></li>
@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
 
           {/* Explore */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-white font-semibold mb-6">Explore</h3>
             <ul className="space-y-4">
               <li><Link href="/privacy-policy" className="hover:text-white transition-colors text-sm">Privacy Policy</Link></li>
@@ -63,9 +63,9 @@ export default function Footer() {
           </div>
 
           {/* Follow Us */}
-          <div>
+          <div className="text-center md:text-left">
             <h3 className="text-white font-semibold mb-6">Follow Us</h3>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
               <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
                 <Globe className="w-4 h-4" />
               </a>
@@ -77,7 +77,7 @@ export default function Footer() {
               </a>
             </div>
             
-            <a href="mailto:contact@aashrayinfotech.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors text-sm group mt-6">
+            <a href="mailto:contact@aashrayinfotech.com" className="flex items-center justify-center md:justify-start gap-3 text-gray-400 hover:text-white transition-colors text-sm group mt-6">
               <span className="p-2 bg-white/5 rounded-full group-hover:bg-primary transition-colors">
                 <Mail className="w-4 h-4 text-accent" />
               </span>
@@ -89,7 +89,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 text-center md:text-left">
             &copy; {currentYear} Aashray Infotech Private Limited. All rights reserved.
           </p>
           <div className="flex items-center gap-2 text-sm text-gray-500">
