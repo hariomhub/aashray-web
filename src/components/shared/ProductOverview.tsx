@@ -80,16 +80,15 @@ export default function ProductOverview({ name, slug, features, description, ima
                 >
                   {isVideo ? (
                     <video 
+                      key={image}
+                      src={image}
                       autoPlay 
                       loop 
                       muted
-                      controls 
                       playsInline
                       preload="auto"
                       className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
-                    >
-                      <source src={image} type="video/mp4" />
-                    </video>
+                    />
                   ) : (
                     <img 
                       src={image} 

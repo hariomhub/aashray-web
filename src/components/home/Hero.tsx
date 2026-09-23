@@ -65,8 +65,9 @@ export default function Hero() {
                 <video 
                   src="/dpdp_v1.mp4" 
                   autoPlay 
-                  loop 
+                  loop
                   muted
+                  controls 
                   playsInline 
                   className="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                 />
