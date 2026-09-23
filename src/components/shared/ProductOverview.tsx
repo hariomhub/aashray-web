@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, PlayCircle, MessageCircle, ArrowRight, BookOpen, ShieldCheck, Route, TrendingUp, Mic, RefreshCw, Zap } from "lucide-react";
@@ -25,6 +25,14 @@ interface ProductOverviewProps {
 export default function ProductOverview({ name, slug, features, description, image }: ProductOverviewProps) {
   const [activeTab, setActiveTab] = useState("overview");
   const isVideo = image?.endsWith('.mp4');
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.muted = true;
+      heroVideoRef.current.play().catch(() => {/* silently ignore */});
+    }
+  }, [image]);
 
   return (
     <div className="bg-white dark:bg-gray-950 min-h-screen">
@@ -80,6 +88,7 @@ export default function ProductOverview({ name, slug, features, description, ima
                 >
                   {isVideo ? (
                     <video 
+                      ref={heroVideoRef}
                       key={image}
                       src={image}
                       autoPlay 

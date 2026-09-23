@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, Clock, Box } from "lucide-react";
 import Link from "next/link";
@@ -36,6 +38,18 @@ export default function PlatformCard({
   const isImageRight = index % 2 === 0;
   const isVideo = image?.endsWith('.mp4');
   const displayFeatures = features.slice(0, 6);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    // Force play on mount since autoPlay can be unreliable in some browsers
+    [mobileVideoRef.current, desktopVideoRef.current].forEach(v => {
+      if (v) {
+        v.muted = true;
+        v.play().catch(() => {/* silently ignore if browser blocks */});
+      }
+    });
+  }, [image]);
 
   return (
     <div className={`group flex flex-col items-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-[12px] border border-[rgba(90,120,220,0.15)] rounded-[24px] p-6 md:p-8 xl:px-12 xl:pt-12 xl:pb-8 shadow-[0_4px_25px_rgba(50,80,150,0.05)] relative overflow-hidden`}>
@@ -92,7 +106,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto object-cover relative z-10 rounded-[20px]" />
+                <video ref={mobileVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto object-cover relative z-10 rounded-[20px]" />
               ) : (
                 <img src={image} alt={name} className="w-full h-full object-contain p-4 relative z-10" />
               )
@@ -161,7 +175,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
+                <video ref={desktopVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               ) : (
                 <img src={image} alt={name} className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               )
