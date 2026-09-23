@@ -11,8 +11,8 @@
   --color-text-secondary: #5B6472;
   --color-border-light: #E5E8EF;
   
-  --font-serif: var(--font-lexend-deca), sans-serif;
-  --font-sans: var(--font-lexend-deca), sans-serif;
+  --font-serif: "Lexend Deca", sans-serif;
+  --font-sans: "Lexend Deca", sans-serif;
 }
 
 :root {

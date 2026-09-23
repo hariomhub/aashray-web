@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
-import { Lexend_Deca } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieBanner from "@/components/consent/CookieBanner";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import FloatingFAQButton from "@/components/shared/FloatingFAQButton";
-
-const lexendDeca = Lexend_Deca({
-  variable: "--font-lexend-deca",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   title: "Aashray Infotech | DPDP Compliance, On Your Infrastructure",
@@ -26,9 +19,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lexendDeca.variable} h-full antialiased scroll-smooth`}
+      className="h-full antialiased scroll-smooth"
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-white dark:bg-gray-950 text-neutral-text transition-colors duration-300 overflow-x-hidden">
         <ThemeProvider
           attribute="class"
