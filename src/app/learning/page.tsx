@@ -59,7 +59,7 @@ export default function LearningPage() {
         <span className="text-sm font-semibold tracking-wide uppercase text-accent mb-3 block">
           Video Library
         </span>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-text dark:text-white mb-6">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-neutral-text dark:text-white mb-6">
           Learning Hub
         </h1>
         <p className="text-lg md:text-xl text-text-secondary dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -75,7 +75,7 @@ export default function LearningPage() {
               <PlayCircle className="w-8 h-8 text-[#FF0000]" />
             </div>
             <div>
-              <h2 className="text-xl md:text-2xl font-serif font-bold text-neutral-text dark:text-white mb-2">
+              <h2 className="text-xl md:text-2xl font-sans font-bold text-neutral-text dark:text-white mb-2">
                 Official YouTube Channel
               </h2>
               <p className="text-text-secondary dark:text-gray-400">
@@ -98,7 +98,7 @@ export default function LearningPage() {
       {/* Video Grid */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-xl md:text-2xl font-serif font-bold text-neutral-text dark:text-white flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-sans font-bold text-neutral-text dark:text-white flex items-center gap-2">
             <BookOpen className="w-5 h-5 md:w-6 md:h-6 text-primary" />
             Upcoming Content
           </h2>

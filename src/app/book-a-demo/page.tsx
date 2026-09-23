@@ -10,7 +10,7 @@ export default function BookADemoPage() {
   return (
     <div className="pt-32 pb-24 md:pt-40">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-serif font-bold text-neutral-text dark:text-white mb-6">
+        <h1 className="text-4xl md:text-5xl font-sans font-bold text-neutral-text dark:text-white mb-6">
           Book a Demo
         </h1>
         <p className="text-xl text-text-secondary dark:text-gray-300 leading-relaxed">

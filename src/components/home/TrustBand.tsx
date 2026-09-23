@@ -7,14 +7,14 @@ export default function TrustBand() {
   const { trustedBy } = homeContent;
 
   return (
-    <section className="py-24 border-b border-gray-100 dark:border-gray-800 bg-transparent overflow-hidden">
+    <section className="py-6 border-b border-gray-100 dark:border-gray-800 bg-transparent overflow-hidden">
       <div className="w-full px-0">
         
-        <p className="text-center text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-16">
+        <p className="text-center text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
           {trustedBy.heading}
         </p>
 
-        <div className="w-full overflow-hidden flex py-24 relative">
+        <div className="w-full overflow-hidden flex py-4 relative">
           <motion.div 
             className="flex items-center min-w-max"
             animate={{ x: ["-50%", "0%"] }}

@@ -40,7 +40,7 @@ export default function DemoForm() {
   };
 
   return (
-    <section id="demo" className="py-24 lg:py-16 scroll-mt-24">
+    <section id="demo" className="py-12 lg:py-16 scroll-mt-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100 dark:border-gray-700">
@@ -50,7 +50,7 @@ export default function DemoForm() {
             <div className="absolute top-0 left-0 w-full h-full bg-[url('/circuit-pattern.svg')] opacity-10"></div>
             
             <div className="relative z-10">
-              <h2 className="text-3xl font-serif font-semibold mb-6">Request a Demo</h2>
+              <h2 className="text-3xl font-sans font-semibold mb-6">Request a Demo</h2>
               <p className="text-gray-300 leading-relaxed mb-20">
                 See how Aashray Infotech strengthens your digital safety and data governance on your own infrastructure, keeping your systems and data completely under your control.
               </p>
@@ -89,7 +89,7 @@ export default function DemoForm() {
                 <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-6">
                   <CheckCircle2 className="w-8 h-8 text-green-500" />
                 </div>
-                <h3 className="text-2xl font-serif font-semibold text-primary dark:text-white mb-2">Request Received</h3>
+                <h3 className="text-2xl font-sans font-semibold text-primary dark:text-white mb-2">Request Received</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-16 max-w-sm">
                   Thank you for your interest. Our team will contact you shortly to schedule your personalized demo.
                 </p>

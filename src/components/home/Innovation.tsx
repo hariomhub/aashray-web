@@ -5,7 +5,7 @@ import { Cpu } from "lucide-react";
 
 export default function Innovation() {
   return (
-    <section className="py-24 lg:py-16 bg-neutral-bg">
+    <section className="py-12 lg:py-16 bg-neutral-bg">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
         <div className="bg-white rounded-3xl p-8 lg:p-16 shadow-lg border border-gray-100 flex flex-col lg:flex-row items-center gap-24">
           
@@ -23,7 +23,7 @@ export default function Innovation() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-serif font-semibold text-primary mb-6"
+              className="text-3xl md:text-4xl font-sans font-semibold text-primary mb-6"
             >
               Constant Innovation
             </motion.h2>

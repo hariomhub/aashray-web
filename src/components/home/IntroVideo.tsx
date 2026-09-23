@@ -13,7 +13,7 @@ export default function IntroVideo() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-4"
+            className="text-3xl md:text-4xl font-sans font-bold text-neutral-text dark:text-white mb-4"
           >
             Meet Aashray
           </motion.h2>

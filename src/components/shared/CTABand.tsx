@@ -22,7 +22,7 @@ export default function CTABand({ productName, slug }: CTABandProps) {
     >
       <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-10"></div>
       <div className="relative z-10 max-w-2xl mx-auto">
-        <h2 className="text-3xl font-serif font-bold text-white mb-6">
+        <h2 className="text-3xl font-sans font-bold text-white mb-6">
           Ready to get started with {displayName}?
         </h2>
         <p className="text-primary-light text-lg mb-8">

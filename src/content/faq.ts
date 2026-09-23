@@ -5,7 +5,7 @@ export const faqs = [
   },
   {
     question: "What products does Aashray offer?",
-    answer: "Aashray currently offers seven products: **ComplianceQuest, NiyamSaathi, E-Sehmati, Parakh 360, Drishti AI, E-Pragati, and Suraksha Chinh**. Each product addresses a specific operational challenge across compliance, privacy, security, or digital wellbeing."
+    answer: "Aashray currently offers seven products: **ComplianceQuest, NiyamSaathi, E-Sehmati, Parakh 360, Digi Netra, E-Pragati, and Suraksha Chinh**. Each product addresses a specific operational challenge across compliance, privacy, security, or digital wellbeing."
   },
   {
     question: "Are Aashray products standalone or can they work together?",
@@ -40,8 +40,8 @@ export const faqs = [
     answer: "Parakh 360 supports the vendor lifecycle from **onboarding and risk assessment through evidence collection, contract review, periodic reassessment, renewal, incidents, and offboarding**. Vendors can provide questionnaires and supporting documents through the vendor portal, while AI helps analyze evidence and relevant contract information."
   },
   {
-    question: "What makes Drishti AI different from traditional DLP?",
-    answer: "Traditional DLP focuses primarily on information stored or transmitted digitally. **Drishti AI applies DLP concepts to video.** It can work with multiple camera vendors without requiring vendor-specific camera SDKs, identify configured visual objects and conditions, apply contextual rules, and generate alerts when those rules are matched."
+    question: "What makes Digi Netra different from traditional DLP?",
+    answer: "Traditional DLP focuses primarily on information stored or transmitted digitally. **Digi Netra applies DLP concepts to video.** It can work with multiple camera vendors without requiring vendor-specific camera SDKs, identify configured visual objects and conditions, apply contextual rules, and generate alerts when those rules are matched."
   },
   {
     question: "Does E-Pragati block children from using apps or websites?",

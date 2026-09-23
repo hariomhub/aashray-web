@@ -5,14 +5,14 @@ import { PlayCircle, ArrowRight } from "lucide-react";
 
 export default function Learning() {
   return (
-    <section id="learning" className="py-24 lg:py-16 scroll-mt-24">
+    <section id="learning" className="py-12 lg:py-16 scroll-mt-12">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
         
-        <div className="mb-24 text-center max-w-3xl mx-auto">
+        <div className="mb-12 text-center max-w-3xl mx-auto">
           <span className="text-sm font-semibold tracking-wide uppercase text-accent mb-3 block">
             Video Learning
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-sans font-bold text-neutral-text dark:text-white mb-6">
             Watch & Learn with Aashray Infotech
           </h2>
           <p className="text-lg text-text-secondary dark:text-gray-300 leading-relaxed">
@@ -33,7 +33,7 @@ export default function Learning() {
             </div>
           </div>
           <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-center xl:text-left">
-            <h3 className="text-2xl font-serif font-bold text-neutral-text dark:text-white mb-4">
+            <h3 className="text-2xl font-sans font-bold text-neutral-text dark:text-white mb-4">
               Official YouTube Channel
             </h3>
             <p className="text-text-secondary dark:text-gray-400 mb-16 leading-relaxed">

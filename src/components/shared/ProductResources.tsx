@@ -15,10 +15,10 @@ interface ProductResourcesProps {
 export default function ProductResources({ resources = [] }: ProductResourcesProps) {
   if (resources.length === 0) {
     return (
-      <div className="py-24 text-center">
+      <div className="py-12 text-center">
         <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-12 border border-gray-100 dark:border-gray-800 max-w-2xl mx-auto">
           <FileText className="w-16 h-16 text-gray-300 dark:text-gray-700 mx-auto mb-6" />
-          <h3 className="text-2xl font-serif font-bold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-2xl font-sans font-bold text-gray-900 dark:text-white mb-4">
             Resources Coming Soon
           </h3>
           <p className="text-gray-500 dark:text-gray-400 text-lg">

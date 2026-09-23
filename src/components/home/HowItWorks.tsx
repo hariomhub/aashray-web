@@ -9,7 +9,7 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="py-24 bg-primary text-white relative overflow-hidden">
+    <section className="py-12 bg-primary text-white relative overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -17,7 +17,7 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-serif font-bold mb-4"
+            className="text-3xl md:text-4xl font-sans font-bold mb-4"
           >
             {howItWorks.heading}
           </motion.h2>
@@ -32,7 +32,7 @@ export default function HowItWorks() {
           </motion.p>
         </div>
 
-        <div className="mt-24 rounded-2xl p-8 lg:p-12 relative overflow-hidden max-w-5xl mx-auto">
+        <div className="mt-12 rounded-2xl p-8 lg:p-12 relative overflow-hidden max-w-5xl mx-auto">
           <motion.div 
             animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}

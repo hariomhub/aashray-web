@@ -8,7 +8,7 @@ export default function Products() {
   const { ourPlatforms } = homeContent;
 
   return (
-    <section id="products" className="py-20 md:py-32 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 border-y border-[rgba(70,110,220,0.12)] shadow-[0_20px_60px_rgba(40,70,140,0.08)] w-full mb-24">
+    <section id="products" className="py-16 md:pt-20 md:pb-24 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 border-y border-[rgba(70,110,220,0.12)] shadow-[0_20px_60px_rgba(40,70,140,0.08)] w-full mb-12">
       
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -45,7 +45,7 @@ export default function Products() {
       
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10">
         
-        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-24 flex items-center justify-center gap-6">
+        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-12 flex items-center justify-center gap-6">
           <div className="hidden md:block h-[1px] w-[55px] bg-[rgba(80,110,220,0.35)]"></div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,7 @@ export default function Products() {
           <div className="hidden md:block h-[1px] w-[55px] bg-[rgba(80,110,220,0.35)]"></div>
         </div>
 
-        <div className="flex flex-col gap-12 md:gap-16 lg:gap-24 mb-16 md:mb-24">
+        <div className="flex flex-col gap-10 md:gap-12 lg:gap-16 mb-16 md:mb-12">
           {ourPlatforms.items.map((product, index) => (
             <PlatformCard
               key={`product-${index}`}

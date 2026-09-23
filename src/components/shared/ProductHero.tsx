@@ -35,7 +35,7 @@ export default function ProductHero({
         >
 
           
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-white mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-sans font-bold text-primary dark:text-white mb-6 leading-tight">
             {name}
           </h1>
           

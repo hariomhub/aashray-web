@@ -16,8 +16,8 @@ export default function OurApproach() {
   }, [ourApproach.steps.length]);
 
   return (
-    <section className="py-24 bg-white relative">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
+    <section className="py-12 bg-white relative">
+      <div className="w-full max-w-none mx-auto px-4 sm:px-6 lg:px-12 xl:px-16">
         <div className="text-center max-w-5xl mx-auto mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

@@ -4,13 +4,14 @@ interface PlatformResource {
   url: string;
 }
 
-interface PlatformItem {
+export interface PlatformItem {
   name: string;
+  slug: string;
   tagline: string;
   description?: string;
-  slug: string;
   category: string;
   image: string;
+  logo?: string;
   features: { bold: string; text: string }[];
   isPlaceholder: boolean;
   placeholderText?: string;
@@ -47,14 +48,16 @@ export const homeContent = {
         description: "Every compliance journey starts with understanding the regulations. Our free app uses AI to turn the DPDP Act into learning that's simple, fast, and made for you.",
         slug: "compliancequest",
         category: "platforms",
-        image: "/products/Complaince quest.mp4",
+        image: "/products/compliance-quest.mp4",
+        logo: "/products/compliancequest.png",
         features: [
-          { bold: "Know exactly what applies to you", text: "Learn what your role (CEO, CFO, CISCO, CMO, DPO, CLO) actually needs" },
-          { bold: "Never lose a study minute", text: "Learning even continues when you’re on the move - flight, train, or cab — it syncs the second you're back online" },
-          { bold: "Learn from the field experts", text: "Top insights from regulations, DPDP books and educational videos curated for you in one space, so you never waste time searching" },
-          { bold: "Walk into any meeting prepared", text: "Your personalised notes on the topic, organized and searchable, ready the moment you need them" },
-          { bold: "Never stay stuck on a doubt", text: "An AI DPDP expert available 24/7, offline or online, in your pocket for every question and clarification" },
-          { bold: "Learning that actually sticks", text: "Flashcards, quizzes, and games inspired by the ones you already love. Think running-style dashes, obstacle based puzzles, and word search-inspired games" }
+          { bold: "Regulatory learning videos", text: "Access a curated library of high-quality video content designed to break down complex regulations into easily understandable concepts." },
+          { bold: "Short lessons and visual learning", text: "Engage with bite-sized, visually rich modules that ensure maximum retention without overwhelming your employees." },
+          { bold: "Quizzes and knowledge checks", text: "Evaluate comprehension in real-time with interactive assessments that pinpoint knowledge gaps and reinforce critical policies." },
+          { bold: "Flashcards and gamified learning", text: "Make compliance training enjoyable with interactive flashcards, leaderboards, and scenarios that boost engagement and completion rates." },
+          { bold: "Progress-oriented learning experience", text: "Track individual and team milestones through an intuitive dashboard that motivates continuous learning and guarantees audit-readiness." },
+          { bold: "Content covering DPDP, RBI, SEBI, CERT-In, cybersecurity and AI governance topics", text: "Stay ahead of the curve with comprehensive, up-to-date modules on India's most critical regulatory frameworks and data security standards." },
+          { bold: "Mobile-first access for ongoing learning", text: "Empower your team to learn anywhere, anytime, with a fully responsive mobile platform that syncs progress seamlessly across devices." }
         ],
         isPlaceholder: false
       },
@@ -64,14 +67,20 @@ export const homeContent = {
         description: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start. Our AI tool tells you exactly what it takes and where you currently stand.",
         slug: "niyamsaathi",
         category: "platforms",
-        image: "/products/Niyamsathi.mp4",
+        image: "/products/niyamsathi.mp4",
         features: [
-          { bold: "Always know where you stand", text: "Real-time risk and compliance dashboards mean you're never waiting on a quarterly report to know your posture" },
-          { bold: "An asset register that builds itself", text: "Connect to any cloud like AWS, Azure, GCP, Microsoft 365, or Google Workspace, and your assets are discovered and proposed automatically" },
-          { bold: "Stay compliant across every regulation, from one place", text: "DPDP Act, RBI Data Localisation, CERT IN guidelines, IT Act, and SEBI Cybersecurity controls — pre-mapped and centrally updated, so you're never chasing regulatory changes yourself" },
-          { bold: "Never lose a piece of compliance evidence", text: "Every submission is versioned and reviewed by an Internal Auditor before it counts — with full history preserved, even after rejections" },
-          { bold: "Spot your gaps before an auditor does", text: "Auto-generated gap reports and overdue-task alerts surface risk on leadership dashboards before it becomes a problem" },
-          { bold: "Access that stays in sync, automatically", text: "Connect Microsoft Entra ID once, and roles and departments stay in sync with your security groups" }
+          { bold: "Role-based compliance learning videos", text: "Deliver tailored training content to employees based on their specific roles, ensuring everyone understands their unique compliance responsibilities." },
+          { bold: "Control assignment and ownership", text: "Clearly define who is responsible for each compliance task by assigning controls to specific owners across departments and teams." },
+          { bold: "Task and deadline tracking", text: "Never miss a regulatory milestone with automated alerts and real-time tracking for all pending compliance actions and SLA deadlines." },
+          { bold: "Evidence upload and audit workflow", text: "Streamline the entire audit lifecycle with a centralized portal for uploading, reviewing, and approving compliance evidence securely." },
+          { bold: "Internal and external auditor review", text: "Provide a structured, read-only workspace for auditors to evaluate controls, access evidence, and leave findings without disrupting daily operations." },
+          { bold: "Executive readiness dashboards", text: "Equip leadership with real-time, consolidated views of organizational compliance posture, high-risk areas, and overall audit readiness." },
+          { bold: "Cross-regulation control mapping", text: "Drastically reduce duplicate work by automatically mapping overlapping requirements across frameworks like DPDP, RBI, and CERT-In." },
+          { bold: "AI Evidence Checker", text: "Automatically scan uploaded documents using AI to verify if they meet specific control requirements and flag any missing or insufficient data." },
+          { bold: "AI gap and remediation guidance", text: "Instantly identify compliance vulnerabilities and receive step-by-step AI-driven recommendations to fix gaps before an audit occurs." },
+          { bold: "Natural-language compliance questions", text: "Ask complex regulatory questions in plain English and receive instant, contextual answers based on your organization's unique policies." },
+          { bold: "AI executive summaries", text: "Transform complex compliance metrics and lengthy audit reports into concise, actionable insights tailored for the C-suite." },
+          { bold: "ComplianceQuest learning-completion integration", text: "Seamlessly connect employee training data with your compliance controls to prove that mandatory learning requirements have been met." }
         ],
         isPlaceholder: false
       },
@@ -81,7 +90,7 @@ export const homeContent = {
         description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
         slug: "e-sehmati",
         category: "platforms",
-        image: "/products/Esehmati.mp4",
+        image: "/products/esehmati.mp4",
         features: [
           { bold: "Know where every piece of data lives", text: "Graph API-powered mapping that surfaces every system, vendor, and data point across your business, eliminating need for spreadsheets and guesswork" },
           { bold: "RoPA that is generated, not written from scratch", text: "Once your data is mapped, the legally required Record of Processing Activities builds itself, ready for any auditor" },
@@ -98,7 +107,7 @@ export const homeContent = {
         description: "Assess vendors, validate evidence and manage third-party risk from onboarding through offboarding.",
         slug: "tprm",
         category: "products",
-        image: "/products/parakh 360.mp4",
+        image: "/products/parakh-360.mp4",
         features: [
           { bold: "AI Vendor Assessment", text: "AI reads evidence, compares with control requirements, and flags missing or expired documents" },
           { bold: "Vendor Lifecycle", text: "Periodic reassessments, contract renewal alerts, and automated offboarding tasks" },
@@ -110,11 +119,12 @@ export const homeContent = {
       },
 
       {
-        name: "Drishti AI",
-        tagline: "Bring DLP thinking to video.",
+        name: "Digi Netra",
+        tagline: "Bring data security to video.",
         slug: "surveillance",
         category: "products",
-        image: "/products/drishti ai.mp4",
+        image: "/products/digi-netra.mp4",
+        logo: "/products/digi-netra.png",
         description: "Monitor multiple camera feeds, define contextual video policies and generate policy matches for human action.",
         features: [
           { bold: "Multi-vendor cameras", text: "No vendor-specific camera SDK required to integrate and monitor feeds" },
@@ -129,7 +139,7 @@ export const homeContent = {
         tagline: "Teach healthy digital habits. Don’t just block screens.",
         slug: "safe-gen",
         category: "products",
-        image: "/products/E-pragati.mp4",
+        image: "/products/e-pragati.mp4",
         description: "Help children become aware of their digital behavior, self-correct and gradually build healthier habits across home and school.",
         features: [
           { bold: "Behavioral Loop", text: "Awareness → Personalized Nudge → Child Reflects → Self-Correction" },
@@ -144,7 +154,7 @@ export const homeContent = {
         tagline: "Visible deterrence. Invisible protection.",
         slug: "protection-mark",
         category: "products",
-        image: "/products/suraksha chinh.mp4",
+        image: "/products/suraksha-chinh.mp4",
         description: "Protect sensitive information displayed on screen using configurable visible watermarks and Invisible Ink.",
         features: [
           { bold: "Configurable Watermark", text: "Display user name, IP, time, or custom text on screen at all times" },

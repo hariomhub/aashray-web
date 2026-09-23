@@ -120,7 +120,7 @@ export default function CookieBanner() {
               className="fixed inset-0 m-auto w-full max-w-lg h-fit max-h-[90vh] bg-white dark:bg-gray-900 rounded-xl shadow-2xl z-50 flex flex-col overflow-hidden"
             >
               <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-800">
-                <h2 className="text-xl font-semibold text-neutral-text font-serif">Consent Preferences</h2>
+                <h2 className="text-xl font-semibold text-neutral-text font-sans">Consent Preferences</h2>
                 <button
                   onClick={() => setShowPreferences(false)}
                   className="text-gray-400 hover:text-gray-600 transition-colors"

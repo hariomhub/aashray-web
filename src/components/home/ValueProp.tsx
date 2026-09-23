@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function ValueProp() {
   return (
-    <section className="py-24 lg:py-16 relative overflow-hidden">
+    <section className="py-12 lg:py-16 relative overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 flex flex-col items-center text-center">
         
         <div className="max-w-[700px] mx-auto">
@@ -13,7 +13,7 @@ export default function ValueProp() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-text dark:text-white mb-6 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-neutral-text dark:text-white mb-6 leading-tight"
           >
             Compliance without giving up <span className="text-accent italic">control</span>
           </motion.h2>

@@ -11,12 +11,12 @@ export default function AboutHero() {
       <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 z-0 pointer-events-none"></div>
       
       {/* Hero Header */}
-      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 text-center mb-16 lg:mb-24">
+      <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10 text-center mb-16 lg:mb-12">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight mb-8"
+          className="text-4xl md:text-5xl lg:text-6xl font-sans font-bold text-white leading-tight mb-8"
         >
           {hero.mission}
         </motion.h1>

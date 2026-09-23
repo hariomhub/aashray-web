@@ -48,7 +48,7 @@ export default function Header() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 transform ${
         isHidden ? "-translate-y-full" : "translate-y-0"
-      } bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-sm h-24 md:h-36 flex items-center border-b border-gray-100 dark:border-gray-800`}
+      } bg-white/95 dark:bg-gray-950/95 backdrop-blur-md shadow-sm h-16 md:h-20 flex items-center border-b border-gray-100 dark:border-gray-800`}
     >
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 flex justify-between items-center relative">
         
@@ -58,9 +58,9 @@ export default function Header() {
             <Image
               src="/logo.jpg"
               alt="Aashray Infotech Logo"
-              width={60}
-              height={60}
-              className="w-[60px] h-[60px] object-contain rounded-md"
+              width={48}
+              height={48}
+              className="w-[48px] h-[48px] object-contain rounded-md"
             />
           </Link>
           <div className="flex items-center gap-3">
@@ -96,9 +96,9 @@ export default function Header() {
               <Image
                 src="/logo.jpg"
                 alt="Aashray Infotech Logo"
-                width={100}
-                height={100}
-                className="w-[100px] h-[100px] object-contain rounded-md"
+                width={64}
+                height={64}
+                className="w-[64px] h-[64px] object-contain rounded-md"
               />
             </Link>
           </div>
@@ -141,14 +141,6 @@ export default function Header() {
             ))}
             <div className="flex items-center border-l border-gray-200 dark:border-gray-800 pl-8 h-8 gap-4">
               <ThemeToggle />
-              <button
-                className="p-2 text-neutral-text dark:text-white flex items-center gap-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-sm transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
-                onClick={() => setMobileMenuOpen(true)}
-                aria-label="Open menu"
-              >
-                <Menu className="w-6 h-6" />
-                <span className="text-sm font-semibold pr-1">Menu</span>
-              </button>
             </div>
           </div>
         </div>

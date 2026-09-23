@@ -27,6 +27,27 @@ export const aboutContent = {
   },
   leadership: {
     heading: "Leadership Team",
-    placeholder: "Leadership Team bios"
+    members: [
+      {
+        name: "Miss Ashima Girdhar",
+        role: "CEO",
+        image: "/about/Ashima_Girdhar.png"
+      },
+      {
+        name: "Mr. Ashish Girdhar",
+        role: "Chief Revenue Officer",
+        image: "/about/Ashish_Girdhar.png"
+      },
+      {
+        name: "Mrs. Mamta Girdhar",
+        role: "Chief Legal and Human Resources",
+        image: "/about/Mamta_Girdhar.png"
+      },
+      {
+        name: "Mrs. Anshu Kumar",
+        role: "Partners & International Business",
+        image: "/about/Anshu_kumar.png"
+      }
+    ]
   }
 };

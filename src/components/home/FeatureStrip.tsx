@@ -13,7 +13,7 @@ const features = [
 
 export default function FeatureStrip() {
   return (
-    <section className="py-24 lg:py-16">
+    <section className="py-12 lg:py-16">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
         
         <div className="grid grid-cols-2 md:grid-cols-5 gap-16 md:gap-4">

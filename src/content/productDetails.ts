@@ -1,21 +1,26 @@
 export const productDetails: Record<string, { bold: string; text: string }[]> = {
   "compliancequest": [
-    { bold: "Role-Based Learning", text: "Automatically tailor compliance learning to a person's role, department, seniority and responsibilities so employees learn what actually applies to them." },
-    { bold: "AI Regulatory Expert", text: "Ask questions about regulations in natural language and get simple, contextual explanations, examples and guidance instead of having to read lengthy regulatory documents." },
-    { bold: "Personalized Learning Paths", text: "Create individual learning journeys based on role, regulatory requirements, knowledge gaps and assigned compliance topics." },
-    { bold: "Interactive Learning & Assessments", text: "Combine short lessons, videos, questions, scenarios, quizzes and assessments to make compliance learning more engaging and measurable." },
-    { bold: "Gamification & Progress Tracking", text: "Use scores, badges, streaks, leaderboards and progress dashboards to encourage employees to complete their learning and improve knowledge." },
-    { bold: "Multilingual & Voice AI", text: "Allow users to interact with the regulatory expert using voice and multiple languages, making complex compliance topics easier to understand." },
-    { bold: "Central Regulatory Content Updates", text: "Maintain regulatory learning centrally so updates to regulations and compliance content can be distributed to customer environments while allowing organizations to control what they activate." }
+    { bold: "Regulatory learning videos", text: "Access a curated library of high-quality video content designed to break down complex regulations into easily understandable concepts." },
+    { bold: "Short lessons and visual learning", text: "Engage with bite-sized, visually rich modules that ensure maximum retention without overwhelming your employees." },
+    { bold: "Quizzes and knowledge checks", text: "Evaluate comprehension in real-time with interactive assessments that pinpoint knowledge gaps and reinforce critical policies." },
+    { bold: "Flashcards and gamified learning", text: "Make compliance training enjoyable with interactive flashcards, leaderboards, and scenarios that boost engagement and completion rates." },
+    { bold: "Progress-oriented learning experience", text: "Track individual and team milestones through an intuitive dashboard that motivates continuous learning and guarantees audit-readiness." },
+    { bold: "Content covering DPDP, RBI, SEBI, CERT-In, cybersecurity and AI governance topics", text: "Stay ahead of the curve with comprehensive, up-to-date modules on India's most critical regulatory frameworks and data security standards." },
+    { bold: "Mobile-first access for ongoing learning", text: "Empower your team to learn anywhere, anytime, with a fully responsive mobile platform that syncs progress seamlessly across devices." }
   ],
   "niyamsaathi": [
-    { bold: "Compliance Control Management", text: "Create, assign and track compliance controls across teams, departments, locations and regulations." },
-    { bold: "AI Evidence Checker", text: "Upload evidence and let AI determine whether it sufficiently addresses the control, explain gaps and identify what additional evidence may be required." },
-    { bold: "AI Compliance Advisor", text: "Ask questions about controls and receive practical guidance on what needs to be done, what evidence is expected and where gaps may exist." },
-    { bold: "Cross-Regulation Control Mapping", text: "Identify similar requirements across different regulations and reuse relevant controls and evidence instead of starting from scratch for every framework." },
-    { bold: "Auditor Workspace", text: "Give internal and external auditors structured access to controls, evidence, findings and audit trails needed for review." },
-    { bold: "Executive Compliance Dashboard", text: "Give executives a consolidated view of readiness, risks, outstanding controls, overdue actions, business units and progress." },
-    { bold: "ComplianceQuest Integration", text: "Connect compliance learning completion with control readiness so organizations can see whether required employee learning has been completed alongside compliance activities." }
+    { bold: "Role-based compliance learning videos", text: "Deliver tailored training content to employees based on their specific roles, ensuring everyone understands their unique compliance responsibilities." },
+    { bold: "Control assignment and ownership", text: "Clearly define who is responsible for each compliance task by assigning controls to specific owners across departments and teams." },
+    { bold: "Task and deadline tracking", text: "Never miss a regulatory milestone with automated alerts and real-time tracking for all pending compliance actions and SLA deadlines." },
+    { bold: "Evidence upload and audit workflow", text: "Streamline the entire audit lifecycle with a centralized portal for uploading, reviewing, and approving compliance evidence securely." },
+    { bold: "Internal and external auditor review", text: "Provide a structured, read-only workspace for auditors to evaluate controls, access evidence, and leave findings without disrupting daily operations." },
+    { bold: "Executive readiness dashboards", text: "Equip leadership with real-time, consolidated views of organizational compliance posture, high-risk areas, and overall audit readiness." },
+    { bold: "Cross-regulation control mapping", text: "Drastically reduce duplicate work by automatically mapping overlapping requirements across frameworks like DPDP, RBI, and CERT-In." },
+    { bold: "AI Evidence Checker", text: "Automatically scan uploaded documents using AI to verify if they meet specific control requirements and flag any missing or insufficient data." },
+    { bold: "AI gap and remediation guidance", text: "Instantly identify compliance vulnerabilities and receive step-by-step AI-driven recommendations to fix gaps before an audit occurs." },
+    { bold: "Natural-language compliance questions", text: "Ask complex regulatory questions in plain English and receive instant, contextual answers based on your organization's unique policies." },
+    { bold: "AI executive summaries", text: "Transform complex compliance metrics and lengthy audit reports into concise, actionable insights tailored for the C-suite." },
+    { bold: "ComplianceQuest learning-completion integration", text: "Seamlessly connect employee training data with your compliance controls to prove that mandatory learning requirements have been met." }
   ],
   "e-sehmati": [
     { bold: "Consent Management", text: "Capture, record, update, withdraw and manage customer consent throughout its lifecycle with a complete history of each consent transaction." },

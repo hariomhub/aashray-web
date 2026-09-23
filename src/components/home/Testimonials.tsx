@@ -43,7 +43,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-24 lg:py-16 relative overflow-hidden">
+    <section className="py-12 lg:py-16 relative overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -51,7 +51,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-neutral-text dark:text-white mb-6"
+            className="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-neutral-text dark:text-white mb-6"
           >
             Trusted by the best
           </motion.h2>

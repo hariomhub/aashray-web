@@ -33,10 +33,10 @@ export default function RelatedProductsGrid({ currentSlug, productName }: Relate
   };
 
   return (
-    <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-24 bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
+    <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 py-12 bg-white dark:bg-gray-950 border-t border-gray-100 dark:border-gray-800">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
         <div>
-          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-neutral-text dark:text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl font-sans font-bold text-neutral-text dark:text-white mb-4">
             Complete your compliance suite
           </h2>
           <p className="text-xl text-text-secondary dark:text-gray-400 max-w-2xl">

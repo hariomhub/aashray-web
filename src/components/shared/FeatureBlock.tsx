@@ -24,7 +24,7 @@ export default function FeatureBlock({ heading, description, index }: FeatureBlo
       {/* Content */}
       <div className="w-full lg:w-1/2 flex flex-col gap-4">
         {heading ? (
-          <h3 className="text-2xl font-serif font-bold text-gray-900 dark:text-white flex items-start gap-3">
+          <h3 className="text-2xl font-sans font-bold text-gray-900 dark:text-white flex items-start gap-3">
             <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-1" />
             <span>{heading}</span>
           </h3>
