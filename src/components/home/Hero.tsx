@@ -63,7 +63,7 @@ export default function Hero() {
                 className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
               >
                 <video 
-                  src="/dpdp_v1.mp4" 
+                  src="/test.mp4" 
                   autoPlay 
                   loop
                   muted
