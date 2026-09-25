@@ -38,7 +38,8 @@ export default function IntroVideo() {
           {/* Aashray Intro Video */}
           <video 
             className="absolute inset-0 w-full h-full object-cover z-10"
-            controls
+            autoPlay
+            loop
             playsInline
             muted
             preload="metadata"

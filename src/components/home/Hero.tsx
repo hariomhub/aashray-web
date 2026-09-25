@@ -1,12 +1,22 @@
 "use client";
 
+import { useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 import { homeContent } from "@/content/home";
 
 export default function Hero() {
   const { hero } = homeContent;
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <section className="relative w-full !max-w-none !m-0 min-h-[60vh] lg:min-h-[70vh] pt-24 lg:pt-32 pb-20 lg:pb-32 overflow-hidden bg-primary-dark">
@@ -60,17 +70,24 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.35 }}
-                className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10"
+                className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10 group"
               >
                 <video 
+                  ref={videoRef}
                   src="/test.mp4" 
                   autoPlay 
                   loop
-                  muted
-                  controls 
+                  muted={isMuted}
                   playsInline 
                   className="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                 />
+                <button
+                  onClick={toggleMute}
+                  className="absolute bottom-4 right-4 z-20 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-all border border-white/20 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                  aria-label={isMuted ? "Unmute video" : "Mute video"}
+                >
+                  {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                </button>
               </motion.div>
             </div>
           </div>
