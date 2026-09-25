@@ -40,7 +40,7 @@ export const aboutContent = {
       },
       {
         name: "Mrs. Mamta Girdhar",
-        role: "Chief Legal and Human Resources",
+        role: "Chief of Human Resources",
         image: "/about/Mamta_Girdhar.png"
       },
       {
