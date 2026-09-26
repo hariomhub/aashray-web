@@ -85,9 +85,16 @@ export default function RelatedProductsGrid({ currentSlug, productName }: Relate
               <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors mix-blend-multiply"></div>
             </div>
             
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary transition-colors">
               {item.name}
             </h3>
+            {item.statusBadge && (
+              <div className="mb-3">
+                <span className="inline-block px-2 py-0.5 text-[11px] font-semibold tracking-wide text-primary bg-primary/10 rounded-full dark:text-blue-400 dark:bg-blue-900/30">
+                  {item.statusBadge}
+                </span>
+              </div>
+            )}
             <p className="text-base text-gray-500 dark:text-gray-400 mb-6 line-clamp-2 flex-grow">
               {item.tagline || item.description || "Learn more about this offering"}
             </p>

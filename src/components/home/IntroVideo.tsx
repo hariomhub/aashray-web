@@ -1,9 +1,19 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { PlayCircle } from "lucide-react";
 
 export default function IntroVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
   return (
     <section className="py-20 bg-neutral-bg dark:bg-gray-950 relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -37,6 +47,7 @@ export default function IntroVideo() {
         >
           {/* Aashray Intro Video */}
           <video 
+            ref={videoRef}
             className="absolute inset-0 w-full h-full object-cover z-10"
             autoPlay
             loop

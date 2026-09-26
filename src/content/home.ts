@@ -16,6 +16,8 @@ export interface PlatformItem {
   isPlaceholder: boolean;
   placeholderText?: string;
   resources?: PlatformResource[];
+  menuName?: string;
+  statusBadge?: string;
 }
 
 export const homeContent = {
@@ -42,6 +44,7 @@ export const homeContent = {
   ourPlatforms: {
     heading: "OUR PRODUCTS",
     items: [
+
       {
         name: "ComplianceQuest",
         tagline: "Every compliance journey starts with understanding the regulations.",
@@ -64,7 +67,7 @@ export const homeContent = {
       {
         name: "NiyamSaathi",
         tagline: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start.",
-        description: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start. Our\u00A0AI\u00A0tool\u00A0tells\u00A0you\u00A0exactly\u00A0what\u00A0it\u00A0takes\u00A0and\u00A0where\u00A0you\u00A0currently\u00A0stand.",
+        description: "Whether you’re assessing your own organisation or a partner’s, NiyamSaathi helps you get it done faster and with greater confidence. Its AI-guided approach makes assessments easier even without deep compliance expertise—basic IT literacy is all you need to get started.",
         slug: "niyamsaathi",
         category: "platforms",
         image: "/products/niyamsathi.mp4",
@@ -81,56 +84,6 @@ export const homeContent = {
           { bold: "Natural-language compliance questions", text: "Ask complex regulatory questions in plain English and receive instant, contextual answers based on your organization's unique policies." },
           { bold: "AI executive summaries", text: "Transform complex compliance metrics and lengthy audit reports into concise, actionable insights tailored for the C-suite." },
           { bold: "ComplianceQuest learning-completion integration", text: "Seamlessly connect employee training data with your compliance controls to prove that mandatory learning requirements have been met." }
-        ],
-        isPlaceholder: false
-      },
-      {
-        name: "E-Sehmati",
-        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E\u2011Sehmati closes that gap.",
-        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E\u2011Sehmati closes that gap.",
-        slug: "e-sehmati",
-        category: "platforms",
-        image: "/products/esehmati.mp4",
-        features: [
-          { bold: "Know where every piece of data lives", text: "Graph API-powered mapping that surfaces every system, vendor, and data point across your business, eliminating need for spreadsheets and guesswork" },
-          { bold: "RoPA that is generated, not written from scratch", text: "Once your data is mapped, the legally required Record of Processing Activities builds itself, ready for any auditor" },
-          { bold: "Never lose track of a customer’s consent", text: "every online, offline consent is recorded across Website, app, call centre, branch, field visit, or WhatsApp to a single consent library" },
-          { bold: "Deadlines that enforce themselves", text: "Every principal rights request runs on a built-in SLA timer that auto-escalates to your DPO the moment it's overdue" },
-          { bold: "Delete data with zero legal risk", text: "Every erasure is checked against RBI, tax, and retention rules first along with DPO sign-off required before anything final happens" },
-          { bold: "A record no one can edit", text: "Every action across the platform is logged append-only — the same integrity standard a bank ledger holds itself to" }
-        ],
-        isPlaceholder: false
-      },
-      {
-        name: "Parakh 360",
-        tagline: "Know the risk behind every third party.",
-        description: "Assess vendors, validate evidence and manage third-party risk from onboarding through offboarding.",
-        slug: "tprm",
-        category: "products",
-        image: "/products/parakh-360.mp4",
-        features: [
-          { bold: "AI Vendor Assessment", text: "AI reads evidence, compares with control requirements, and flags missing or expired documents" },
-          { bold: "Vendor Lifecycle", text: "Periodic reassessments, contract renewal alerts, and automated offboarding tasks" },
-          { bold: "Executive Risk Dashboard", text: "Real-time visibility into vendor risk scores and compliance status" },
-          { bold: "NiyamSaathi integration", text: "Link third-party data to your internal Record of Processing Activities (RoPA)" },
-          { bold: "Contract AI", text: "Identify important privacy/security clauses and detect missing regulatory requirements" }
-        ],
-        isPlaceholder: false
-      },
-
-      {
-        name: "Digi Netra",
-        tagline: "Bring data security to video.",
-        slug: "surveillance",
-        category: "products",
-        image: "/products/digi-netra.mp4",
-        logo: "/products/digi-netra.png",
-        description: "Monitor multiple camera feeds, define contextual video policies and generate policy matches for human action.",
-        features: [
-          { bold: "Multi-vendor cameras", text: "No vendor-specific camera SDK required to integrate and monitor feeds" },
-          { bold: "Natural-language policy", text: "Simply type a policy in plain English and VDLP creates the visual rule" },
-          { bold: "Contextual Video Policies", text: "Create rules based on objects, color, speed, sequence, and time windows" },
-          { bold: "Human-in-the-loop", text: "AI generates and prioritizes incidents, while a human decides what action to take" }
         ],
         isPlaceholder: false
       },
@@ -163,6 +116,78 @@ export const homeContent = {
           { bold: "Screen Sharing Protection", text: "Watermark remains visible on displayed content during Teams or Zoom screen sharing" }
         ],
         isPlaceholder: false
+      },
+      {
+        name: "DPO as a Service",
+        tagline: "Expert data protection leadership, without the full-time hire.",
+        description: "Get a certified Data Protection Officer on demand — covering DPDP, GDPR, and global privacy obligations across your organisation, from strategy through breach response.",
+        slug: "dpo-as-a-service",
+        category: "products",
+        image: "/products/parakh-360.mp4",
+        features: [
+          { bold: "Regulatory Liaison & Strategy", text: "Serve as your organisation's primary contact with data protection regulators and design a data protection strategy aligned with DPDP, GDPR, CCPA, and UAE PDPL" },
+          { bold: "Data Protection Impact Assessments", text: "Conduct and oversee DPIAs for high-risk processing activities, with prioritised gap reports and remediation roadmaps" },
+          { bold: "Data Principal Rights Management", text: "Handle access, correction, erasure, and nomination requests within mandated SLA timelines, with full workflow tracking" },
+          { bold: "24/7 Breach Response", text: "Round-the-clock incident triage through regulatory notification and post-incident remediation — so you never face a privacy crisis alone" },
+          { bold: "Privacy Framework Implementation", text: "Draft privacy notices, DPAs, RoPA, retention schedules, and consent frameworks — jurisdiction-specific and legally reviewed" },
+          { bold: "Workforce Privacy Training", text: "Role-based training for leadership, HR, marketing, product, and IT teams to embed a data protection culture across the organisation" }
+        ],
+        isPlaceholder: false
+      },
+      {
+        name: "Digi Netra",
+        statusBadge: "available for private demo",
+        menuName: "Digi Netra",
+        tagline: "Bring data security to video.",
+        slug: "surveillance",
+        category: "products",
+        image: "/products/digi-netra.mp4",
+        logo: "/products/digi-netra.png",
+        description: "Monitor multiple camera feeds, define contextual video policies and generate policy matches for human action.",
+        features: [
+          { bold: "Multi-vendor cameras", text: "No vendor-specific camera SDK required to integrate and monitor feeds" },
+          { bold: "Natural-language policy", text: "Simply type a policy in plain English and VDLP creates the visual rule" },
+          { bold: "Contextual Video Policies", text: "Create rules based on objects, color, speed, sequence, and time windows" },
+          { bold: "Human-in-the-loop", text: "AI generates and prioritizes incidents, while a human decides what action to take" }
+        ],
+        isPlaceholder: false
+      },
+      {
+        name: "Parakh 360",
+        statusBadge: "coming soon",
+        menuName: "Parakh 360",
+        tagline: "Know the risk behind every third party.",
+        description: "Manage third-party risk end-to-end — from onboarding through offboarding — across privacy, cybersecurity, procurement, and regulatory requirements beyond DPDP.",
+        slug: "tprm",
+        category: "products",
+        image: "/products/parakh-360.mp4",
+        features: [
+          { bold: "AI Agent for Procurement & Rule Checks", text: "An AI agent continuously checks vendor activity against procurement policies and regulatory rules, surfacing anomalies and deviations before they become risks" },
+          { bold: "Full Lifecycle TPRM", text: "Manage vendors from onboarding and risk assessment through evidence collection, periodic reassessment, incident handling, and structured offboarding" },
+          { bold: "Consent Management Tool Integration", text: "Push and suppress data flows to and from third parties in line with consent status — connecting TPRM with your consent management platform" },
+          { bold: "Vendor Credibility & Reviews", text: "Assess vendor professionalism, track performance history, reviews, and reputation signals alongside regulatory risk scores" },
+          { bold: "Contract AI", text: "Identify important privacy, security, and procurement clauses — and detect missing regulatory requirements across vendor contracts and DPAs" }
+        ],
+        isPlaceholder: false
+      },
+      {
+        name: "E-Sehmati",
+        statusBadge: "coming soon",
+        menuName: "E-Sehmati",
+        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
+        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
+        slug: "e-sehmati",
+        category: "platforms",
+        image: "/products/esehmati.mp4",
+        features: [
+          { bold: "Know where every piece of data lives", text: "Graph API-powered mapping that surfaces every system, vendor, and data point across your business, eliminating need for spreadsheets and guesswork" },
+          { bold: "RoPA that is generated, not written from scratch", text: "Once your data is mapped, the legally required Record of Processing Activities builds itself, ready for any auditor" },
+          { bold: "Never lose track of a customer’s consent", text: "every online, offline consent is recorded across Website, app, call centre, branch, field visit, or WhatsApp to a single consent library" },
+          { bold: "Deadlines that enforce themselves", text: "Every principal rights request runs on a built-in SLA timer that auto-escalates to your DPO the moment it's overdue" },
+          { bold: "Delete data with zero legal risk", text: "Every erasure is checked against RBI, tax, and retention rules first along with DPO sign-off required before anything final happens" },
+          { bold: "A record no one can edit", text: "Every action across the platform is logged append-only — the same integrity standard a bank ledger holds itself to" }
+        ],
+        isPlaceholder: false
       }
     ] as PlatformItem[]
   },
@@ -182,7 +207,7 @@ export const homeContent = {
       "We're already using AI to take the manual, repetitive parts of compliance off your team's plate. And we're just getting\u00A0started.",
       "Regulations change, threats change, technology changes, and honestly, so do we. Every new version we ship brings smarter AI and better tools, so staying compliant gets easier over time, not harder. You'll never have to start from\u00A0scratch."
     ],
-    attribution: "— Aashray Infotech Private Limited"
+    attribution: "â€” Aashray Infotech Private Limited"
   },
   trustedBy: {
     heading: "Trusted By The Best",

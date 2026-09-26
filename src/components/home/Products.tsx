@@ -64,6 +64,7 @@ export default function Products() {
               key={`product-${index}`}
               index={index}
               name={product.name}
+              statusBadge={(product as any).statusBadge}
               tagline={product.tagline}
               description={product.description}
               features={product.features}

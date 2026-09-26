@@ -32,13 +32,26 @@ export const productDetails: Record<string, { bold: string; text: string }[]> = 
     { bold: "Governed Data Lifecycle", text: "Support controlled deletion workflows with soft deletion and integration with Microsoft Purview Data Lifecycle Management and Microsoft Audit, while keeping the architecture extensible for other lifecycle platforms." }
   ],
   "tprm": [
-    { bold: "Vendor Risk Assessment", text: "Assess third parties using risk-based questionnaires and regulatory requirements to understand the risks associated with each vendor." },
-    { bold: "Secure Vendor Portal", text: "Give vendors a controlled workspace to complete assessments, submit information and upload supporting evidence." },
-    { bold: "AI Evidence Validation", text: "Use AI to review vendor evidence, identify missing or insufficient documents and help teams validate whether submitted evidence addresses the requirement." },
-    { bold: "Vendor Lifecycle Management", text: "Manage vendors from initial onboarding and assessment through approval, periodic reassessment, monitoring and eventual offboarding." },
-    { bold: "Regulation-Aware Assessments", text: "Build assessments around applicable privacy, cybersecurity and regulatory requirements rather than relying only on generic vendor questionnaires." },
-    { bold: "Contract & DPA Intelligence", text: "Analyze vendor contracts and DPAs to identify important privacy, security and compliance provisions, missing requirements and renewal/expiry obligations." },
-    { bold: "Executive Third-Party Risk Dashboard", text: "Give leadership a consolidated view of vendor risk, high-risk suppliers, outstanding evidence, expiring documents, assessments and remediation requirements." }
+    { bold: "AI Agent for Procurement & Rule Compliance", text: "An AI agent monitors vendor activity against your internal procurement policies and applicable regulatory rules, automatically detecting anomalies, policy deviations, and red flags that require human attention." },
+    { bold: "Full Lifecycle TPRM — Beyond DPDP", text: "Manage third-party risk end-to-end: from initial onboarding and risk-tiering through assessment, evidence collection, approval, periodic reassessment, incident tracking, and structured offboarding — covering privacy, cybersecurity, procurement, and regulatory requirements beyond DPDP." },
+    { bold: "Consent Management Tool Integration", text: "Connect Parakh 360 with your consent management platform to push and suppress data flows to and from third parties in line with the data principal's consent status — ensuring vendors only receive or process data they are authorised to handle." },
+    { bold: "Vendor Credibility, Reviews & Professionalism", text: "Assess vendors beyond risk scores — track performance history, capture internal reviews, evaluate professionalism signals, and build a credibility profile that informs renewal and onboarding decisions." },
+    { bold: "Secure Vendor Portal", text: "Give vendors a controlled workspace to complete assessments, submit responses, and upload supporting evidence against specific control requirements." },
+    { bold: "AI Evidence Validation", text: "Use AI to review vendor-submitted evidence, identify missing or insufficient documents, and validate whether the submitted material adequately addresses each requirement." },
+    { bold: "Regulation-Aware Assessments", text: "Build risk assessments around applicable privacy, cybersecurity, and regulatory requirements rather than relying solely on generic questionnaires." },
+    { bold: "Contract & DPA Intelligence", text: "Analyse vendor contracts and DPAs to identify key privacy, security, and procurement clauses, surface missing regulatory requirements, and track renewal and expiry obligations." },
+    { bold: "Executive Third-Party Risk Dashboard", text: "Give leadership a consolidated view of vendor risk, high-risk suppliers, outstanding evidence, expiring documents, active assessments, and open remediation tasks." }
+  ],
+  "dpo-as-a-service": [
+    { bold: "Gap Assessment & Privacy Audit", text: "Begin with a comprehensive audit of your organisation's data landscape — mapping personal data assets, data flows, third-party transfers, and high-risk processing activities against applicable regulations, with a prioritised remediation roadmap." },
+    { bold: "Privacy Framework Implementation", text: "Draft and update privacy policies, cookie notices, data retention schedules, data processing agreements (DPAs), vendor contracts, Records of Processing Activities (RoPA), and DPIA templates — all jurisdiction-specific and legally reviewed." },
+    { bold: "Data Protection Impact Assessments (DPIAs)", text: "Conduct and oversee DPIAs for high-risk processing activities including AI systems, large-scale profiling, and sensitive data processing, with structured risk registers and mitigation plans." },
+    { bold: "Data Principal Rights Management", text: "Manage access, correction, erasure, portability, and nomination requests within mandated SLA timelines through structured workflows, with DPO sign-off and complete audit trails." },
+    { bold: "Consent Management Integration", text: "Establish lawful consent mechanisms aligned with DPDP, GDPR, and applicable law — including consent manager integrations, marketing governance, cookie compliance, and withdrawal workflows." },
+    { bold: "Multi-Regulation Coverage", text: "Single coordinated team covering India's DPDP Act 2023, GDPR and UK GDPR, CCPA/CPRA, UAE PDPL, and 50+ additional privacy and cybersecurity frameworks across Asia, Europe, and the Middle East." },
+    { bold: "Regulatory Liaison", text: "Serve as the primary point of contact with data protection regulators and supervisory authorities — handling queries, responding to investigations, and representing your organisation before the Data Protection Board." },
+    { bold: "24/7 Breach Incident Response", text: "Round-the-clock incident triage from initial detection through regulatory breach notification and post-incident remediation — with defined escalation paths and regulator communication support." },
+    { bold: "Workforce Privacy Training", text: "Deliver role-based training programmes for leadership, HR, marketing, product, and IT teams — covering governance accountability, day-to-day compliance, and scenario-based security awareness across the organisation." }
   ],
   "surveillance": [
     { bold: "Multi-Vendor Camera Support", text: "Monitor feeds from different camera vendors without requiring a separate vendor-specific SDK for each camera system." },

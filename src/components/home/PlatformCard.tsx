@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, Box } from "lucide-react";
+import { CheckCircle2, Clock, Box, Apple, Play, QrCode } from "lucide-react";
 import Link from "next/link";
 
 interface Feature {
@@ -21,6 +21,7 @@ interface PlatformCardProps {
   image?: string;
   slug?: string;
   category?: string;
+  statusBadge?: string;
 }
 
 export default function PlatformCard({
@@ -33,32 +34,64 @@ export default function PlatformCard({
   index,
   image,
   slug,
-  category
+  category,
+  statusBadge
 }: PlatformCardProps) {
   const isImageRight = index % 2 === 0;
   const isVideo = image?.endsWith('.mp4');
   const displayFeatures = features.slice(0, 6);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const [logoStripWidth, setLogoStripWidth] = useState<number>(480);
 
   useEffect(() => {
     // Force play on mount since autoPlay can be unreliable in some browsers
     [mobileVideoRef.current, desktopVideoRef.current].forEach(v => {
       if (v) {
+        v.defaultMuted = true;
         v.muted = true;
         v.play().catch(() => {/* silently ignore if browser blocks */});
       }
     });
   }, [image]);
 
+  useEffect(() => {
+    if (!buttonsRef.current) return;
+    const observer = new ResizeObserver(() => {
+      if (buttonsRef.current) setLogoStripWidth(buttonsRef.current.offsetWidth);
+    });
+    observer.observe(buttonsRef.current);
+    setLogoStripWidth(buttonsRef.current.offsetWidth);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={`group flex flex-col items-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-[12px] border border-[rgba(90,120,220,0.15)] rounded-[24px] p-6 md:p-8 xl:px-12 xl:pt-12 xl:pb-8 shadow-[0_4px_25px_rgba(50,80,150,0.05)] relative overflow-hidden`}>
+    <div className={`group flex flex-col items-center bg-white/90 dark:bg-slate-900/90 backdrop-blur-[12px] border border-[rgba(90,120,220,0.15)] rounded-[24px] p-6 md:p-8 xl:px-12 xl:pt-12 ${slug === 'niyamsaathi' ? 'pb-0' : 'xl:pb-8'} shadow-[0_4px_25px_rgba(50,80,150,0.05)] relative overflow-hidden`}>
       
       {/* Corner Accents */}
       <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-[rgba(70,110,230,0.3)] rounded-tl-[24px] pointer-events-none"></div>
       <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-[rgba(70,110,230,0.3)] rounded-tr-[24px] pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-[rgba(70,110,230,0.3)] rounded-bl-[24px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-[rgba(70,110,230,0.3)] rounded-br-[24px] pointer-events-none"></div>
+      
+      {/* App Store / Play Store / QR Code for ComplianceQuest */}
+      {slug === 'compliancequest' && (
+        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50 flex flex-col items-end gap-3 bg-white/60 dark:bg-gray-900/60 p-3 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex items-center gap-2 bg-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer hover:bg-gray-800 transition-colors">
+              <Apple className="w-4 h-4" /> App Store
+            </div>
+            <div className="flex items-center gap-2 bg-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer hover:bg-gray-800 transition-colors">
+              <Play className="w-4 h-4" fill="currentColor" /> Play Store
+            </div>
+          </div>
+          <div className="flex flex-col items-center justify-center bg-white p-1.5 rounded-xl border border-gray-200 shadow-sm w-full sm:w-auto">
+            <QrCode className="w-14 h-14 text-black" />
+            <span className="text-[9px] text-gray-600 font-extrabold mt-1 tracking-wider">SCAN TO DL</span>
+          </div>
+        </div>
+      )}
       
       {/* Text Content */}
       <motion.div
@@ -71,6 +104,13 @@ export default function PlatformCard({
         <h4 className={`text-4xl lg:text-5xl font-sans font-[800] mb-4 pb-2 leading-tight tracking-tight bg-clip-text text-transparent bg-[linear-gradient(90deg,#123F78,#4169E1)] dark:bg-[linear-gradient(90deg,#8BA4FF,#C4D2FF)]`}>
           {name}
         </h4>
+        {statusBadge && (
+          <div className="mb-5 -mt-4">
+            <span className="inline-block px-4 py-1.5 text-sm font-semibold tracking-wide text-primary bg-primary/10 rounded-full dark:text-blue-400 dark:bg-blue-900/30">
+              {statusBadge}
+            </span>
+          </div>
+        )}
         {tagline && (
           <p className="text-primary/90 dark:text-gray-200 font-medium text-lg lg:text-xl leading-relaxed mb-5">
             {tagline}
@@ -209,13 +249,63 @@ export default function PlatformCard({
       </div>
 
       {slug && category && (
-        <div className="mt-8 lg:mt-10 flex justify-center w-full relative z-30">
-          <Link 
-            href={`/${category}/${slug}`}
-            className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-primary bg-primary/10 hover:bg-primary/20 dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors shadow-sm"
-          >
-            Know More
-          </Link>
+        <div className="mt-4 lg:mt-6 flex flex-col items-center w-full relative z-30">
+          {slug === 'niyamsaathi' && (
+            <div className="max-w-4xl text-center mb-3 px-4">
+              <p className="text-neutral-text/90 dark:text-gray-300 text-base lg:text-lg leading-relaxed font-normal">
+                As a NiyamSaathi partner, you can offer compliance assessments to your clients without needing a large team of specialists. Our AI-guided platform helps your team deliver assessments even when dedicated compliance resources aren’t available.
+              </p>
+            </div>
+          )}
+          
+          <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href={`/${category}/${slug}`}
+              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-primary bg-primary/10 hover:bg-primary/20 dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors shadow-sm"
+            >
+              Know More
+            </Link>
+            {slug === 'niyamsaathi' && (
+              <Link 
+                href="/book-a-demo"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors shadow-sm"
+              >
+                Become a NiyamSaathi Partner
+              </Link>
+            )}
+          </div>
+
+          {slug === 'niyamsaathi' && (
+            <div
+              className="overflow-hidden flex relative mt-2"
+              style={{
+                width: `${logoStripWidth}px`,
+                maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+              }}
+            >
+              <motion.div 
+                className="flex items-center min-w-max"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+              >
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="shrink-0 mr-6" style={{ width: '220px', height: '40px', overflow: 'hidden' }}>
+                    <img 
+                      src="/client_logos.jpg" 
+                      alt="Partners" 
+                      style={{ 
+                        width: '220px', 
+                        height: 'auto',
+                        marginTop: '-36px',
+                        filter: 'grayscale(1) contrast(1.2) opacity(0.85)'
+                      }}
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          )}
         </div>
       )}
     </div>

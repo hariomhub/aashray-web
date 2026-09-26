@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronRight, PlayCircle, MessageCircle, ArrowRight, BookOpen, ShieldCheck, Route, TrendingUp, Mic, RefreshCw, Zap } from "lucide-react";
+import { ChevronRight, PlayCircle, MessageCircle, ArrowRight, BookOpen, ShieldCheck, Route, TrendingUp, Mic, RefreshCw, Zap, Apple, Play, QrCode } from "lucide-react";
 import RelatedProductsGrid from "./RelatedProductsGrid";
 import CTABand from "./CTABand";
 import NetworkBackground from "@/components/shared/NetworkBackground";
@@ -29,6 +29,7 @@ export default function ProductOverview({ name, slug, features, description, ima
 
   useEffect(() => {
     if (heroVideoRef.current) {
+      heroVideoRef.current.defaultMuted = true;
       heroVideoRef.current.muted = true;
       heroVideoRef.current.play().catch(() => {/* silently ignore */});
     }
@@ -79,6 +80,24 @@ export default function ProductOverview({ name, slug, features, description, ima
                 {/* Strong halation glow behind the media */}
                 <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
                 <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
+                
+                {/* App Store / Play Store / QR Code for ComplianceQuest */}
+                {slug === 'compliancequest' && (
+                  <div className="absolute -top-6 -right-2 md:-right-6 z-50 flex flex-col items-end gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-gray-900 transition-colors shadow-sm border border-gray-800">
+                        <Apple className="w-5 h-5" /> App Store
+                      </div>
+                      <div className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-gray-900 transition-colors shadow-sm border border-gray-800">
+                        <Play className="w-5 h-5" fill="currentColor" /> Play Store
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center justify-center bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
+                      <QrCode className="w-16 h-16 text-black" />
+                      <span className="text-[10px] text-gray-800 font-extrabold mt-1 tracking-wider">SCAN TO DL</span>
+                    </div>
+                  </div>
+                )}
                 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}

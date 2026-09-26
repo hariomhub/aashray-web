@@ -62,9 +62,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Follow Us */}
+          {/* Contact Us */}
           <div className="text-center md:text-left">
-            <h3 className="text-white font-semibold mb-6">Follow Us</h3>
+            <h3 className="text-white font-semibold mb-6">Contact Us</h3>
             <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
               <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
                 <Globe className="w-4 h-4" />
@@ -77,12 +77,23 @@ export default function Footer() {
               </a>
             </div>
             
-            <a href="mailto:contact@aashrayinfotech.com" className="flex items-center justify-center md:justify-start gap-3 text-gray-400 hover:text-white transition-colors text-sm group mt-6">
-              <span className="p-2 bg-white/5 rounded-full group-hover:bg-primary transition-colors">
+            <a href="mailto:support@aashrayinfotech.com" className="flex items-center justify-center md:justify-start gap-3 text-gray-400 hover:text-white transition-colors text-sm group mt-4">
+              <span className="p-2 bg-white/5 rounded-full group-hover:bg-primary transition-colors shrink-0">
                 <Mail className="w-4 h-4 text-accent" />
               </span>
-              contact@aashrayinfotech.com
+              support@aashrayinfotech.com
             </a>
+
+            <div className="mt-6 text-sm text-gray-400 space-y-4 text-left">
+              <div>
+                <strong className="text-gray-300 block mb-1">Corporate Office:</strong>
+                UNIT NO. 902 NINTH FLOOR BLOCK A, UNITECH - THE ARCADIA, SOUTH CITY-2, GURGAON, Haryana, India - 122018.
+              </div>
+              <div>
+                <strong className="text-gray-300 block mb-1">Registered Office:</strong>
+                C-80, UGF, SHIVAJI PARK, WEST PUNJABI BAGH, Shivaji Park (West Delhi), New Delhi, West Delhi- 110026, Delhi
+              </div>
+            </div>
           </div>
 
         </div>

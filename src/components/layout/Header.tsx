@@ -10,9 +10,9 @@ import { homeContent } from "@/content/home";
 
 const navLinks = [
   { name: "Why Aashray", href: "/#about" },
-  { name: "About Us", href: "/about" },
-  { name: "Learning", href: "/learning" },
   { name: "Products", href: "/#products", hasDropdown: true },
+  { name: "Learning", href: "/learning" },
+  { name: "About Us", href: "/about" },
   { name: "Contact", href: "/book-a-demo" },
 ];
 
@@ -82,10 +82,37 @@ export default function Header() {
           {/* Left Nav */}
           <div className="flex-1 flex justify-end items-center gap-8 xl:gap-12 pr-12 xl:pr-24">
             {navLinks.slice(0, 3).map((link) => (
-              <div key={link.name} className="relative group">
-                <Link href={link.href} className="text-base xl:text-lg font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
+              <div key={link.name} className="relative group" onMouseEnter={() => link.hasDropdown && setProductsOpen(true)} onMouseLeave={() => link.hasDropdown && setProductsOpen(false)}>
+                <Link href={link.href} className="flex items-center gap-1 text-base xl:text-lg font-semibold text-neutral-text dark:text-white hover:text-primary transition-colors py-1 whitespace-nowrap">
                   {link.name}
+                  {link.hasDropdown && <ChevronDown className="w-5 h-5" />}
                 </Link>
+                {link.hasDropdown && (
+                  <AnimatePresence>
+                    {productsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute left-0 top-full pt-4 w-64"
+                      >
+                        <div className="bg-white dark:bg-gray-950 rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 p-3 flex flex-col gap-1">
+                          {homeContent.ourPlatforms.items.map((item: any) => (
+                            <Link 
+                              key={item.slug} 
+                              href={`/${item.category}/${item.slug}`}
+                              className="px-4 py-3 rounded-lg hover:bg-neutral-bg dark:hover:bg-gray-900 text-neutral-text dark:text-white transition-colors"
+                              onClick={() => setProductsOpen(false)}
+                            >
+                              <div className="font-semibold">{item.menuName || item.name}</div>
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
               </div>
             ))}
           </div>
@@ -129,7 +156,7 @@ export default function Header() {
                               className="px-4 py-3 rounded-lg hover:bg-neutral-bg dark:hover:bg-gray-900 text-neutral-text dark:text-white transition-colors"
                               onClick={() => setProductsOpen(false)}
                             >
-                              <div className="font-semibold">{item.name}</div>
+                              <div className="font-semibold">{item.menuName || item.name}</div>
                             </Link>
                           ))}
                         </div>
@@ -208,7 +235,7 @@ export default function Header() {
                                   className="py-2 text-sm text-gray-600 dark:text-gray-300"
                                   onClick={() => { setMobileMenuOpen(false); setProductsOpen(false); }}
                                 >
-                                  {item.name}
+                                  {item.menuName || item.name}
                                 </Link>
                               ))}
                             </motion.div>
