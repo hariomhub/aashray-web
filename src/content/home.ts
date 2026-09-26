@@ -64,7 +64,7 @@ export const homeContent = {
       {
         name: "NiyamSaathi",
         tagline: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start.",
-        description: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start. Our AI tool tells you exactly what it takes and where you currently stand.",
+        description: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start. Our\u00A0AI\u00A0tool\u00A0tells\u00A0you\u00A0exactly\u00A0what\u00A0it\u00A0takes\u00A0and\u00A0where\u00A0you\u00A0currently\u00A0stand.",
         slug: "niyamsaathi",
         category: "platforms",
         image: "/products/niyamsathi.mp4",
@@ -86,8 +86,8 @@ export const homeContent = {
       },
       {
         name: "E-Sehmati",
-        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
-        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
+        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E\u2011Sehmati closes that gap.",
+        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E\u2011Sehmati closes that gap.",
         slug: "e-sehmati",
         category: "platforms",
         image: "/products/esehmati.mp4",
