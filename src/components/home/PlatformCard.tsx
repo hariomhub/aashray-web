@@ -75,10 +75,10 @@ export default function PlatformCard({
       <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-[rgba(70,110,230,0.3)] rounded-bl-[24px] pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-[rgba(70,110,230,0.3)] rounded-br-[24px] pointer-events-none"></div>
       
-      {/* App Store / Play Store / QR Code for ComplianceQuest */}
+      {/* App Store / Play Store / QR Code for ComplianceQuest (Desktop) */}
       {slug === 'compliancequest' && (
-        <div className="absolute top-4 right-4 md:top-6 md:right-6 z-50 flex flex-col items-end gap-3 bg-white/60 dark:bg-gray-900/60 p-3 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-          <div className="flex flex-col sm:flex-row gap-2">
+        <div className="hidden md:flex absolute top-6 right-6 z-50 flex-col items-end gap-3 bg-white/60 dark:bg-gray-900/60 p-3 rounded-2xl backdrop-blur-md border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+          <div className="flex gap-2">
             <div className="flex items-center gap-2 bg-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold cursor-pointer hover:bg-gray-800 transition-colors">
               <Apple className="w-4 h-4" /> App Store
             </div>
@@ -86,7 +86,7 @@ export default function PlatformCard({
               <Play className="w-4 h-4" fill="currentColor" /> Play Store
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center bg-white p-1.5 rounded-xl border border-gray-200 shadow-sm w-full sm:w-auto">
+          <div className="flex flex-col items-center justify-center bg-white p-1.5 rounded-xl border border-gray-200 shadow-sm">
             <QrCode className="w-14 h-14 text-black" />
             <span className="text-[9px] text-gray-600 font-extrabold mt-1 tracking-wider">SCAN TO DL</span>
           </div>
@@ -125,6 +125,18 @@ export default function PlatformCard({
               </p>
             ) : null;
           })()
+        )}
+
+        {/* Mobile Inline App Buttons */}
+        {slug === 'compliancequest' && (
+          <div className="md:hidden flex flex-col sm:flex-row items-center gap-3 mt-6 w-full px-4">
+            <div className="flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-gray-800 transition-colors w-full sm:w-auto shadow-md">
+              <Apple className="w-5 h-5" /> App Store
+            </div>
+            <div className="flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-gray-800 transition-colors w-full sm:w-auto shadow-md">
+              <Play className="w-5 h-5" fill="currentColor" /> Play Store
+            </div>
+          </div>
         )}
       </motion.div>
 

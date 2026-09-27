@@ -72,6 +72,18 @@ export default function ProductOverview({ name, slug, features, description, ima
                   Explore {name}
                 </Link>
               </div>
+
+              {/* Mobile Inline App Buttons */}
+              {slug === 'compliancequest' && (
+                <div className="md:hidden flex flex-col sm:flex-row items-center gap-3 mt-8 w-full">
+                  <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors w-full sm:w-auto shadow-md">
+                    <Apple className="w-5 h-5" /> App Store
+                  </div>
+                  <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors w-full sm:w-auto shadow-md">
+                    <Play className="w-5 h-5" fill="currentColor" /> Play Store
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right Column (Media) */}
@@ -81,9 +93,9 @@ export default function ProductOverview({ name, slug, features, description, ima
                 <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
                 <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
                 
-                {/* App Store / Play Store / QR Code for ComplianceQuest */}
+                {/* App Store / Play Store / QR Code for ComplianceQuest (Desktop) */}
                 {slug === 'compliancequest' && (
-                  <div className="absolute -top-6 -right-2 md:-right-6 z-50 flex flex-col items-end gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
+                  <div className="hidden md:flex absolute -top-6 -right-6 z-50 flex-col items-end gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-gray-900 transition-colors shadow-sm border border-gray-800">
                         <Apple className="w-5 h-5" /> App Store
