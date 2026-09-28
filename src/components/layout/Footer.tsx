@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2 grid grid-cols-2 gap-4 md:gap-8 relative">
             
             {/* Halation Line */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[2px] h-[80%] bg-gradient-to-b from-transparent via-cyan-500/70 to-transparent shadow-[0_0_12px_rgba(6,182,212,0.9)] pointer-events-none"></div>
+            <div className="absolute top-8 bottom-2 left-1/2 -translate-x-1/2 w-[2px] bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent shadow-[0_0_8px_rgba(6,182,212,0.6)] pointer-events-none"></div>
 
             {/* Quick Links */}
             <div className="text-center md:text-left">
