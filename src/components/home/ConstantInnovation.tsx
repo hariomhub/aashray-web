@@ -22,24 +22,24 @@ export default function ConstantInnovation() {
         >
           
           <div className="flex flex-col items-center text-center relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-            <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-16">
-              <Lightbulb className="w-8 h-8 text-white" />
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-10 md:mb-16">
+              <Lightbulb className="w-6 h-6 md:w-8 md:h-8 text-white" />
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-sans font-bold text-white mb-16">
+            <h2 className="text-2xl md:text-4xl font-sans font-bold text-white mb-10 md:mb-16">
               {constantInnovation.heading}
             </h2>
             
-            <div className="space-y-6 mb-20">
+            <div className="space-y-6 mb-12 md:mb-20">
               {constantInnovation.paragraphs.map((para, index) => (
-                <p key={index} className="text-[1.65rem] lg:text-[1.8rem] text-gray-200 leading-relaxed font-medium text-center xl:text-justify tracking-tight">
+                <p key={index} className="text-lg md:text-[1.65rem] lg:text-[1.8rem] text-gray-200 leading-relaxed font-medium text-center xl:text-justify tracking-tight">
                   {para}
                 </p>
               ))}
             </div>
             
             <div className="pt-8 border-t border-white/20 w-full">
-              <p className="text-xl font-bold text-accent italic">
+              <p className="text-base md:text-xl font-bold text-accent italic">
                 {constantInnovation.attribution}
               </p>
             </div>

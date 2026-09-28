@@ -67,7 +67,7 @@ export const homeContent = {
       {
         name: "NiyamSaathi",
         tagline: "Compliance isn't hard because companies don't care. It's hard because most don't know where to start.",
-        description: "Whether you’re assessing your own organisation or a partner’s, NiyamSaathi helps you get it done faster and with greater confidence. Its AI-guided approach makes assessments easier even without deep compliance expertise—basic IT literacy is all you need to get started.",
+        description: "Whether you’re assessing your own organisation or a partner’s, NiyamSaathi helps you get it done faster and with greater confidence. Its AI-guided approach makes assessments easier even without deep compliance expertise-basic IT literacy is all you need to get started.",
         slug: "niyamsaathi",
         category: "platforms",
         image: "/products/niyamsathi.mp4",
@@ -88,6 +88,21 @@ export const homeContent = {
         isPlaceholder: false
       },
       {
+        name: "Suraksha Chinh",
+        tagline: "Visible deterrence. Invisible protection.",
+        slug: "protection-mark",
+        category: "products",
+        image: "/products/suraksha-chinh.mp4",
+        description: "Protect sensitive information displayed on screen using configurable visible watermarks and Invisible Ink.",
+        features: [
+          { bold: "Configurable Watermark", text: "Display user name, IP, time, or custom text on screen at all times" },
+          { bold: "Invisible Ink", text: "Embed a hidden pattern/code across displayed content for added traceability" },
+          { bold: "Address the Camera Gap", text: "Protects against external phone photos, print screen, and snipping tools" },
+          { bold: "Screen Sharing Protection", text: "Watermark remains visible on displayed content during Teams or Zoom screen sharing" }
+        ],
+        isPlaceholder: false
+      },
+      {
         name: "E-Pragati",
         statusBadge: "coming soon",
         tagline: "Teach healthy digital habits. Don’t just block screens.",
@@ -104,34 +119,19 @@ export const homeContent = {
         isPlaceholder: false
       },
       {
-        name: "Suraksha Chinh",
-        tagline: "Visible deterrence. Invisible protection.",
-        slug: "protection-mark",
-        category: "products",
-        image: "/products/suraksha-chinh.mp4",
-        description: "Protect sensitive information displayed on screen using configurable visible watermarks and Invisible Ink.",
-        features: [
-          { bold: "Configurable Watermark", text: "Display user name, IP, time, or custom text on screen at all times" },
-          { bold: "Invisible Ink", text: "Embed a hidden pattern/code across displayed content for added traceability" },
-          { bold: "Address the Camera Gap", text: "Protects against external phone photos, print screen, and snipping tools" },
-          { bold: "Screen Sharing Protection", text: "Watermark remains visible on displayed content during Teams or Zoom screen sharing" }
-        ],
-        isPlaceholder: false
-      },
-      {
         name: "DPO as a Service",
         statusBadge: "coming soon",
         tagline: "Expert data protection leadership, without the full-time hire.",
-        description: "Get a certified Data Protection Officer on demand — covering DPDP, GDPR, and global privacy obligations across your organisation, from strategy through breach response.",
+        description: "Get a certified Data Protection Officer on demand - covering DPDP, GDPR, and global privacy obligations across your organisation, from strategy through breach response.",
         slug: "dpo-as-a-service",
         category: "products",
-        image: "/products/parakh-360.mp4",
+        image: "/products/dpo_service_logo.jpg",
         features: [
           { bold: "Regulatory Liaison & Strategy", text: "Serve as your organisation's primary contact with data protection regulators and design a data protection strategy aligned with DPDP, GDPR, CCPA, and UAE PDPL" },
           { bold: "Data Protection Impact Assessments", text: "Conduct and oversee DPIAs for high-risk processing activities, with prioritised gap reports and remediation roadmaps" },
           { bold: "Data Principal Rights Management", text: "Handle access, correction, erasure, and nomination requests within mandated SLA timelines, with full workflow tracking" },
-          { bold: "24/7 Breach Response", text: "Round-the-clock incident triage through regulatory notification and post-incident remediation — so you never face a privacy crisis alone" },
-          { bold: "Privacy Framework Implementation", text: "Draft privacy notices, DPAs, RoPA, retention schedules, and consent frameworks — jurisdiction-specific and legally reviewed" },
+          { bold: "24/7 Breach Response", text: "Round-the-clock incident triage through regulatory notification and post-incident remediation - so you never face a privacy crisis alone" },
+          { bold: "Privacy Framework Implementation", text: "Draft privacy notices, DPAs, RoPA, retention schedules, and consent frameworks - jurisdiction-specific and legally reviewed" },
           { bold: "Workforce Privacy Training", text: "Role-based training for leadership, HR, marketing, product, and IT teams to embed a data protection culture across the organisation" }
         ],
         isPlaceholder: false
@@ -159,16 +159,16 @@ export const homeContent = {
         statusBadge: "coming soon",
         menuName: "Parakh 360",
         tagline: "Know the risk behind every third party.",
-        description: "Manage third-party risk end-to-end — from onboarding through offboarding — across privacy, cybersecurity, procurement, and regulatory requirements beyond DPDP.",
+        description: "Manage third-party risk end-to-end - from onboarding through offboarding - across privacy, cybersecurity, procurement, and regulatory requirements beyond DPDP.",
         slug: "tprm",
         category: "products",
         image: "/products/parakh-360.mp4",
         features: [
           { bold: "AI Agent for Procurement & Rule Checks", text: "An AI agent continuously checks vendor activity against procurement policies and regulatory rules, surfacing anomalies and deviations before they become risks" },
           { bold: "Full Lifecycle TPRM", text: "Manage vendors from onboarding and risk assessment through evidence collection, periodic reassessment, incident handling, and structured offboarding" },
-          { bold: "Consent Management Tool Integration", text: "Push and suppress data flows to and from third parties in line with consent status — connecting TPRM with your consent management platform" },
+          { bold: "Consent Management Tool Integration", text: "Push and suppress data flows to and from third parties in line with consent status - connecting TPRM with your consent management platform" },
           { bold: "Vendor Credibility & Reviews", text: "Assess vendor professionalism, track performance history, reviews, and reputation signals alongside regulatory risk scores" },
-          { bold: "Contract AI", text: "Identify important privacy, security, and procurement clauses — and detect missing regulatory requirements across vendor contracts and DPAs" }
+          { bold: "Contract AI", text: "Identify important privacy, security, and procurement clauses - and detect missing regulatory requirements across vendor contracts and DPAs" }
         ],
         isPlaceholder: false
       },
@@ -187,7 +187,7 @@ export const homeContent = {
           { bold: "Never lose track of a customer’s consent", text: "every online, offline consent is recorded across Website, app, call centre, branch, field visit, or WhatsApp to a single consent library" },
           { bold: "Deadlines that enforce themselves", text: "Every principal rights request runs on a built-in SLA timer that auto-escalates to your DPO the moment it's overdue" },
           { bold: "Delete data with zero legal risk", text: "Every erasure is checked against RBI, tax, and retention rules first along with DPO sign-off required before anything final happens" },
-          { bold: "A record no one can edit", text: "Every action across the platform is logged append-only — the same integrity standard a bank ledger holds itself to" }
+          { bold: "A record no one can edit", text: "Every action across the platform is logged append-only - the same integrity standard a bank ledger holds itself to" }
         ],
         isPlaceholder: false
       }
@@ -209,10 +209,11 @@ export const homeContent = {
       "We're already using AI to take the manual, repetitive parts of compliance off your team's plate. And we're just getting\u00A0started.",
       "Regulations change, threats change, technology changes, and honestly, so do we. Every new version we ship brings smarter AI and better tools, so staying compliant gets easier over time, not harder. You'll never have to start from\u00A0scratch."
     ],
-    attribution: "â€” Aashray Infotech Private Limited"
+    attribution: "- Aashray Infotech Private Limited"
   },
   trustedBy: {
     heading: "Trusted By The Best",
     placeholder: "client names go here."
   }
 };
+

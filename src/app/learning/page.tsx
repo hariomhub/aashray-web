@@ -13,42 +13,42 @@ export default function LearningPage() {
       title: "Introduction to DPDP Act 2023",
       category: "Compliance Basics",
       duration: "Coming Soon",
-      thumbnail: "bg-blue-900",
+      thumbnail: "/learning/thumb_dpdp_1790592268149.jpg",
     },
     {
       id: 2,
       title: "How to conduct a Data Audit",
       category: "Practical Guides",
       duration: "Coming Soon",
-      thumbnail: "bg-indigo-900",
+      thumbnail: "/learning/thumb_audit_1790592280118.jpg",
     },
     {
       id: 3,
       title: "Setting up E-Sehmati for Consent Management",
       category: "Product Tutorials",
       duration: "Coming Soon",
-      thumbnail: "bg-purple-900",
+      thumbnail: "/learning/thumb_consent_1790592297919.jpg",
     },
     {
       id: 4,
       title: "Automating TPRM on your Infrastructure",
       category: "Product Tutorials",
       duration: "Coming Soon",
-      thumbnail: "bg-slate-900",
+      thumbnail: "/learning/thumb_tprm_1790592319377.jpg",
     },
     {
       id: 5,
       title: "The role of a DPO under the new regulations",
       category: "Expert Insights",
       duration: "Coming Soon",
-      thumbnail: "bg-teal-900",
+      thumbnail: "/learning/thumb_dpo_1790592335721.jpg",
     },
     {
       id: 6,
       title: "VAPT Testing Explained",
       category: "Security",
       duration: "Coming Soon",
-      thumbnail: "bg-cyan-900",
+      thumbnail: "/learning/thumb_vapt_1790592352475.jpg",
     },
   ];
 
@@ -111,12 +111,13 @@ export default function LearningPage() {
               className="bg-white dark:bg-gray-900 rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-lg transition-all group flex flex-col h-full"
             >
               {/* Thumbnail Placeholder */}
-              <div className={`w-full aspect-video ${video.thumbnail} relative flex items-center justify-center overflow-hidden`}>
-                <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-20 group-hover:scale-105 transition-transform duration-700"></div>
-                <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10 border border-white/20">
-                  <PlayCircle className="w-6 h-6 text-white opacity-80" />
+              <div className="w-full aspect-video relative flex items-center justify-center overflow-hidden">
+                <img src={video.thumbnail} alt={video.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 relative z-10 border border-white/30 shadow-lg">
+                  <PlayCircle className="w-6 h-6 text-white opacity-90" />
                 </div>
-                <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-2 py-1 rounded text-xs font-medium text-white flex items-center gap-1">
+                <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-2 py-1 rounded text-xs font-medium text-white flex items-center gap-1 z-10">
                   <Clock className="w-3 h-3" />
                   {video.duration}
                 </div>
