@@ -158,7 +158,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={mobileVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto object-cover relative z-10 rounded-[20px]" />
+                <video ref={mobileVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="none" className="w-full h-auto object-cover relative z-10 rounded-[20px]" />
               ) : (
                 <img src={image} alt={name} className="w-full h-full object-contain p-4 relative z-10" />
               )
@@ -196,9 +196,7 @@ export default function PlatformCard({
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              animate={{ y: [0, -4, 0] }}
               transition={{ 
-                y: { repeat: Infinity, duration: 4, ease: "easeInOut", delay: idx * 0.4 },
                 opacity: { duration: 0.5, delay: idx * 0.1 },
                 x: { duration: 0.5, delay: idx * 0.1 }
               }}
@@ -227,7 +225,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={desktopVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="auto" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
+                <video ref={desktopVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="none" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               ) : (
                 <img src={image} alt={name} className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               )
@@ -247,9 +245,7 @@ export default function PlatformCard({
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              animate={{ y: [0, -4, 0] }}
               transition={{ 
-                y: { repeat: Infinity, duration: 4, ease: "easeInOut", delay: (idx + 3) * 0.4 },
                 opacity: { duration: 0.5, delay: idx * 0.1 },
                 x: { duration: 0.5, delay: idx * 0.1 }
               }}
