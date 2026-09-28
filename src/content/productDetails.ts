@@ -43,15 +43,13 @@ export const productDetails: Record<string, { bold: string; text: string }[]> = 
     { bold: "Executive Third-Party Risk Dashboard", text: "Give leadership a consolidated view of vendor risk, high-risk suppliers, outstanding evidence, expiring documents, active assessments, and open remediation tasks." }
   ],
   "dpo-as-a-service": [
-    { bold: "Gap Assessment & Privacy Audit", text: "Begin with a comprehensive audit of your organisation's data landscape — mapping personal data assets, data flows, third-party transfers, and high-risk processing activities against applicable regulations, with a prioritised remediation roadmap." },
-    { bold: "Privacy Framework Implementation", text: "Draft and update privacy policies, cookie notices, data retention schedules, data processing agreements (DPAs), vendor contracts, Records of Processing Activities (RoPA), and DPIA templates — all jurisdiction-specific and legally reviewed." },
-    { bold: "Data Protection Impact Assessments (DPIAs)", text: "Conduct and oversee DPIAs for high-risk processing activities including AI systems, large-scale profiling, and sensitive data processing, with structured risk registers and mitigation plans." },
-    { bold: "Data Principal Rights Management", text: "Manage access, correction, erasure, portability, and nomination requests within mandated SLA timelines through structured workflows, with DPO sign-off and complete audit trails." },
-    { bold: "Consent Management Integration", text: "Establish lawful consent mechanisms aligned with DPDP, GDPR, and applicable law — including consent manager integrations, marketing governance, cookie compliance, and withdrawal workflows." },
-    { bold: "Multi-Regulation Coverage", text: "Single coordinated team covering India's DPDP Act 2023, GDPR and UK GDPR, CCPA/CPRA, UAE PDPL, and 50+ additional privacy and cybersecurity frameworks across Asia, Europe, and the Middle East." },
-    { bold: "Regulatory Liaison", text: "Serve as the primary point of contact with data protection regulators and supervisory authorities — handling queries, responding to investigations, and representing your organisation before the Data Protection Board." },
-    { bold: "24/7 Breach Incident Response", text: "Round-the-clock incident triage from initial detection through regulatory breach notification and post-incident remediation — with defined escalation paths and regulator communication support." },
-    { bold: "Workforce Privacy Training", text: "Deliver role-based training programmes for leadership, HR, marketing, product, and IT teams — covering governance accountability, day-to-day compliance, and scenario-based security awareness across the organisation." }
+    { bold: "Designing Corporate Strategy", text: "Creating and applying a data protection plan for your whole business that follows the law." },
+    { bold: "Monitoring Compliance", text: "Checking that your company is following privacy rules, keeping data only as long as needed, and getting proper consent." },
+    { bold: "Conducting Assessments", text: "Running risk checks (DPIAs) whenever your business does something that could put personal data at risk." },
+    { bold: "Regulatory Liaison", text: "Acting as your main point of contact for any data protection authorities or government regulators." },
+    { bold: "Rights Management", text: "Handling user requests to view, delete, or move their personal data on time." },
+    { bold: "Incident Response", text: "Managing data breaches and alerting the right authorities and affected people quickly." },
+    { bold: "Workforce Training", text: "Teaching your team how to handle personal data responsibly and stay compliant." }
   ],
   "surveillance": [
     { bold: "Multi-Vendor Camera Support", text: "Monitor feeds from different camera vendors without requiring a separate vendor-specific SDK for each camera system." },

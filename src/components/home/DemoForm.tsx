@@ -7,7 +7,17 @@ import Link from "next/link";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
-export default function DemoForm() {
+interface DemoFormProps {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+}
+
+export default function DemoForm({ 
+  title = "Request a Demo", 
+  description = "See how Aashray Infotech strengthens your digital safety and data governance on your own infrastructure, keeping your systems and data completely under your control.",
+  buttonText = "Request a Demo"
+}: DemoFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -50,9 +60,9 @@ export default function DemoForm() {
             <div className="absolute top-0 left-0 w-full h-full bg-[url('/circuit-pattern.svg')] opacity-10"></div>
             
             <div className="relative z-10">
-              <h2 className="text-3xl font-sans font-semibold mb-6">Request a Demo</h2>
+              <h2 className="text-3xl font-sans font-semibold mb-6">{title}</h2>
               <p className="text-gray-300 leading-relaxed mb-20">
-                See how Aashray Infotech strengthens your digital safety and data governance on your own infrastructure, keeping your systems and data completely under your control.
+                {description}
               </p>
               
               <div className="space-y-6 mt-auto">
@@ -186,7 +196,7 @@ export default function DemoForm() {
                       </>
                     ) : (
                       <>
-                        Request a Demo
+                        {buttonText}
                         <Send className="w-4 h-4" />
                       </>
                     )}

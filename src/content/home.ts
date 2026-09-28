@@ -89,6 +89,7 @@ export const homeContent = {
       },
       {
         name: "E-Pragati",
+        statusBadge: "coming soon",
         tagline: "Teach healthy digital habits. Don’t just block screens.",
         slug: "safe-gen",
         category: "products",
@@ -119,6 +120,7 @@ export const homeContent = {
       },
       {
         name: "DPO as a Service",
+        statusBadge: "coming soon",
         tagline: "Expert data protection leadership, without the full-time hire.",
         description: "Get a certified Data Protection Officer on demand — covering DPDP, GDPR, and global privacy obligations across your organisation, from strategy through breach response.",
         slug: "dpo-as-a-service",
@@ -136,7 +138,7 @@ export const homeContent = {
       },
       {
         name: "Digi Netra",
-        statusBadge: "available for private demo",
+        statusBadge: "coming soon",
         menuName: "Digi Netra",
         tagline: "Bring data security to video.",
         slug: "surveillance",

@@ -279,7 +279,7 @@ export default function PlatformCard({
             </Link>
             {slug === 'niyamsaathi' && (
               <Link 
-                href="/book-a-demo"
+                href="/niyamsaathi-partner"
                 className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-primary hover:bg-primary/90 transition-colors shadow-sm"
               >
                 Become a NiyamSaathi Partner

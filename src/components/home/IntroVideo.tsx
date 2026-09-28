@@ -53,7 +53,7 @@ export default function IntroVideo() {
             loop
             playsInline
             muted
-            preload="metadata"
+            preload="auto"
             poster="/circuit-pattern.svg" // Fallback poster
           >
             <source src="/aashray-intro.mp4" type="video/mp4" />

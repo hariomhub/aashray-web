@@ -85,8 +85,9 @@ export default function Hero() {
                   src="/test.mp4" 
                   autoPlay 
                   loop
-                  muted={isMuted}
-                  playsInline 
+                  muted
+                  playsInline
+                  preload="auto" 
                   className="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
                 />
                 <button
