@@ -9,20 +9,21 @@ import { homeContent } from "@/content/home";
 export default function Hero() {
   const { hero } = homeContent;
   const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
+    const videoElement = document.getElementById('hero-video') as HTMLVideoElement;
+    if (videoElement) {
+      videoElement.muted = !isMuted;
       setIsMuted(!isMuted);
     }
   };
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = isMuted;
-      videoRef.current.play().catch(() => {});
+    const videoElement = document.getElementById('hero-video') as HTMLVideoElement;
+    if (videoElement) {
+      videoElement.defaultMuted = true;
+      videoElement.muted = isMuted;
+      videoElement.play().catch(() => {});
     }
   }, []);
 
@@ -80,15 +81,21 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.35 }}
                 className="w-full rounded-[2.5rem] overflow-hidden relative bg-black aspect-video shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10 group"
               >
-                <video 
-                  ref={videoRef}
-                  src="/90.mp4" 
-                  autoPlay 
-                  loop
-                  muted
-                  playsInline
-                  preload="auto" 
-                  className="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                <div 
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      <video 
+                        id="hero-video"
+                        src="/90.mp4" 
+                        autoplay 
+                        loop
+                        muted
+                        playsinline
+                        preload="auto" 
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                      ></video>
+                    `
+                  }}
                 />
                 <button
                   onClick={toggleMute}
