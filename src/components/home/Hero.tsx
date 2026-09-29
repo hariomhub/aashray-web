@@ -20,12 +20,30 @@ export default function Hero() {
 
   useEffect(() => {
     const videoElement = document.getElementById('hero-video') as HTMLVideoElement;
-    if (videoElement) {
-      videoElement.defaultMuted = true;
-      videoElement.muted = isMuted;
-      videoElement.play().catch(() => {});
-    }
-  }, []);
+    if (!videoElement) return;
+
+    videoElement.defaultMuted = true;
+    videoElement.muted = isMuted;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            videoElement.play().catch(() => {});
+          } else {
+            videoElement.pause();
+          }
+        });
+      },
+      { rootMargin: '50px', threshold: 0.1 }
+    );
+
+    observer.observe(videoElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isMuted]);
 
   return (
     <section className="relative w-full !max-w-none !m-0 min-h-[60vh] lg:min-h-[70vh] pt-24 lg:pt-32 pb-20 lg:pb-32 overflow-hidden bg-primary-dark">
@@ -87,12 +105,11 @@ export default function Hero() {
                       <video 
                         id="hero-video"
                         src="/90.mp4" 
-                        autoplay 
                         loop
                         muted
                         playsinline
-                        preload="auto" 
-                        class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                        preload="none" 
+                        class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity pointer-events-none"
                       ></video>
                     `
                   }}

@@ -8,11 +8,30 @@ export default function IntroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
-    }
+    if (!videoRef.current) return;
+
+    const video = videoRef.current;
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '50px', threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
   return (
     <section className="py-20 bg-neutral-bg dark:bg-gray-950 relative overflow-hidden">
@@ -48,12 +67,11 @@ export default function IntroVideo() {
           {/* Aashray Intro Video */}
           <video 
             ref={videoRef}
-            className="absolute inset-0 w-full h-full object-cover z-10"
-            autoPlay
+            className="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"
             loop
             playsInline
             muted
-            preload="auto"
+            preload="none"
             poster="/circuit-pattern.svg" // Fallback poster
           >
             <source src="/aashray-intro.mp4" type="video/mp4" />

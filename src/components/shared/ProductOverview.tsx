@@ -28,11 +28,30 @@ export default function ProductOverview({ name, slug, features, description, ima
   const heroVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (heroVideoRef.current) {
-      heroVideoRef.current.defaultMuted = true;
-      heroVideoRef.current.muted = true;
-      heroVideoRef.current.play().catch(() => {/* silently ignore */});
-    }
+    if (!heroVideoRef.current) return;
+
+    const video = heroVideoRef.current;
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '50px', threshold: 0.1 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
   }, [image]);
 
   return (
@@ -122,12 +141,11 @@ export default function ProductOverview({ name, slug, features, description, ima
                       ref={heroVideoRef}
                       key={image}
                       src={image}
-                      autoPlay 
                       loop 
                       muted
                       playsInline
-                      preload="auto"
-                      className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                      preload="none"
+                      className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity pointer-events-none"
                     />
                   ) : (
                     <img 

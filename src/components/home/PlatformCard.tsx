@@ -46,14 +46,41 @@ export default function PlatformCard({
   const [logoStripWidth, setLogoStripWidth] = useState<number>(480);
 
   useEffect(() => {
-    // Force play on mount since autoPlay can be unreliable in some browsers
-    [mobileVideoRef.current, desktopVideoRef.current].forEach(v => {
-      if (v) {
-        v.defaultMuted = true;
-        v.muted = true;
-        v.play().catch(() => {/* silently ignore if browser blocks */});
-      }
-    });
+    const observerOptions = {
+      root: null,
+      rootMargin: '50px',
+      threshold: 0.1
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Silently ignore autoplay restrictions
+          });
+        } else {
+          video.pause();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    if (mobileVideoRef.current) {
+      mobileVideoRef.current.defaultMuted = true;
+      mobileVideoRef.current.muted = true;
+      observer.observe(mobileVideoRef.current);
+    }
+    if (desktopVideoRef.current) {
+      desktopVideoRef.current.defaultMuted = true;
+      desktopVideoRef.current.muted = true;
+      observer.observe(desktopVideoRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, [image]);
 
   useEffect(() => {
@@ -158,7 +185,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={mobileVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="none" className="w-full h-auto object-cover relative z-10 rounded-[20px]" />
+                <video ref={mobileVideoRef} key={image} src={image} loop muted playsInline preload="none" className="w-full h-auto object-cover relative z-10 rounded-[20px] pointer-events-none" />
               ) : (
                 <img src={image} alt={name} className="w-full h-full object-contain p-4 relative z-10" />
               )
@@ -225,7 +252,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={desktopVideoRef} key={image} src={image} autoPlay loop muted playsInline preload="none" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
+                <video ref={desktopVideoRef} key={image} src={image} loop muted playsInline preload="none" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px] pointer-events-none" />
               ) : (
                 <img src={image} alt={name} className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               )
