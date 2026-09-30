@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Building2, Globe, Mail, Phone, MapPin, Users, TrendingUp,
@@ -73,7 +73,7 @@ function validateField(key: FieldKey, value: string): string {
     case "year_established": {
       if (!v) return "Year is required.";
       const yr = parseInt(v, 10);
-      if (isNaN(yr) || yr < 1800 || yr > CURRENT_YEAR) return `Enter a year between 1800 and ${CURRENT_YEAR}.`;
+      if (isNaN(yr) || yr < 1950 || yr > 2026) return `Select a year between 1950 and 2026.`;
       return "";
     }
     case "head_office_city":
@@ -194,6 +194,94 @@ function FileZone({ label, hint, fieldName, file, onFile, onRemove }: {
   );
 }
 
+function YearPicker({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(() => {
+    if (!value) return 2;
+    const y = parseInt(value, 10);
+    if (y < 1975) return 0;
+    if (y < 2000) return 1;
+    if (y < 2025) return 2;
+    return 3;
+  });
+
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const startYear = 1950 + page * 25;
+  const years = Array.from({ length: 25 }, (_, i) => startYear + i);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className={`${BASE} flex items-center text-left ${bc(!!error)}`}
+      >
+        <CalendarDays className="w-5 h-5 text-text-secondary mr-2 shrink-0" />
+        <span className={value ? "text-neutral-text dark:text-white" : "text-text-secondary"}>
+          {value || "Select Year"}
+        </span>
+      </button>
+      
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 5 }}
+            transition={{ duration: 0.15 }}
+            className="absolute left-0 top-full mt-2 w-[340px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl z-50 overflow-hidden"
+          >
+            <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
+              <button type="button" onClick={() => setPage(p => Math.max(0, p - 1))} disabled={page === 0}
+                className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed">
+                <ChevronLeft className="w-6 h-6 text-text-secondary" />
+              </button>
+              <span className="text-base font-bold text-neutral-text dark:text-white">
+                {startYear} - {Math.min(startYear + 24, 2026)}
+              </span>
+              <button type="button" onClick={() => setPage(p => Math.min(3, p + 1))} disabled={page === 3}
+                className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30 disabled:cursor-not-allowed">
+                <ChevronRight className="w-6 h-6 text-text-secondary" />
+              </button>
+            </div>
+            <div className="grid grid-cols-5 gap-2 p-4">
+              {years.map(y => {
+                const isValid = y <= 2026;
+                const isSelected = value === String(y);
+                return (
+                  <button
+                    key={y}
+                    type="button"
+                    disabled={!isValid}
+                    onClick={() => { onChange(String(y)); setOpen(false); }}
+                    className={`
+                      text-sm sm:text-base py-2.5 rounded-md font-medium transition-colors
+                      ${!isValid ? "opacity-0 cursor-default" : 
+                        isSelected ? "bg-primary text-white" : "hover:bg-gray-100 dark:hover:bg-gray-800 text-neutral-text dark:text-gray-300"}
+                    `}
+                  >
+                    {isValid ? y : ""}
+                  </button>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 const EMPTY: FormFields = {
@@ -287,10 +375,10 @@ export default function NiyamSaathiForm() {
 
   // ── Form ─────────────────────────────────────────────────────────────────────
   return (
-    <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 flex flex-col md:flex-row overflow-hidden">
+    <div className="w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 flex flex-col md:flex-row">
 
       {/* ── Left panel ───────────────────────────────────────────────────────── */}
-      <div className="md:w-80 lg:w-96 bg-primary text-white flex flex-col relative shrink-0">
+      <div className="md:w-80 lg:w-96 bg-primary text-white flex flex-col relative shrink-0 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden">
         <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-10 pointer-events-none" />
         <div className="relative z-10 flex flex-col h-full p-6 lg:p-10">
           <h2 className="text-2xl lg:text-3xl font-sans font-bold mb-3">Become a NiyamSaathi Partner</h2>
@@ -388,14 +476,12 @@ export default function NiyamSaathiForm() {
                     </div>
                   </Field>
 
-                  <Field label="Year Established" required hint={`1800 – ${CURRENT_YEAR}`} error={e("year_established")}>
-                    <div className="relative">
-                      <CalendarDays className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
-                      <input type="number" value={formData.year_established}
-                        onChange={(ev) => set("year_established", ev.target.value)} onBlur={() => touch("year_established")}
-                        min={1800} max={CURRENT_YEAR}
-                        className={`${BASE} pl-9 ${bc(!!e("year_established"))}`} placeholder={String(CURRENT_YEAR - 5)} />
-                    </div>
+                  <Field label="Year Established" required hint={`1950 – 2026`} error={e("year_established")}>
+                    <YearPicker
+                      value={formData.year_established}
+                      onChange={(val) => { set("year_established", val); touch("year_established"); }}
+                      error={!!e("year_established")}
+                    />
                   </Field>
                 </div>
               )}

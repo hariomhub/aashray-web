@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function NiyamSaathiPartnerPage() {
   return (
-    <div className="pt-20">
+    <div className="pt-20 pb-20 px-4 sm:px-6 lg:px-10 bg-neutral-bg dark:bg-gray-950 min-h-screen">
       <NiyamSaathiForm />
     </div>
   );
