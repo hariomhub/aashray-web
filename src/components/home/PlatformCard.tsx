@@ -126,10 +126,17 @@ export default function PlatformCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className={`w-full max-w-6xl flex flex-col text-center items-center mb-10 relative z-30 ${isPlaceholder ? 'opacity-70' : ''}`}
+        className={`w-full max-w-6xl flex flex-col text-center items-center mb-4 relative z-30 ${isPlaceholder ? 'opacity-70' : ''}`}
       >
-        <h4 className={`text-4xl lg:text-5xl font-sans font-[800] mb-4 pb-2 leading-tight tracking-tight bg-clip-text text-transparent bg-[linear-gradient(90deg,#123F78,#4169E1)] dark:bg-[linear-gradient(90deg,#8BA4FF,#C4D2FF)]`}>
-          {name}
+        <h4 className={`text-4xl lg:text-5xl font-sans font-[800] mb-4 pb-2 leading-tight tracking-tight ${name === 'ComplianceQuest' ? '' : 'bg-clip-text text-transparent bg-[linear-gradient(90deg,#123F78,#4169E1)] dark:bg-[linear-gradient(90deg,#8BA4FF,#C4D2FF)]'}`}>
+          {name === 'ComplianceQuest' ? (
+            <>
+              <span className="text-[#0B2B55] dark:text-[#8BA4FF]">Compliance</span>
+              <span className="text-[#FBB03B] dark:text-[#FFD166]">Quest</span>
+            </>
+          ) : (
+            name
+          )}
         </h4>
         {statusBadge && (
           <div className="mb-5 -mt-4">
@@ -139,7 +146,7 @@ export default function PlatformCard({
           </div>
         )}
         {tagline && (
-          <p className="text-primary/90 dark:text-gray-200 font-medium text-lg lg:text-xl leading-relaxed mb-5">
+          <p className="text-primary/90 dark:text-gray-200 font-medium text-lg lg:text-xl leading-relaxed mb-3">
             {tagline}
           </p>
         )}
@@ -168,7 +175,7 @@ export default function PlatformCard({
       </motion.div>
 
       {/* MOBILE LAYOUT: Video Top, Features Bottom (< 768px) */}
-      <div className={`w-full flex flex-col md:hidden gap-8 items-center mt-6 ${isPlaceholder ? 'opacity-70' : ''}`}>
+      <div className={`w-full flex flex-col md:hidden gap-6 items-center mt-2 ${isPlaceholder ? 'opacity-70' : ''}`}>
         
         {/* Center Video/Image */}
         <motion.div
@@ -176,7 +183,7 @@ export default function PlatformCard({
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="w-full max-w-[280px] sm:max-w-[340px] flex items-center justify-center relative my-6"
+          className="w-full max-w-[280px] sm:max-w-[340px] flex items-center justify-center relative my-2"
         >
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-[rgba(80,120,255,0.12)] rounded-full blur-[40px] pointer-events-none z-[-1]"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] rounded-full border border-dashed border-[rgba(90,110,255,0.25)] pointer-events-none z-[-1] animate-[spin_40s_linear_infinite]"></div>
@@ -213,7 +220,7 @@ export default function PlatformCard({
       </div>
 
       {/* TABLET & DESKTOP LAYOUT: 3-Column (>= 768px) */}
-      <div className={`hidden md:flex w-full items-center justify-between gap-6 lg:gap-8 xl:gap-12 mt-6 relative z-10 ${isPlaceholder ? 'opacity-70' : ''}`}>
+      <div className={`hidden md:flex w-full items-center justify-between gap-6 lg:gap-8 xl:gap-12 mt-2 relative z-10 ${isPlaceholder ? 'opacity-70' : ''}`}>
         
         {/* Left Features */}
         <div className="flex-1 flex flex-col justify-center gap-6 z-20">

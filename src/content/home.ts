@@ -59,7 +59,7 @@ export const homeContent = {
           { bold: "Quizzes and knowledge checks", text: "Evaluate comprehension in real-time with interactive assessments that pinpoint knowledge gaps and reinforce critical policies." },
           { bold: "Flashcards and gamified learning", text: "Make compliance training enjoyable with interactive flashcards, leaderboards, and scenarios that boost engagement and completion rates." },
           { bold: "Progress-oriented learning experience", text: "Track individual and team milestones through an intuitive dashboard that motivates continuous learning and guarantees audit-readiness." },
-          { bold: "Content covering DPDP, RBI, SEBI, CERT-In, cybersecurity and AI governance topics", text: "Stay ahead of the curve with comprehensive, up-to-date modules on India's most critical regulatory frameworks and data security standards." },
+          { bold: "Content covering DPDP (Live), RBI, SEBI, CERT-In, cybersecurity and AI governance topics (coming soon)", text: "Stay ahead of the curve with comprehensive, up-to-date modules on India's most critical regulatory frameworks and data security standards." },
           { bold: "Mobile-first access for ongoing learning", text: "Empower your team to learn anywhere, anytime, with a fully responsive mobile platform that syncs progress seamlessly across devices." }
         ],
         isPlaceholder: false
@@ -176,8 +176,8 @@ export const homeContent = {
         name: "E-Sehmati",
         statusBadge: "coming soon",
         menuName: "E-Sehmati",
-        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
-        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E-Sehmati closes that gap.",
+        tagline: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E‑Sehmati closes that gap.",
+        description: "Collecting consent is easy. Proving you honoured it, across every channel, is where most organisations fail. E‑Sehmati closes that gap.",
         slug: "e-sehmati",
         category: "platforms",
         image: "/products/esehmati.mp4",

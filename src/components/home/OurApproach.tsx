@@ -69,14 +69,17 @@ export default function OurApproach() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl flex items-end justify-center aspect-video lg:h-[450px] bg-slate-50 border border-gray-100 p-6 lg:p-10"
+            className="relative rounded-2xl shadow-2xl flex items-end justify-center w-full h-[350px] lg:h-[450px] bg-slate-50 border border-gray-100 p-4 md:p-6 lg:p-10"
           >
+            {/* Background container to hide glow overflow but allow text overflow */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
             {/* Ambient Halation Background */}
             <motion.div 
               animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.15, 0.05] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary rounded-full blur-[100px] pointer-events-none"
             />
+            </div>
 
             <div className="w-full h-full flex items-end justify-center relative z-10">
               {ourApproach.steps.map((step, index) => (
@@ -90,9 +93,9 @@ export default function OurApproach() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.5 + index * 0.2 }}
-                      className="text-center"
+                      className="text-center w-max px-2"
                     >
-                      <div className={`font-bold md:text-lg transition-colors duration-300 ${activeStep === index ? 'text-accent' : 'text-gray-900'}`}>{step.title}</div>
+                      <div className={`font-bold text-sm md:text-base lg:text-lg transition-colors duration-300 ${activeStep === index ? 'text-accent' : 'text-gray-900'}`}>{step.title}</div>
                     </motion.div>
                   </div>
 

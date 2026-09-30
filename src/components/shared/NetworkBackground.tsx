@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 export default function NetworkBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { resolvedTheme } = useTheme();
+  const { theme: resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;

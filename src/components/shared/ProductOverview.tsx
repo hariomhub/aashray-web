@@ -77,7 +77,14 @@ export default function ProductOverview({ name, slug, features, description, ima
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-sans font-bold text-white mb-6 break-words"
               >
-                {name}
+                {name === 'ComplianceQuest' ? (
+                  <>
+                    <span className="text-blue-300">Compliance</span>
+                    <span className="text-[#FBB03B]">Quest</span>
+                  </>
+                ) : (
+                  name
+                )}
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
