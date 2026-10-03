@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
         source: '/api/onboarding/:path*',
         destination: `${process.env.BACKEND_URL || 'http://localhost:4000'}/api/onboarding/:path*`,
       },
+      {
+        source: '/api/admin/:path*',
+        destination: `${process.env.BACKEND_URL || 'http://localhost:4000'}/api/admin/:path*`,
+      },
     ];
   },
 };

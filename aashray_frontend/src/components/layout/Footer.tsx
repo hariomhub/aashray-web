@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Globe, MessageCircle, Share2, Mail } from "lucide-react";
+import { Globe, MessageCircle, Share2, Mail, Lock } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -65,6 +65,12 @@ export default function Footer() {
                     Cookie Settings
                   </button>
                 </li>
+                <li>
+                  <Link href="/admin" className="hover:text-white transition-colors text-sm flex items-center justify-center md:justify-start gap-1.5 text-gray-400">
+                    <Lock className="w-3.5 h-3.5" />
+                    <span>Admin Portal</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -110,9 +116,19 @@ export default function Footer() {
           <p className="text-sm text-gray-500 text-center md:text-left">
             &copy; {currentYear} Aashray Infotech Private Limited. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <span className="w-2 h-2 rounded-full bg-accent"></span>
-            DPDP Compliant Platform
+          <div className="flex items-center gap-4 text-sm text-gray-500">
+            <Link
+              href="/admin"
+              className="text-gray-500 hover:text-gray-300 text-xs flex items-center gap-1 transition-colors"
+            >
+              <Lock className="w-3 h-3" />
+              <span>Admin Portal</span>
+            </Link>
+            <span className="text-gray-700">•</span>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent"></span>
+              DPDP Compliant Platform
+            </div>
           </div>
         </div>
       </div>
