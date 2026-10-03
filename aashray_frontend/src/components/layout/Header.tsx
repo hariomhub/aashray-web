@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { homeContent } from "@/content/home";
@@ -63,7 +63,15 @@ export default function Header() {
               className="w-[36px] h-[36px] object-contain rounded-md"
             />
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            <Link
+              href="/admin"
+              className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-primary/20 dark:border-primary/40 bg-primary/5 hover:bg-primary hover:text-white dark:bg-primary/10 text-primary dark:text-sky-400 text-xs font-semibold transition-colors"
+              title="Admin Login"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Admin</span>
+            </Link>
             <ThemeToggle />
             <button
               className="p-2 text-neutral-text dark:text-white"
@@ -165,8 +173,16 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <div className="flex items-center border-l border-gray-200 dark:border-gray-800 pl-8 h-8">
+            <div className="flex items-center gap-4 border-l border-gray-200 dark:border-gray-800 pl-8 h-8">
               <ThemeToggle />
+              <Link
+                href="/admin"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-primary/20 dark:border-primary/40 bg-primary/5 hover:bg-primary hover:text-white dark:bg-primary/10 dark:hover:bg-primary text-primary dark:text-sky-400 font-semibold text-xs xl:text-sm transition-all whitespace-nowrap shadow-2xs hover:shadow-xs"
+                title="Log in as Administrator"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Admin Login</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -255,6 +271,14 @@ export default function Header() {
               </div>
 
               <div className="p-6 border-t border-gray-100 dark:border-gray-800 mt-auto">
+                <Link
+                  href="/admin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-dark text-white font-semibold text-sm shadow-xs transition-colors"
+                >
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Log in as Administrator</span>
+                </Link>
               </div>
             </motion.div>
           </>
