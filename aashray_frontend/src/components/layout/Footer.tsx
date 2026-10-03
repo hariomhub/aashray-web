@@ -28,7 +28,7 @@ export default function Footer() {
                 Aashray Infotech
               </p>
               <p className="text-gray-300 font-sans leading-relaxed">
-                AI products from safer digital planet. Designed & Engineered in India.
+                AI products for safer digital planet. Designed & Engineered in India.
               </p>
             </div>
           </div>
