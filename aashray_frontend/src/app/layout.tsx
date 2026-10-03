@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import FloatingFAQButton from "@/components/shared/FloatingFAQButton";
 
 export const metadata: Metadata = {
-  title: "Aashray Infotech | AI products from safer digital planet",
+  title: "Aashray Infotech | AI products for safer digital planet",
   description: "Aashray Infotech provides on-premise, AI-enabled platforms that help Indian organizations become DPDP Act-compliant and audit-ready.",
 };
 

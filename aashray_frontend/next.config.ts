@@ -13,6 +13,22 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/partner-applications/:path*',
+        destination: `${process.env.BACKEND_URL || 'http://localhost:4000'}/api/partner-applications/:path*`,
+      },
+      {
+        source: '/api/partner-applications',
+        destination: `${process.env.BACKEND_URL || 'http://localhost:4000'}/api/partner-applications`,
+      },
+      {
+        source: '/api/onboarding/:path*',
+        destination: `${process.env.BACKEND_URL || 'http://localhost:4000'}/api/onboarding/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
