@@ -18,7 +18,7 @@ interface UploadedFile { file: File; name: string; error?: string; }
 type FieldKey =
   | "company_name" | "website" | "company_email" | "company_phone" | "year_established"
   | "head_office_city" | "state" | "country" | "company_type" | "employee_range" | "turnover_range"
-  | "gstin" | "pan" | "registration_number" | "linkedin_url";
+  | "gstin" | "pan" | "registration_number" | "linkedin_url" | "interested_products";
 
 type FormFields = Record<FieldKey, string>;
 type FormErrors = Partial<Record<FieldKey, string>>;
@@ -26,6 +26,15 @@ type Touched = Partial<Record<FieldKey, boolean>>;
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
+const PRODUCTS_LIST = [
+  "NiyamSaathi",
+  "e-sehmati",
+  "DPDP Quest",
+  "Compliance Assessment tool",
+  "DPO Service",
+  "DPRM Software",
+  "Cyber Insurance",
+];
 const COMPANY_TYPES = ["Private Limited","Public Limited","LLP","Partnership","Sole Proprietorship","OPC","Other"];
 const EMPLOYEE_RANGES = ["1-10","11-50","51-200","201-500","500+"];
 const TURNOVER_RANGES = ["< 1 Cr","1-10 Cr","10-25 Cr","25-100 Cr","100+ Cr"];
@@ -60,7 +69,7 @@ function validateField(key: FieldKey, value: string): string {
       return "";
     case "website":
       if (!v) return "Website is required.";
-      if (!URL_RE.test(v)) return "Must start with https:// or http:// and include a domain.";
+      if (!URL_RE.test(v)) return "Invalid input";
       return "";
     case "company_email":
       if (!v) return "Company email is required.";
@@ -99,15 +108,18 @@ function validateField(key: FieldKey, value: string): string {
       return "";
     case "linkedin_url":
       if (!v) return "";
-      if (!URL_RE.test(v)) return "Must start with https://.";
-      if (!LINKEDIN_RE.test(v)) return "Must be linkedin.com/company/…";
+      if (!URL_RE.test(v)) return "Invalid input";
+      if (!LINKEDIN_RE.test(v)) return "Invalid input";
+      return "";
+    case "interested_products":
+      if (!v) return "Please select at least one product.";
       return "";
     default: return "";
   }
 }
 
 const STEP_FIELDS: FieldKey[][] = [
-  ["company_name","website","company_email","company_phone","year_established"],
+  ["company_name","website","company_email","company_phone","year_established","interested_products"],
   ["head_office_city","state","company_type","employee_range"],
   ["gstin","pan","registration_number","linkedin_url"],
   [],
@@ -282,12 +294,51 @@ function YearPicker({ value, onChange, error }: { value: string; onChange: (v: s
   );
 }
 
+function ProductsSelector({ value, onChange, error }: { value: string; onChange: (v: string) => void; error?: boolean }) {
+  const selected = new Set(value ? value.split(",").map(s => s.trim()).filter(Boolean) : []);
+  const allSelected = PRODUCTS_LIST.every(p => selected.has(p));
+
+  const toggleProduct = (p: string) => {
+    const next = new Set(selected);
+    if (next.has(p)) next.delete(p);
+    else next.add(p);
+    onChange(Array.from(next).join(","));
+  };
+
+  const toggleAll = () => {
+    if (allSelected) {
+      onChange("");
+    } else {
+      onChange(PRODUCTS_LIST.join(","));
+    }
+  };
+
+  return (
+    <div className={`flex flex-col gap-3 p-4 rounded-xl border ${bc(!!error)} bg-gray-50 dark:bg-gray-900/50 mt-1`}>
+      <label className="flex items-center gap-3 cursor-pointer select-none">
+        <input type="checkbox" checked={allSelected} onChange={toggleAll} className="w-5 h-5 accent-primary rounded border-gray-300" />
+        <span className="text-base font-semibold text-neutral-text dark:text-white">All Products</span>
+      </label>
+      <div className="h-px w-full bg-gray-200 dark:bg-gray-700" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {PRODUCTS_LIST.map(p => (
+          <label key={p} className="flex items-center gap-3 cursor-pointer select-none">
+            <input type="checkbox" checked={selected.has(p)} onChange={() => toggleProduct(p)} className="w-4 h-4 accent-primary rounded border-gray-300" />
+            <span className="text-sm text-text-secondary dark:text-gray-300">{p}</span>
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 const EMPTY: FormFields = {
   company_name:"",website:"",company_email:"",company_phone:"",year_established:"",
   head_office_city:"",state:"",country:"India",company_type:"",employee_range:"",turnover_range:"",
   gstin:"",pan:"",registration_number:"",linkedin_url:"",
+  interested_products: PRODUCTS_LIST.join(","),
 };
 
 export default function NiyamSaathiForm() {
@@ -449,7 +500,7 @@ export default function NiyamSaathiForm() {
                     </div>
                   </Field>
 
-                  <Field label="Website" required hint="Include https:// or http://" error={e("website")}>
+                  <Field label="Website" required error={e("website")}>
                     <div className="relative">
                       <Globe className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
                       <input type="text" value={formData.website}
@@ -483,6 +534,20 @@ export default function NiyamSaathiForm() {
                       error={!!e("year_established")}
                     />
                   </Field>
+
+                  <div className="col-span-full">
+                    <Field label="Products of Interest" required error={e("interested_products")}>
+                      <ProductsSelector
+                        value={formData.interested_products}
+                        onChange={(val) => {
+                          setFD((p) => ({ ...p, interested_products: val }));
+                          setTouched((p) => ({ ...p, interested_products: true }));
+                          setErrors((p) => ({ ...p, interested_products: validateField("interested_products", val) }));
+                        }}
+                        error={!!e("interested_products")}
+                      />
+                    </Field>
+                  </div>
                 </div>
               )}
 
@@ -566,7 +631,7 @@ export default function NiyamSaathiForm() {
                       placeholder="U72900MH2010PTC123456" />
                   </Field>
 
-                  <Field label="LinkedIn Company Page" hint="linkedin.com/company/your-company" error={e("linkedin_url")}>
+                  <Field label="LinkedIn Company Page" error={e("linkedin_url")}>
                     <div className="relative">
                       <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
                       <input type="text" value={formData.linkedin_url}

@@ -93,23 +93,31 @@ export default function ProductOverview({ name, slug, features, description, ima
                 {description}
               </motion.p>
               
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                 <Link href="/book-a-demo" className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 h-[50px] rounded-md font-semibold hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl">
                   Explore {name}
                 </Link>
-              </div>
 
-              {/* Mobile Inline App Buttons */}
-              {slug === 'compliancequest' && (
-                <div className="md:hidden flex flex-col sm:flex-row items-center gap-3 mt-8 w-full">
-                  <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors w-full sm:w-auto shadow-md">
-                    <Apple className="w-5 h-5" /> App Store
+                {/* App Buttons (Desktop & Mobile) */}
+                {slug === 'compliancequest' && (
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors shadow-sm">
+                        <Apple className="w-4 h-4" /> App Store
+                      </div>
+                      <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-4 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors shadow-sm">
+                        <Play className="w-4 h-4" fill="currentColor" /> Play Store
+                      </div>
+                    </div>
+                    
+                    {/* QR Code - Desktop Only */}
+                    <div className="hidden md:flex flex-col items-center justify-center bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
+                      <QrCode className="w-12 h-12 text-black" />
+                      <span className="text-[8px] text-gray-800 font-extrabold mt-0.5 tracking-wider">SCAN TO DL</span>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-5 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-white/20 transition-colors w-full sm:w-auto shadow-md">
-                    <Play className="w-5 h-5" fill="currentColor" /> Play Store
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
 
             {/* Right Column (Media) */}
@@ -119,23 +127,7 @@ export default function ProductOverview({ name, slug, features, description, ima
                 <div className="absolute -inset-8 bg-gradient-to-r from-cyan-500/40 via-blue-400/30 to-cyan-500/40 rounded-[3.5rem] blur-[60px] opacity-80 mix-blend-screen pointer-events-none"></div>
                 <div className="absolute -inset-2 bg-blue-500/20 rounded-[3rem] blur-xl opacity-50 pointer-events-none"></div>
                 
-                {/* App Store / Play Store / QR Code for ComplianceQuest (Desktop) */}
-                {slug === 'compliancequest' && (
-                  <div className="hidden md:flex absolute -top-6 -right-6 z-50 flex-col items-end gap-3 bg-white/10 p-3 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
-                    <div className="flex flex-col gap-2">
-                      <div className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-gray-900 transition-colors shadow-sm border border-gray-800">
-                        <Apple className="w-5 h-5" /> App Store
-                      </div>
-                      <div className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm font-semibold cursor-pointer hover:bg-gray-900 transition-colors shadow-sm border border-gray-800">
-                        <Play className="w-5 h-5" fill="currentColor" /> Play Store
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-center bg-white p-2 rounded-xl border border-gray-200 shadow-sm">
-                      <QrCode className="w-16 h-16 text-black" />
-                      <span className="text-[10px] text-gray-800 font-extrabold mt-1 tracking-wider">SCAN TO DL</span>
-                    </div>
-                  </div>
-                )}
+
                 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}

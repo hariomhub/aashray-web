@@ -1,0 +1,144 @@
+name: Backend CI/CD (admin_api → Azure App Service)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'admin_api/**'
+      - '.github/workflows/backend-deploy.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'admin_api/**'
+  workflow_dispatch:
+
+concurrency:
+  group: backend-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '20.x'
+  WORKING_DIR: admin_api
+  # Set these as repository *variables* (Settings → Secrets and variables → Actions → Variables)
+  # AZURE_WEBAPP_NAME  e.g. aashray-api
+  # (optional) AZURE_WEBAPP_SLOT
+
+jobs:
+  build-and-test:
+    name: Build & test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci_root_password
+          MYSQL_DATABASE: aashray_partners_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -pci_root_password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      NODE_ENV: test
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: ci_root_password
+      DB_NAME: aashray_partners_ci
+      JWT_SECRET: ci_only_jwt_secret
+      # Keep CI hermetic: no real storage or mail
+      STORAGE_MODE: local
+      EMAIL_MODE: preview
+      LOCAL_UPLOAD_DIR: ${{ runner.temp }}/uploads
+      EMAIL_PREVIEW_DIR: ${{ runner.temp }}/email-previews
+
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIR }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: ${{ env.WORKING_DIR }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check & build
+        run: npm run build
+
+      - name: Run database migrations
+        run: npx ts-node src/db/migrate.ts --fresh
+
+      - name: Run database integration tests
+        run: npm test
+
+      - name: Package deployable artifact
+        if: github.event_name != 'pull_request'
+        run: |
+          rm -rf ../deploy && mkdir ../deploy
+          cp -r dist package.json package-lock.json ../deploy/
+          cd ../deploy && npm ci --omit=dev
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-package
+          path: deploy
+          include-hidden-files: true
+          retention-days: 5
+
+  deploy:
+    name: Deploy to Azure App Service
+    needs: build-and-test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ vars.API_PUBLIC_URL }}
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: backend-package
+          path: deploy
+
+      # Passwordless auth via OIDC federated credential (recommended).
+      # Required secrets: AZUREAPPSERVICE_CLIENTID, AZUREAPPSERVICE_TENANTID, AZUREAPPSERVICE_SUBSCRIPTIONID
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+
+      - name: Deploy
+        id: deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          slot-name: ${{ vars.AZURE_WEBAPP_SLOT || 'production' }}
+          package: deploy
+
+      - name: Smoke test /health
+        if: vars.API_PUBLIC_URL != ''
+        run: |
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "${{ vars.API_PUBLIC_URL }}/health" || true)
+            echo "Attempt $i: HTTP $code"
+            [ "$code" = "200" ] && exit 0
+            sleep 10
+          done
+          echo "Health check failed" && exit 1

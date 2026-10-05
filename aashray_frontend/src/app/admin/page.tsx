@@ -144,8 +144,8 @@ export default function AdminDashboardPage() {
   // Auth state
   const [token, setToken] = useState<string | null>(null);
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
-  const [loginEmail, setLoginEmail] = useState("admin@aashrayinfotech.com");
-  const [loginPassword, setLoginPassword] = useState("Admin@Aashray2026!");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
 
@@ -450,21 +450,6 @@ export default function AdminDashboardPage() {
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800 text-center">
-            <p className="text-xs text-text-secondary dark:text-gray-500 mb-2">
-              Default administrator seeded credentials
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setLoginEmail("admin@aashrayinfotech.com");
-                setLoginPassword("Admin@Aashray2026!");
-              }}
-              className="text-xs text-primary dark:text-sky-400 font-medium hover:underline"
-            >
-              Fill Default Admin Credentials
-            </button>
-          </div>
         </motion.div>
       </div>
     );

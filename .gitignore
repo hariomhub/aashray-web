@@ -44,6 +44,6 @@ next-env.d.ts
 .clario/
 .agents/
 
-# admin API (not deploying to Azure for now - backup exists locally)
-admin_api/
+# admin API (now deploying)
+# admin_api/
 
