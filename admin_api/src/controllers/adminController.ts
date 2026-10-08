@@ -13,7 +13,8 @@ interface UserRow {
   name: string;
   email: string;
   password_hash: string;
-  role: 'SUPER_ADMIN' | 'PARTNER_ADMIN' | 'DOCUMENT_VERIFIER';
+  role: 'SUPER_ADMIN' | 'PARTNER_ADMIN';
+  application_id: string | null;
   is_active: boolean;
 }
 
@@ -90,14 +91,14 @@ export async function adminLogin(req: Request, res: Response): Promise<void> {
   await query('UPDATE users SET last_login_at = NOW() WHERE id = ?', [user.id]);
 
   const token = jwt.sign(
-    { id: user.id, email: user.email, name: user.name, role: user.role },
+    { id: user.id, email: user.email, name: user.name, role: user.role, applicationId: user.application_id || null },
     process.env.JWT_SECRET || '',
     { expiresIn: (process.env.JWT_EXPIRES_IN || '8h') as `${number}${'s'|'m'|'h'|'d'}` }
   );
 
   await auditLog({ userId: user.id, action: 'LOGIN', resourceType: 'USER', resourceId: user.id, ip: req.ip });
 
-  res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+  res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role, applicationId: user.application_id || null } });
 }
 
 // ─── Applications List ────────────────────────────────────────────────────────
@@ -111,6 +112,12 @@ export async function listApplications(req: Request, res: Response): Promise<voi
   let whereClause = '1=1';
   const params: unknown[] = [];
 
+  // Partner-applicant accounts only ever see their own application
+  if (req.admin?.applicationId) {
+    whereClause += ' AND pa.id = ?';
+    params.push(req.admin.applicationId);
+  }
+
   if (status) {
     whereClause += ' AND pa.status = ?';
     params.push(status);
@@ -123,12 +130,14 @@ export async function listApplications(req: Request, res: Response): Promise<voi
 
   const applications = await query<ApplicationRow[]>(
     `SELECT pa.*,
-       COUNT(pd.id) as doc_count,
-       SUM(CASE WHEN pd.verification_status IN ('SUBMITTED','UNDER_REVIEW','VERIFIED') THEN 1 ELSE 0 END) as submitted_doc_count
+        po.onboarding_status,
+        COUNT(pd.id) as doc_count,
+        SUM(CASE WHEN pd.verification_status IN ('SUBMITTED','UNDER_REVIEW','VERIFIED') THEN 1 ELSE 0 END) as submitted_doc_count
      FROM partner_applications pa
      LEFT JOIN partner_documents pd ON pd.application_id = pa.id
+     LEFT JOIN partner_onboarding po ON po.application_id = pa.id
      WHERE ${whereClause}
-     GROUP BY pa.id
+     GROUP BY pa.id, po.onboarding_status
      ORDER BY pa.submitted_at DESC
      LIMIT ? OFFSET ?`,
     [...params, limitNum, offset]
@@ -181,6 +190,11 @@ interface PartnerRow {
 
 export async function getApplication(req: Request, res: Response): Promise<void> {
   const { id } = req.params;
+
+  if (req.admin?.applicationId && req.admin.applicationId !== id) {
+    res.status(403).json({ error: 'Insufficient permissions' });
+    return;
+  }
 
   const apps = await query<ApplicationRow[]>(
     'SELECT * FROM partner_applications WHERE id = ?',
@@ -239,6 +253,11 @@ export async function viewDocument(req: Request, res: Response): Promise<void> {
 
   if (!docs.length) {
     res.status(404).json({ error: 'Document not found' });
+    return;
+  }
+
+  if (req.admin?.applicationId && (docs[0] as unknown as { application_id: string }).application_id !== req.admin.applicationId) {
+    res.status(403).json({ error: 'Insufficient permissions' });
     return;
   }
 
@@ -496,4 +515,25 @@ export async function activatePartner(req: Request, res: Response): Promise<void
   });
 
   res.json({ message: 'Partner activated successfully' });
+}
+
+// ─── Activity Feed ────────────────────────────────────────────────────────────
+
+/** GET /api/admin/activity?limit=30 — recent actions by admins and on applications */
+export async function listActivity(req: Request, res: Response): Promise<void> {
+  const limitNum = Math.min(100, Math.max(1, parseInt((req.query.limit as string) || '30', 10)));
+  const scopeId = req.admin?.applicationId || null;
+  const rows = await query<unknown[]>(
+    `SELECT al.id, al.action, al.resource_type, al.resource_id, al.details, al.created_at,
+            u.name AS user_name, u.role AS user_role,
+            pa.company_name
+     FROM audit_logs al
+     LEFT JOIN users u ON u.id = al.user_id
+     LEFT JOIN partner_applications pa ON al.resource_type = 'APPLICATION' AND pa.id = al.resource_id
+     WHERE al.action <> 'LOGIN'${scopeId ? " AND al.resource_type = 'APPLICATION' AND al.resource_id = ?" : ''}
+     ORDER BY al.created_at DESC
+     LIMIT ${limitNum}`,
+    scopeId ? [scopeId] : []
+  );
+  res.json({ data: rows });
 }

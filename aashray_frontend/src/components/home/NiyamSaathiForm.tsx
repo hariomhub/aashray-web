@@ -46,6 +46,45 @@ const INDIAN_STATES = [
   "Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu",
   "Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry",
 ];
+
+const STATE_CITIES: Record<string, string[]> = {
+  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool"],
+  "Arunachal Pradesh": ["Itanagar", "Naharlagun", "Pasighat"],
+  "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Jorhat"],
+  "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+  "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur", "Korba"],
+  "Goa": ["Panaji", "Margao", "Vasco da Gama"],
+  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"],
+  "Haryana": ["Faridabad", "Gurugram", "Panipat", "Ambala", "Rohtak"],
+  "Himachal Pradesh": ["Shimla", "Dharamshala", "Mandi", "Solan"],
+  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro"],
+  "Karnataka": ["Bengaluru", "Mysuru", "Hubballi-Dharwad", "Mangaluru", "Belagavi"],
+  "Kerala": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur"],
+  "Madhya Pradesh": ["Indore", "Bhopal", "Jabalpur", "Gwalior", "Ujjain"],
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad"],
+  "Manipur": ["Imphal"],
+  "Meghalaya": ["Shillong"],
+  "Mizoram": ["Aizawl"],
+  "Nagaland": ["Dimapur", "Kohima"],
+  "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Berhampur"],
+  "Punjab": ["Ludhiana", "Amritsar", "Jalandhar", "Patiala"],
+  "Rajasthan": ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Bikaner"],
+  "Sikkim": ["Gangtok"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"],
+  "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar"],
+  "Tripura": ["Agartala"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi", "Noida"],
+  "Uttarakhand": ["Dehradun", "Haridwar", "Roorkee", "Haldwani"],
+  "West Bengal": ["Kolkata", "Howrah", "Asansol", "Siliguri", "Durgapur"],
+  "Andaman and Nicobar Islands": ["Port Blair"],
+  "Chandigarh": ["Chandigarh"],
+  "Dadra and Nagar Haveli and Daman and Diu": ["Daman", "Silvassa"],
+  "Delhi": ["New Delhi"],
+  "Jammu and Kashmir": ["Srinagar", "Jammu"],
+  "Ladakh": ["Leh", "Kargil"],
+  "Lakshadweep": ["Kavaratti"],
+  "Puducherry": ["Pondicherry", "Ozhukarai"],
+};
 const CURRENT_YEAR = new Date().getFullYear();
 const MAX_FILE_BYTES = 10 * 1024 * 1024;
 const ALLOWED_MIME = ["application/pdf","image/jpeg","image/jpg","image/png","image/webp"];
@@ -358,9 +397,9 @@ export default function NiyamSaathiForm() {
     setFD((p) => ({ ...p, [f]: v }));
     if (touched[f]) setErrors((p) => ({ ...p, [f]: validateField(f, v) }));
   };
-  const touch = (f: FieldKey) => {
+  const touch = (f: FieldKey, val?: string) => {
     setTouched((p) => ({ ...p, [f]: true }));
-    setErrors((p) => ({ ...p, [f]: validateField(f, formData[f]) }));
+    setErrors((p) => ({ ...p, [f]: validateField(f, val !== undefined ? val : formData[f]) }));
   };
   const e = (f: FieldKey) => (touched[f] ? errors[f] || "" : "");
 
@@ -391,7 +430,12 @@ export default function NiyamSaathiForm() {
     try {
       const res = await fetch("/api/partner-applications", { method:"POST", body:fd });
       if (!res.ok) {
-        const err = await res.json();
+        let err;
+        try {
+          err = await res.json();
+        } catch {
+          throw new Error(`Server returned ${res.status} ${res.statusText}`);
+        }
         throw new Error(err.errors?.length ? err.errors.map((e:{msg:string})=>e.msg).join(", ") : err.error || "Something went wrong.");
       }
       setStatus("success");
@@ -530,7 +574,7 @@ export default function NiyamSaathiForm() {
                   <Field label="Year Established" required hint={`1950 – 2026`} error={e("year_established")}>
                     <YearPicker
                       value={formData.year_established}
-                      onChange={(val) => { set("year_established", val); touch("year_established"); }}
+                      onChange={(val) => { set("year_established", val); touch("year_established", val); }}
                       error={!!e("year_established")}
                     />
                   </Field>
@@ -554,15 +598,6 @@ export default function NiyamSaathiForm() {
               {/* STEP 2 */}
               {step === 1 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
-                  <Field label="Head Office City" required error={e("head_office_city")}>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
-                      <input type="text" value={formData.head_office_city}
-                        onChange={(ev) => set("head_office_city", ev.target.value)} onBlur={() => touch("head_office_city")}
-                        className={`${BASE} pl-9 ${bc(!!e("head_office_city"))}`} placeholder="Mumbai" />
-                    </div>
-                  </Field>
-
                   <Field label="State" required error={e("state")}>
                     <select value={formData.state}
                       onChange={(ev) => set("state", ev.target.value)} onBlur={() => touch("state")}
@@ -570,6 +605,22 @@ export default function NiyamSaathiForm() {
                       <option value="">Select state…</option>
                       {INDIAN_STATES.map((s) => <option key={s} value={s}>{s}</option>)}
                     </select>
+                  </Field>
+
+                  <Field label="Head Office City" required error={e("head_office_city")}>
+                    <div className="relative">
+                      <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary pointer-events-none" />
+                      <input type="text" list="city-options" value={formData.head_office_city}
+                        onChange={(ev) => set("head_office_city", ev.target.value)} onBlur={() => touch("head_office_city")}
+                        className={`${BASE} pl-9 ${bc(!!e("head_office_city"))}`} placeholder="Mumbai" />
+                      {formData.state && STATE_CITIES[formData.state] && (
+                        <datalist id="city-options">
+                          {STATE_CITIES[formData.state].map(city => (
+                            <option key={city} value={city} />
+                          ))}
+                        </datalist>
+                      )}
+                    </div>
                   </Field>
 
                   <Field label="Company Type" required error={e("company_type")}>

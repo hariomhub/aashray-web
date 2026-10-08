@@ -48,7 +48,7 @@ export type PartnerTier = 'REGISTERED' | 'SILVER' | 'GOLD' | 'PLATINUM';
 
 export type BankAccountType = 'CURRENT' | 'SAVINGS';
 
-export type UserRole = 'SUPER_ADMIN' | 'PARTNER_ADMIN' | 'DOCUMENT_VERIFIER';
+export type UserRole = 'SUPER_ADMIN' | 'PARTNER_ADMIN';
 
 export type EmailType =
   | 'APPLICATION_RECEIVED'

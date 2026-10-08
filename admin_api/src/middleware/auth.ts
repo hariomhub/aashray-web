@@ -7,7 +7,9 @@ export interface AdminUser {
   id: string;
   email: string;
   name: string;
-  role: 'SUPER_ADMIN' | 'PARTNER_ADMIN' | 'DOCUMENT_VERIFIER';
+  role: 'SUPER_ADMIN' | 'PARTNER_ADMIN';
+  /** Set for partner-applicant accounts: restricts access to that one application. */
+  applicationId?: string | null;
 }
 
 declare global {
@@ -37,7 +39,7 @@ export function authenticateAdmin(req: Request, res: Response, next: NextFunctio
 
 /** Role guard: only SUPER_ADMIN and PARTNER_ADMIN can approve/reject */
 export function requireApproverRole(req: Request, res: Response, next: NextFunction): void {
-  if (!req.admin || req.admin.role === 'DOCUMENT_VERIFIER') {
+  if (!req.admin || req.admin.applicationId) {
     res.status(403).json({ error: 'Insufficient permissions' });
     return;
   }

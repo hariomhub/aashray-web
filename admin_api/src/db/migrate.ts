@@ -30,7 +30,8 @@ const tableDefinitions: TableDefinition[] = [
       name           VARCHAR(255) NOT NULL,
       email          VARCHAR(255) NOT NULL UNIQUE,
       password_hash  VARCHAR(255) NOT NULL,
-      role           ENUM('SUPER_ADMIN', 'PARTNER_ADMIN', 'DOCUMENT_VERIFIER') NOT NULL DEFAULT 'PARTNER_ADMIN',
+      role           ENUM('SUPER_ADMIN', 'PARTNER_ADMIN') NOT NULL DEFAULT 'PARTNER_ADMIN',
+      application_id VARCHAR(36)  NULL,
       is_active      BOOLEAN      NOT NULL DEFAULT TRUE,
       last_login_at  DATETIME     NULL,
       created_at     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -384,6 +385,17 @@ export async function migrate(options: { fresh?: boolean } = {}): Promise<void> 
         await conn.execute(`ALTER TABLE partners ADD COLUMN commission_rate_pct DECIMAL(5,2) NOT NULL DEFAULT 15.00 AFTER partner_tier`);
         logger.info(`  + Column added: partners.commission_rate_pct`);
       }
+
+      // 5. users: remove DOCUMENT_VERIFIER role + link partner-applicant accounts to their application
+      const [userCols] = await conn.execute(
+        `SELECT column_name FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = 'users'`
+      ) as [{ COLUMN_NAME: string }[], unknown];
+      if (!new Set(userCols.map(c => c.COLUMN_NAME.toLowerCase())).has('application_id')) {
+        await conn.execute(`ALTER TABLE users ADD COLUMN application_id VARCHAR(36) NULL AFTER role`);
+        logger.info(`  + Column added: users.application_id`);
+      }
+      await conn.execute(`UPDATE users SET role = 'PARTNER_ADMIN' WHERE role = 'DOCUMENT_VERIFIER'`);
+      await conn.execute(`ALTER TABLE users MODIFY COLUMN role ENUM('SUPER_ADMIN','PARTNER_ADMIN') NOT NULL DEFAULT 'PARTNER_ADMIN'`);
     }
 
     await conn.commit();

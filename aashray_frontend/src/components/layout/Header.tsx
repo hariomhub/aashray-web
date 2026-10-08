@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { Menu, X, ChevronDown, Globe, ShieldCheck } from "lucide-react";
+import { Menu, X, ChevronDown, Globe, ShieldCheck, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { homeContent } from "@/content/home";
@@ -21,6 +22,33 @@ export default function Header() {
   const [isHidden, setIsHidden] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [adminRoleLabel, setAdminRoleLabel] = useState("Admin");
+  const pathname = usePathname();
+
+  // Track admin session (localStorage token) across navigation and login/logout events
+  useEffect(() => {
+    const sync = () => {
+      setIsAdminLoggedIn(!!localStorage.getItem("aashray_admin_token"));
+      try {
+        const u = JSON.parse(localStorage.getItem("aashray_admin_user") || "null");
+        setAdminRoleLabel(u?.role === "SUPER_ADMIN" ? "Super Admin" : u?.role === "PARTNER_ADMIN" ? "Partner Admin" : "Admin");
+      } catch { setAdminRoleLabel("Admin"); }
+    };
+    sync();
+    window.addEventListener("aashray-admin-auth", sync);
+    window.addEventListener("storage", sync);
+    return () => {
+      window.removeEventListener("aashray-admin-auth", sync);
+      window.removeEventListener("storage", sync);
+    };
+  }, [pathname]);
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem("aashray_admin_token");
+    localStorage.removeItem("aashray_admin_user");
+    window.dispatchEvent(new Event("aashray-admin-auth"));
+  };
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -64,6 +92,21 @@ export default function Header() {
             />
           </Link>
           <div className="flex items-center gap-2.5 sm:gap-4">
+            {isAdminLoggedIn && (
+              <span className="hidden sm:inline text-xs font-medium text-text-secondary dark:text-gray-300 whitespace-nowrap">
+                Logged in as <span className="font-semibold text-neutral-text dark:text-white">{adminRoleLabel}</span>
+              </span>
+            )}
+            {isAdminLoggedIn ? (
+              <button
+                onClick={handleAdminLogout}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 hover:bg-red-600 hover:text-white dark:bg-red-950/30 text-red-600 dark:text-red-400 text-xs font-semibold transition-colors"
+                title="Log out"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Log out</span>
+              </button>
+            ) : (
             <Link
               href="/admin"
               className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-primary/20 dark:border-primary/40 bg-primary/5 hover:bg-primary hover:text-white dark:bg-primary/10 text-primary dark:text-sky-400 text-xs font-semibold transition-colors"
@@ -72,6 +115,7 @@ export default function Header() {
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Admin</span>
             </Link>
+            )}
             <ThemeToggle />
             <button
               className="p-2 text-neutral-text dark:text-white"
@@ -175,6 +219,21 @@ export default function Header() {
             ))}
             <div className="flex items-center gap-4 border-l border-gray-200 dark:border-gray-800 pl-8 h-8">
               <ThemeToggle />
+              {isAdminLoggedIn && (
+                <span className="text-xs xl:text-sm font-medium text-text-secondary dark:text-gray-300 whitespace-nowrap">
+                  Logged in as <span className="font-semibold text-neutral-text dark:text-white">{adminRoleLabel}</span>
+                </span>
+              )}
+              {isAdminLoggedIn ? (
+                <button
+                  onClick={handleAdminLogout}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-red-200 dark:border-red-900 bg-red-50 hover:bg-red-600 hover:text-white dark:bg-red-950/30 text-red-600 dark:text-red-400 font-semibold text-xs xl:text-sm transition-all whitespace-nowrap shadow-2xs hover:shadow-xs"
+                  title="Log out"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Log out</span>
+                </button>
+              ) : (
               <Link
                 href="/admin"
                 className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-primary/20 dark:border-primary/40 bg-primary/5 hover:bg-primary hover:text-white dark:bg-primary/10 dark:hover:bg-primary text-primary dark:text-sky-400 font-semibold text-xs xl:text-sm transition-all whitespace-nowrap shadow-2xs hover:shadow-xs"
@@ -183,6 +242,7 @@ export default function Header() {
                 <ShieldCheck className="w-4 h-4" />
                 <span>Admin Login</span>
               </Link>
+              )}
             </div>
           </div>
         </div>
@@ -271,6 +331,15 @@ export default function Header() {
               </div>
 
               <div className="p-6 border-t border-gray-100 dark:border-gray-800 mt-auto">
+                {isAdminLoggedIn ? (
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); handleAdminLogout(); }}
+                    className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-sm shadow-xs transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Log out</span>
+                  </button>
+                ) : (
                 <Link
                   href="/admin"
                   onClick={() => setMobileMenuOpen(false)}
@@ -279,6 +348,7 @@ export default function Header() {
                   <ShieldCheck className="w-4 h-4" />
                   <span>Log in as Administrator</span>
                 </Link>
+                )}
               </div>
             </motion.div>
           </>

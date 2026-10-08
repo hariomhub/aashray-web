@@ -11,6 +11,7 @@ import {
   viewDocument,
   verifyDocument,
   activatePartner,
+  listActivity,
 } from '../controllers/adminController';
 
 const router = Router();
@@ -50,6 +51,11 @@ router.post('/partner-applications/:id/activate', requireApproverRole, activateP
 router.get('/documents/:docId', viewDocument);
 
 /** PATCH /api/admin/documents/:docId/verify */
-router.patch('/documents/:docId/verify', verifyDocument);
+router.patch('/documents/:docId/verify', requireApproverRole, verifyDocument);
+
+// ─── Activity ─────────────────────────────────────────────────────────────────
+
+/** GET /api/admin/activity */
+router.get('/activity', listActivity);
 
 export default router;

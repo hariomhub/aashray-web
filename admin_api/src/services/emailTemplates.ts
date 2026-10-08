@@ -114,7 +114,27 @@ function toText(lines: string[]): string {
 
 // ─── 1. Application received ────────────────────────────────────────────────────
 
-export function applicationReceivedEmail(d: { applicationId: string; companyName: string }): RenderedEmail {
+export interface PortalCredentials {
+  loginEmail: string;
+  password: string;
+}
+
+export function applicationReceivedEmail(d: {
+  applicationId: string;
+  companyName: string;
+  credentials?: PortalCredentials | null;
+}): RenderedEmail {
+  const loginUrl = `${frontendUrl()}/admin`;
+  const credsHtml = d.credentials
+    ? [
+        callout(
+          'info',
+          `<strong>Your partner portal login</strong><br />Use these credentials to sign in at any time and track your application status.<table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:12px;"><tr><td style="padding:3px 14px 3px 0;color:${BRAND.muted};">Login email</td><td><strong style="font-family:Consolas,Menlo,monospace;color:${BRAND.ink};">${escapeHtml(d.credentials.loginEmail)}</strong></td></tr><tr><td style="padding:3px 14px 3px 0;color:${BRAND.muted};">Password</td><td><strong style="font-family:Consolas,Menlo,monospace;color:${BRAND.ink};">${escapeHtml(d.credentials.password)}</strong></td></tr></table>`
+        ),
+        button('Sign in to track your application', loginUrl),
+        small('Please keep these credentials safe and do not share them.'),
+      ].join('')
+    : '';
   const subject = `We received your partner application — ${d.companyName}`;
   const html = layout({
     title: subject,
@@ -126,6 +146,7 @@ export function applicationReceivedEmail(d: { applicationId: string; companyName
         'info',
         `<strong>What happens next</strong><br />1. Our team reviews your company details and documents.<br />2. You receive a decision by email — typically within <strong>3–5 business days</strong>.<br />3. If approved, you get a secure link to sign the partnership agreement and complete onboarding.`
       ),
+      credsHtml,
       hr(),
       refLine('Application ID', d.applicationId),
       small('Please quote this ID in any correspondence.'),
@@ -136,6 +157,16 @@ export function applicationReceivedEmail(d: { applicationId: string; companyName
     '',
     'We have received your NiyamSaathi partner application.',
     'Expect a decision by email within 3-5 business days.',
+    ...(d.credentials
+      ? [
+          '',
+          'Your partner portal login (track your application status):',
+          `Sign in: ${loginUrl}`,
+          `Login email: ${d.credentials.loginEmail}`,
+          `Password: ${d.credentials.password}`,
+          'Please keep these credentials safe.',
+        ]
+      : []),
     '',
     `Application ID: ${d.applicationId}`,
   ]);

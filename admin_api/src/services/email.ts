@@ -149,6 +149,7 @@ export function sendApplicationReceivedEmail(p: {
   applicationId: string;
   companyName: string;
   email: string;
+  credentials?: { loginEmail: string; password: string } | null;
 }): Promise<EmailResult> {
   return sendAndLog({
     applicationId: p.applicationId,

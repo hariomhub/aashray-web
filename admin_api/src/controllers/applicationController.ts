@@ -6,6 +6,27 @@ import { generateId } from '../utils/helpers';
 import { DOCUMENT_FIELDS, DOCUMENT_TYPE_MAP } from '../middleware/upload';
 import logger from '../utils/logger';
 import { sendApplicationReceivedEmail } from '../services/email';
+import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+
+/**
+ * Creates a login (users row, role PARTNER_ADMIN, scoped to this application) so the partner can
+ * sign in and track their application. Returns the plaintext password once, for the welcome email.
+ * Returns null if an account already exists for this email (existing credentials are never reset).
+ */
+async function createPartnerAccount(applicationId: string, email: string, name: string) {
+  const existing = await query<{ id: string }[]>('SELECT id FROM users WHERE email = ?', [email]);
+  if (existing.length) return null;
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789';
+  const bytes = crypto.randomBytes(12);
+  const password = Array.from(bytes, (b) => chars[b % chars.length]).join('') + '!7';
+  const hash = await bcrypt.hash(password, 10);
+  await query(
+    `INSERT INTO users (id, name, email, password_hash, role, application_id) VALUES (?, ?, ?, ?, 'PARTNER_ADMIN', ?)`,
+    [generateId(), name, email, hash, applicationId]
+  );
+  return { loginEmail: email, password };
+}
 
 interface PartnerApplicationRow {
   id: string;
@@ -109,10 +130,16 @@ export async function submitApplication(req: Request, res: Response): Promise<vo
 
     logger.info(`Partner application submitted: ${applicationId} (${company_name})`);
 
-    // Fire-and-forget: a mail problem must never fail the submission
-    void sendApplicationReceivedEmail({ applicationId, companyName: company_name, email: company_email }).catch((e) =>
-      logger.error('Application-received email error:', e)
-    );
+    // Fire-and-forget: a mail/account problem must never fail the submission
+    void (async () => {
+      let credentials: { loginEmail: string; password: string } | null = null;
+      try {
+        credentials = await createPartnerAccount(applicationId, company_email, contact_name || company_name);
+      } catch (e) {
+        logger.error('Partner account creation error:', e);
+      }
+      await sendApplicationReceivedEmail({ applicationId, companyName: company_name, email: company_email, credentials });
+    })().catch((e) => logger.error('Application-received email error:', e));
 
     res.status(201).json({
       message: 'Application submitted successfully. We will review it and contact you shortly.',

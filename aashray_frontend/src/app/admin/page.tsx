@@ -45,6 +45,7 @@ interface ApplicationListItem {
   ip_address: string | null;
   doc_count: number;
   submitted_doc_count: string | number;
+  onboarding_status?: string | null;
 }
 
 interface ContactItem {
@@ -105,6 +106,17 @@ interface PartnerItem {
   activated_at: string | null;
 }
 
+interface ActivityItem {
+  id: string;
+  action: string;
+  resource_type: string;
+  resource_id: string | null;
+  created_at: string;
+  user_name: string | null;
+  user_role: string | null;
+  company_name: string | null;
+}
+
 interface DetailedApplication {
   application: ApplicationListItem;
   contacts: ContactItem[];
@@ -157,6 +169,7 @@ export default function AdminDashboardPage() {
   const [selectedAppId, setSelectedAppId] = useState<string | null>(null);
   const [detailData, setDetailData] = useState<DetailedApplication | null>(null);
   const [detailLoading, setDetailLoading] = useState(false);
+  const [activity, setActivity] = useState<ActivityItem[]>([]);
 
   // Action states
   const [actionLoading, setActionLoading] = useState(false);
@@ -179,6 +192,21 @@ export default function AdminDashboardPage() {
         try { setAdminUser(JSON.parse(savedUser)); } catch { /* ignore */ }
       }
     }
+  }, []);
+
+  // Header logout button fires this event; sync local state when token is removed
+  useEffect(() => {
+    const onAuthChange = () => {
+      if (!localStorage.getItem("aashray_admin_token")) {
+        setToken(null);
+        setAdminUser(null);
+        setApplications([]);
+        setSelectedAppId(null);
+        setDetailData(null);
+      }
+    };
+    window.addEventListener("aashray-admin-auth", onAuthChange);
+    return () => window.removeEventListener("aashray-admin-auth", onAuthChange);
   }, []);
 
   // Fetch applications
@@ -216,6 +244,25 @@ export default function AdminDashboardPage() {
     }
   }, [token, fetchApplications]);
 
+  // Fetch recent activity feed
+  const fetchActivity = useCallback(async () => {
+    if (!token) return;
+    try {
+      const res = await fetch(`/api/admin/activity?limit=15`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      setActivity(json.data || []);
+    } catch {
+      /* non-critical */
+    }
+  }, [token]);
+
+  useEffect(() => {
+    fetchActivity();
+  }, [fetchActivity, applications]);
+
   // Fetch single application detail
   const fetchDetail = async (id: string) => {
     if (!token) return;
@@ -252,6 +299,7 @@ export default function AdminDashboardPage() {
       setAdminUser(data.user);
       localStorage.setItem("aashray_admin_token", data.token);
       localStorage.setItem("aashray_admin_user", JSON.stringify(data.user));
+      window.dispatchEvent(new Event("aashray-admin-auth"));
       showToast(`Welcome back, ${data.user.name}!`);
     } catch (err: unknown) {
       setLoginError(err instanceof Error ? err.message : "Invalid credentials");
@@ -265,6 +313,7 @@ export default function AdminDashboardPage() {
     setAdminUser(null);
     localStorage.removeItem("aashray_admin_token");
     localStorage.removeItem("aashray_admin_user");
+    window.dispatchEvent(new Event("aashray-admin-auth"));
     setApplications([]);
     setSelectedAppId(null);
     setDetailData(null);
@@ -481,48 +530,7 @@ export default function AdminDashboardPage() {
         )}
       </AnimatePresence>
 
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-30 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center shadow-sm">
-            <Shield className="w-5 h-5" />
-          </div>
-          <div>
-            <h1 className="text-lg font-bold font-sans text-neutral-text dark:text-white leading-tight">
-              Aashray Admin Console
-            </h1>
-            <p className="text-xs text-text-secondary dark:text-gray-400">
-              Partner Management & Compliance Review
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-700 dark:text-emerald-300 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Backend Port 4000 Connected
-          </div>
-
-          <div className="text-right hidden md:block">
-            <p className="text-sm font-semibold text-neutral-text dark:text-white leading-none">
-              {adminUser?.name || "Admin"}
-            </p>
-            <p className="text-xs text-text-secondary dark:text-gray-400 mt-0.5">
-              {adminUser?.email || "admin@aashrayinfotech.com"}
-            </p>
-          </div>
-
-          <button
-            onClick={handleLogout}
-            title="Log out"
-            className="p-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-text-secondary dark:text-gray-300 transition-colors"
-          >
-            <LogOut className="w-4 h-4" />
-          </button>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 space-y-6">
         {/* KPI Cards Row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 shadow-xs">
@@ -698,6 +706,7 @@ export default function AdminDashboardPage() {
                           {app.status === "REJECTED" && <XCircle className="w-3 h-3" />}
                           {app.status === "PENDING_REVIEW" && <Clock className="w-3 h-3" />}
                           {app.status.replace("_", " ")}
+                          {app.status === "APPROVED" && app.onboarding_status ? ` · ${app.onboarding_status.replace(/_/g, " ")}` : ""}
                         </span>
                       </td>
 
@@ -739,6 +748,40 @@ export default function AdminDashboardPage() {
               </tbody>
             </table>
           </div>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xs">
+          <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
+            <h2 className="text-sm font-bold text-neutral-text dark:text-white">Recent Activity</h2>
+            <button onClick={fetchActivity} title="Refresh activity" className="text-text-secondary hover:text-primary">
+              <RefreshCw className="w-3.5 h-3.5" />
+            </button>
+          </div>
+          <ul className="divide-y divide-gray-100 dark:divide-gray-800">
+            {activity.length === 0 ? (
+              <li className="py-6 text-center text-xs text-text-secondary dark:text-gray-400">No recent activity.</li>
+            ) : (
+              activity.map((item) => (
+                <li key={item.id} className="px-4 py-3 flex items-start justify-between gap-4 text-xs">
+                  <div>
+                    <span className="font-semibold text-neutral-text dark:text-white">
+                      {item.action.replace(/_/g, " ")}
+                    </span>
+                    {item.company_name && (
+                      <span className="text-text-secondary dark:text-gray-400"> — {item.company_name}</span>
+                    )}
+                    <div className="text-[11px] text-text-secondary dark:text-gray-400 mt-0.5">
+                      by {item.user_name || "System"}
+                    </div>
+                  </div>
+                  <span className="text-[11px] text-text-secondary dark:text-gray-400 whitespace-nowrap">
+                    {formatDate(item.created_at)}
+                  </span>
+                </li>
+              ))
+            )}
+          </ul>
         </div>
       </main>
 
