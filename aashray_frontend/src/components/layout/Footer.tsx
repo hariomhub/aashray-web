@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6">
             <Link href="/" className="inline-block">
               <div className="bg-white p-1 rounded-md w-fit mx-auto md:mx-0">
-                <Image
+                <img
                   src="/logo.jpg"
                   alt="Aashray Infotech Logo"
                   width={64}
