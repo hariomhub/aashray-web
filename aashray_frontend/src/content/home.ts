@@ -92,7 +92,7 @@ export const homeContent = {
         tagline: "Visible deterrence. Invisible protection.",
         slug: "protection-mark",
         category: "products",
-        image: "/products/suraksha-chinh.mp4",
+        image: "/products/suraksha-chinh-demo.mp4",
         description: "Protect sensitive information displayed on screen using configurable visible watermarks and Invisible Ink.",
         features: [
           { bold: "Configurable Watermark", text: "Display user name, IP, time, or custom text on screen at all times" },
