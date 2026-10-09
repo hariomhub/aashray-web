@@ -35,5 +35,5 @@ export default async function PlatformPage({ params }: { params: Promise<{ slug:
   const description = product.description || product.tagline;
   const detailedFeatures = productDetails[product.slug] || product.features;
 
-  return <ProductOverview name={product.name} slug={product.slug} features={detailedFeatures} description={description} image={product.image} />;
+  return <ProductOverview name={product.name} slug={product.slug} features={detailedFeatures} description={description} image={product.image} demoVideo={product.demoVideo} />;
 }

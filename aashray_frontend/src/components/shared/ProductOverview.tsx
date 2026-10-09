@@ -20,9 +20,10 @@ interface ProductOverviewProps {
   features: Feature[];
   description?: string;
   image?: string;
+  demoVideo?: string;
 }
 
-export default function ProductOverview({ name, slug, features, description, image }: ProductOverviewProps) {
+export default function ProductOverview({ name, slug, features, description, image, demoVideo }: ProductOverviewProps) {
   const [activeTab, setActiveTab] = useState("overview");
   const isVideo = image?.endsWith('.mp4');
   const heroVideoRef = useRef<HTMLVideoElement>(null);
@@ -189,16 +190,27 @@ export default function ProductOverview({ name, slug, features, description, ima
           </div>
           <div className="lg:w-1/2 w-full flex flex-col items-center lg:items-end mt-12 lg:mt-0">
             <div className="relative w-full max-w-2xl aspect-video bg-gray-100 dark:bg-gray-900 rounded-[2rem] overflow-hidden group cursor-pointer border-4 border-gray-50 dark:border-gray-800 shadow-2xl">
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors z-20">
-                <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <PlayCircle className="w-8 h-8 text-primary" />
-                </div>
-              </div>
-              <img src={`/products/${slug}.png`} alt={name} className="absolute inset-0 w-full h-full object-cover z-10 opacity-80" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-              <div className="absolute inset-0 bg-primary/10 z-10 mix-blend-multiply"></div>
-              <div className="absolute bottom-4 right-4 bg-black/70 text-white text-xs font-semibold px-3 py-1.5 rounded-lg z-20 border border-white/20">
-                2:45
-              </div>
+              {demoVideo ? (
+                <video 
+                  src={demoVideo}
+                  controls
+                  poster={`/products/${slug}.png`}
+                  className="absolute inset-0 w-full h-full object-cover z-10"
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors z-20">
+                    <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <PlayCircle className="w-8 h-8 text-primary" />
+                    </div>
+                  </div>
+                  <img src={`/products/${slug}.png`} alt={name} className="absolute inset-0 w-full h-full object-cover z-10 opacity-80" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                  <div className="absolute inset-0 bg-primary/10 z-10 mix-blend-multiply"></div>
+                  <div className="absolute bottom-4 right-4 bg-black/70 text-white text-xs font-semibold px-3 py-1.5 rounded-lg z-20 border border-white/20">
+                    2:45
+                  </div>
+                </>
+              )}
             </div>
             <p className="text-sm text-gray-500 mt-4 font-medium tracking-wide">Watch: See {name} in action</p>
           </div>
