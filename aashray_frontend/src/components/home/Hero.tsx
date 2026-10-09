@@ -109,6 +109,9 @@ export default function Hero() {
                         muted
                         playsinline
                         preload="none" 
+                        controlslist="nodownload"
+                        disablepictureinpicture
+                        oncontextmenu="return false;"
                         class="absolute inset-0 w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity pointer-events-none"
                       ></video>
                     `

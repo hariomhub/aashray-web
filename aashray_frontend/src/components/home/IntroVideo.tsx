@@ -72,6 +72,9 @@ export default function IntroVideo() {
             playsInline
             muted
             preload="none"
+            controlsList="nodownload"
+            disablePictureInPicture
+            onContextMenu={(e) => e.preventDefault()}
             poster="/circuit-pattern.svg" // Fallback poster
           >
             <source src="/aashray-intro.mp4" type="video/mp4" />

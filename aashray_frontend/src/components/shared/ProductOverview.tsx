@@ -145,6 +145,9 @@ export default function ProductOverview({ name, slug, features, description, ima
                       muted
                       playsInline
                       preload="none"
+                      controlsList="nodownload"
+                      disablePictureInPicture
+                      onContextMenu={(e) => e.preventDefault()}
                       className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity pointer-events-none"
                     />
                   ) : (
@@ -194,6 +197,9 @@ export default function ProductOverview({ name, slug, features, description, ima
                 <video 
                   src={demoVideo}
                   controls
+                  controlsList="nodownload"
+                  disablePictureInPicture
+                  onContextMenu={(e) => e.preventDefault()}
                   poster={`/products/${slug}.png`}
                   className="absolute inset-0 w-full h-full object-cover z-10"
                 />

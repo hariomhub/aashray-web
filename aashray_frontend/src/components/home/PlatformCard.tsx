@@ -184,7 +184,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={mobileVideoRef} key={image} src={image} loop muted playsInline preload="none" className="w-full h-auto object-cover relative z-10 rounded-[20px] pointer-events-none" />
+                <video ref={mobileVideoRef} key={image} src={image} loop muted playsInline preload="none" controlsList="nodownload" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} className="w-full h-auto object-cover relative z-10 rounded-[20px] pointer-events-none" />
               ) : (
                 <img src={image} alt={name} className="w-full h-full object-contain p-4 relative z-10" />
               )
@@ -251,7 +251,7 @@ export default function PlatformCard({
             {!isVideo && <div className="absolute inset-0 bg-[url('/circuit-pattern.svg')] opacity-5 dark:opacity-10"></div>}
             {image ? (
               isVideo ? (
-                <video ref={desktopVideoRef} key={image} src={image} loop muted playsInline preload="none" className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px] pointer-events-none" />
+                <video ref={desktopVideoRef} key={image} src={image} loop muted playsInline preload="none" controlsList="nodownload" disablePictureInPicture onContextMenu={(e) => e.preventDefault()} className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px] pointer-events-none" />
               ) : (
                 <img src={image} alt={name} className="w-full h-auto max-h-[350px] lg:max-h-[450px] object-contain relative z-10 rounded-[16px] lg:rounded-[24px]" />
               )

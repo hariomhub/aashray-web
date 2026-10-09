@@ -59,6 +59,9 @@ function getTransporter(): Transporter {
       port: parseInt(process.env.SMTP_PORT || '587', 10),
       secure: process.env.SMTP_SECURE === 'true',
       auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+      tls: { ciphers: 'SSLv3' },
+      // @ts-ignore: force IPv4 to avoid ENETUNREACH
+      family: 4, 
       connectionTimeout: 10_000,
       greetingTimeout: 10_000,
       socketTimeout: 15_000,
