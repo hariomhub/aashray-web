@@ -43,8 +43,8 @@ export default function Footer() {
             <div className="text-center md:text-left">
               <h3 className="text-white font-semibold mb-6">Quick Links</h3>
               <ul className="space-y-4">
-                <li><Link href="#about" className="hover:text-white transition-colors text-sm">About Us</Link></li>
-                <li><Link href="#products" className="hover:text-white transition-colors text-sm">Products</Link></li>
+                <li><Link href="/about" className="hover:text-white transition-colors text-sm">About Us</Link></li>
+                <li><Link href="/#products" className="hover:text-white transition-colors text-sm">Products</Link></li>
                 <li><Link href="/learning" className="hover:text-white transition-colors text-sm">Learning</Link></li>
                 <li><Link href="/book-a-demo" className="hover:text-white transition-colors text-sm">Request a Demo</Link></li>
               </ul>
@@ -79,15 +79,15 @@ export default function Footer() {
           <div className="text-center md:text-left">
             <h3 className="text-white font-semibold mb-6">Contact Us</h3>
             <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+              <a href="https://www.aashrayinfotech.com" aria-label="Aashray Infotech Official Website" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
                 <Globe className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+              <Link href="/book-a-demo" aria-label="Contact and Chat with Team" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
                 <MessageCircle className="w-4 h-4" />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
+              </Link>
+              <Link href="/faq" aria-label="Explore FAQs and Insights" className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors">
                 <Share2 className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
             
             <a href="mailto:support@aashrayinfotech.com" className="flex items-center justify-center md:justify-start gap-3 text-gray-400 hover:text-white transition-colors text-sm group mt-4">

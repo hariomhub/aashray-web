@@ -112,7 +112,7 @@ export default function PlatformCard({
         transition={{ duration: 0.6 }}
         className={`w-full max-w-6xl flex flex-col text-center items-center mb-4 relative z-30 ${isPlaceholder ? 'opacity-70' : ''}`}
       >
-        <h4 className={`text-4xl lg:text-5xl font-sans font-[800] mb-4 pb-2 leading-tight tracking-tight ${name === 'ComplianceQuest' ? '' : 'bg-clip-text text-transparent bg-[linear-gradient(90deg,#123F78,#4169E1)] dark:bg-[linear-gradient(90deg,#8BA4FF,#C4D2FF)]'}`}>
+        <h3 className={`text-4xl lg:text-5xl font-sans font-[800] mb-4 pb-2 leading-tight tracking-tight ${name === 'ComplianceQuest' ? '' : 'bg-clip-text text-transparent bg-[linear-gradient(90deg,#123F78,#4169E1)] dark:bg-[linear-gradient(90deg,#8BA4FF,#C4D2FF)]'}`}>
           {name === 'ComplianceQuest' ? (
             <>
               <span className="text-[#0B2B55] dark:text-[#8BA4FF]">Compliance</span>
@@ -121,7 +121,7 @@ export default function PlatformCard({
           ) : (
             name
           )}
-        </h4>
+        </h3>
         {statusBadge && (
           <div className="mb-5 -mt-4">
             <span className="inline-block px-4 py-1.5 text-sm font-semibold tracking-wide text-primary bg-primary/10 rounded-full dark:text-blue-400 dark:bg-blue-900/30">

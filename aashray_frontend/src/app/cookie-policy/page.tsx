@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Cookie Policy | Aashray Infotech",
-  description: "Cookie Policy for Aashray Infotech",
+  description:
+    "Cookie Policy for Aashray Infotech Private Limited explaining our minimal, privacy-preserving cookie usage.",
+  alternates: {
+    canonical: "/cookie-policy",
+  },
 };
+
 
 export default function CookiePolicy() {
   return (

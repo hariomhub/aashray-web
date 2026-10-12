@@ -3,6 +3,7 @@ import { productDetails } from "@/content/productDetails";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ProductOverview from "@/components/shared/ProductOverview";
+import JsonLd, { getSoftwareAppSchema, getBreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export function generateStaticParams() {
   return homeContent.ourPlatforms.items
@@ -18,7 +19,38 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     (item: any) => item.slug === resolvedParams.slug && item.category === "products"
   );
   if (!product) return {};
-  return { title: `${product.name} Overview | Aashray Infotech` };
+
+  const title = `${product.name} - ${product.tagline || "DPDP Compliance & Security"}`;
+  const description =
+    product.description ||
+    `${product.name} provides on-premise protection and DPDP compliance engineering by Aashray Infotech.`;
+  const url = `https://www.aashrayinfotech.com/products/${product.slug}`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      product.name,
+      ...(product.features?.map((f: any) => f.bold) || []),
+      "DPDP Act compliance",
+      "Aashray Infotech",
+      "data protection",
+    ],
+    alternates: {
+      canonical: `/products/${product.slug}`,
+    },
+    openGraph: {
+      title: `${product.name} | Aashray Infotech`,
+      description,
+      url,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} | Aashray Infotech`,
+      description,
+    },
+  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -35,5 +67,31 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   const description = product.description || product.tagline;
   const detailedFeatures = productDetails[product.slug] || product.features;
 
-  return <ProductOverview name={product.name} slug={product.slug} features={detailedFeatures} description={description} image={product.image} demoVideo={product.demoVideo} />;
+  const appSchema = getSoftwareAppSchema({
+    name: product.name,
+    description,
+    url: `/products/${product.slug}`,
+  });
+
+  const breadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Products", url: "/#products" },
+    { name: product.name, url: `/products/${product.slug}` },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={appSchema} />
+      <JsonLd data={breadcrumbs} />
+      <ProductOverview
+        name={product.name}
+        slug={product.slug}
+        features={detailedFeatures}
+        description={description}
+        image={product.image}
+        demoVideo={product.demoVideo}
+      />
+    </>
+  );
 }
+

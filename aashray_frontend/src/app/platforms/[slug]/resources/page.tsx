@@ -9,7 +9,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     (item: any) => item.slug === resolvedParams.slug && item.category === "platforms"
   );
   if (!product) return {};
-  return { title: `${product.name} Resources | Aashray Infotech` };
+  return {
+    title: `${product.name} Resources | Aashray Infotech`,
+    description: `Datasheets, architecture notes, and guides for ${product.name} by Aashray Infotech.`,
+    alternates: {
+      canonical: `/platforms/${product.slug}`,
+    },
+  };
 }
 
 export default async function PlatformResourcesPage({ params }: { params: Promise<{ slug: string }> }) {

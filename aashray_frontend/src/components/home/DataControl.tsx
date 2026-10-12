@@ -8,7 +8,7 @@ export default function DataControl() {
   const { hero } = homeContent;
 
   return (
-    <section className="relative w-full !max-w-none !m-0 bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 pb-12 md:pb-16 pt-8">
+    <section id="about" className="relative w-full !max-w-none !m-0 bg-[radial-gradient(ellipse_at_top,rgba(90,130,255,0.08),rgba(150,120,255,0.05),transparent_70%)] dark:bg-gray-950 pb-12 md:pb-16 pt-8">
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,9 +25,9 @@ export default function DataControl() {
               <ShieldCheck className="w-16 h-16 md:w-20 md:h-20 text-accent" />
             </div>
             <div className="flex-1 flex flex-col items-center xl:items-start text-center xl:text-left w-full">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 mb-6 leading-tight tracking-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400 mb-6 leading-tight tracking-tight">
                 {hero.dataControlStatement}
-              </h3>
+              </h2>
               <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl font-medium">
                 We know handing over your data feels risky, so we don&apos;t ask you to. Everything stays inside your own environment and under your control.
               </p>

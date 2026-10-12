@@ -1,12 +1,36 @@
 import { Metadata } from "next";
 import { PlayCircle, Clock, BookOpen, ChevronRight } from "lucide-react";
+import JsonLd, { getBreadcrumbSchema } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Learning Hub | Aashray Infotech",
-  description: "Watch and learn with Aashray Infotech. Stay updated with the latest insights on DPDP compliance, data security, and best practices.",
+  title: "Learning Hub | DPDP Act 2023 Video Library & Practical Training",
+  description:
+    "Master DPDP Act 2023 compliance, data audits, TPRM automation, and VAPT testing with Aashray Infotech's comprehensive learning library and expert video guides.",
+  keywords: [
+    "DPDP Act training",
+    "DPDP compliance videos",
+    "Data audit guide India",
+    "Data Protection Officer training",
+    "TPRM best practices",
+    "Aashray learning hub",
+  ],
+  alternates: {
+    canonical: "/learning",
+  },
+  openGraph: {
+    title: "Learning Hub | Aashray Infotech",
+    description:
+      "Expert video tutorials and practical training guides for Indian DPDP Act 2023 compliance and enterprise cybersecurity.",
+    url: "https://www.aashrayinfotech.com/learning",
+  },
 };
 
 export default function LearningPage() {
+  const breadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Learning Hub", url: "/learning" },
+  ]);
+
   const placeholderVideos = [
     {
       id: 1,
@@ -54,6 +78,7 @@ export default function LearningPage() {
 
   return (
     <div className="min-h-screen pt-12 pb-24">
+      <JsonLd data={breadcrumbs} />
       {/* Header Section */}
       <div className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 text-center mb-16">
         <span className="text-sm font-semibold tracking-wide uppercase text-accent mb-3 block">

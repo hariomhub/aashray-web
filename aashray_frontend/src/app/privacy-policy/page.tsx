@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Aashray Infotech",
-  description: "Privacy Policy for Aashray Infotech",
+  description:
+    "Privacy Policy for Aashray Infotech Private Limited detailing our data protection standards and DPDP Act compliance.",
+  alternates: {
+    canonical: "/privacy-policy",
+  },
 };
+
 
 export default function PrivacyPolicy() {
   return (

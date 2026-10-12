@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms of Service | Aashray Infotech",
-  description: "Terms of Service for Aashray Infotech",
+  description:
+    "Terms of Service governing the use of Aashray Infotech Private Limited websites and software platforms.",
+  alternates: {
+    canonical: "/terms",
+  },
 };
+
 
 export default function Terms() {
   return (

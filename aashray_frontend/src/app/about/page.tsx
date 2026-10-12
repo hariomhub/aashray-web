@@ -1,15 +1,45 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import AboutHero from "@/components/about/AboutHero";
 import OurValues from "@/components/about/OurValues";
 import OurAashray from "@/components/about/OurAashray";
 import { aboutContent } from "@/content/about";
+import JsonLd, { getBreadcrumbSchema } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "About Us | AI-Driven Data Protection & DPDP Leadership",
+  description:
+    "Learn about Aashray Infotech's mission, leadership team, and our commitment to building on-premise AI privacy and DPDP Act compliance solutions for Indian enterprises.",
+  keywords: [
+    "About Aashray Infotech",
+    "Data privacy leaders India",
+    "DPDP Act compliance team",
+    "Aashray leadership",
+    "On-premise AI engineering",
+  ],
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us | Aashray Infotech",
+    description:
+      "Engineering on-premise AI solutions to make Indian enterprises DPDP Act-compliant and audit-ready.",
+    url: "https://www.aashrayinfotech.com/about",
+  },
+};
 
 export default function AboutPage() {
   const { members } = aboutContent.leadership;
+  const breadcrumbData = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "About Us", url: "/about" },
+  ]);
 
   return (
     <div className="min-h-screen bg-neutral-bg dark:bg-gray-950">
+      <JsonLd data={breadcrumbData} />
       <AboutHero />
+
       <OurValues />
       <OurAashray />
 
