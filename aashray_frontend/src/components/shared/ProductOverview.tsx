@@ -73,7 +73,7 @@ export default function ProductOverview({ name, slug, features, description, ima
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 w-full mb-8">
             
             {/* Left Column (Text) */}
-            <div className={`${slug === 'esehmati' || slug === 'e-sehmati' ? 'lg:w-1/2' : 'max-w-4xl'} flex flex-col items-start text-left`}>
+            <div className={`${image ? 'lg:w-1/2' : 'max-w-4xl'} flex flex-col items-start text-left`}>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl 2xl:text-8xl font-sans font-bold text-white mb-6 break-words"
