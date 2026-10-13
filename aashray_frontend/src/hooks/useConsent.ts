@@ -49,6 +49,13 @@ export function useConsent() {
       console.warn("Could not save consent to localStorage", e);
     }
     
+    // Update gtag consent if available
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("consent", "update", {
+        analytics_storage: updated.analytics ? "granted" : "denied",
+      });
+    }
+
     // Dispatch a custom event so other components (like iframe wrappers) can listen
     window.dispatchEvent(new CustomEvent("consentUpdated", { detail: updated }));
   };

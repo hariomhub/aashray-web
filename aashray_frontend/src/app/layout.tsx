@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -104,6 +105,20 @@ export default function RootLayout({
         <JsonLd data={getWebSiteSchema()} />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col font-sans bg-white dark:bg-gray-950 text-neutral-text transition-colors duration-300 overflow-x-hidden">
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y9WBSBBFY9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-Y9WBSBBFY9');
+          `}
+        </Script>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
