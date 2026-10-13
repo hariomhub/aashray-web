@@ -83,11 +83,12 @@ export default function Header() {
         {/* Mobile Header Layout */}
         <div className="flex xl:hidden w-full justify-between items-center">
           <Link href="/" className="flex items-center gap-2">
-            <img
+            <Image
               src="/logo.jpg"
               alt="Aashray Infotech Logo"
               width={36}
               height={36}
+              priority
               className="w-[36px] h-[36px] object-contain rounded-md"
             />
           </Link>
@@ -171,11 +172,12 @@ export default function Header() {
           {/* Center Logo */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shrink-0 z-10">
             <Link href="/" className="flex items-center">
-              <img
+              <Image
                 src="/logo.jpg"
                 alt="Aashray Infotech Logo"
                 width={48}
                 height={48}
+                priority
                 className="w-[48px] h-[48px] object-contain rounded-md"
               />
             </Link>
@@ -268,7 +270,7 @@ export default function Header() {
               className="fixed inset-y-0 right-0 w-full max-w-sm bg-white dark:bg-gray-950 z-50 shadow-xl flex flex-col xl:hidden"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-100 dark:border-gray-800">
-                <img
+                <Image
                   src="/logo.jpg"
                   alt="Aashray Infotech Logo"
                   width={40}

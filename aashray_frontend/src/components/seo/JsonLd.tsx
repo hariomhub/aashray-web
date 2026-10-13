@@ -18,19 +18,36 @@ export const SITE_URL = "https://www.aashrayinfotech.com";
 export function getOrganizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "Corporation",
     "@id": `${SITE_URL}/#organization`,
     name: "Aashray Infotech Private Limited",
     alternateName: ["Aashray Infotech", "Aashray"],
+    legalName: "Aashray Infotech Private Limited",
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
       url: `${SITE_URL}/logo.jpg`,
       caption: "Aashray Infotech Logo",
     },
+    image: `${SITE_URL}/logo.jpg`,
     description:
       "Aashray Infotech provides on-premise, AI-enabled governance and data protection platforms that empower Indian organizations to achieve complete DPDP Act 2023 compliance and audit readiness with zero data exposure.",
     email: "support@aashrayinfotech.com",
+    areaServed: {
+      "@type": "Country",
+      name: "India",
+    },
+    knowsAbout: [
+      "Digital Personal Data Protection Act 2023",
+      "DPDP Act Compliance",
+      "On-Premise AI Governance",
+      "Data Protection Officer as a Service",
+      "Consent Management Platforms",
+      "Third Party Risk Management",
+      "Active & Invisible Screen Watermarking",
+      "Data Privacy Audits",
+      "VAPT Security Auditing",
+    ],
     address: [
       {
         "@type": "PostalAddress",
@@ -145,3 +162,36 @@ export function getFaqSchema(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+export function getVideoSchema({
+  name,
+  description,
+  thumbnailUrl,
+  uploadDate = "2026-10-12T00:00:00+05:30",
+  contentUrl,
+  embedUrl,
+}: {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate?: string;
+  contentUrl: string;
+  embedUrl?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name,
+    description,
+    thumbnailUrl: thumbnailUrl.startsWith("http") ? thumbnailUrl : `${SITE_URL}${thumbnailUrl}`,
+    uploadDate,
+    contentUrl: contentUrl.startsWith("http") ? contentUrl : `${SITE_URL}${contentUrl}`,
+    ...(embedUrl
+      ? { embedUrl: embedUrl.startsWith("http") ? embedUrl : `${SITE_URL}${embedUrl}` }
+      : {}),
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+  };
+}
+
