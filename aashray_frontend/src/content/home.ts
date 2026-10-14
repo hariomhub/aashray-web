@@ -72,7 +72,7 @@ export const homeContent = {
         slug: "niyamsaathi",
         category: "platforms",
         image: "/products/niyamsathi.mp4",
-        demoVideo: "/products/Niyaam saathi demo.mp4",
+        demoVideo: "/products/niyamsaathi-demo.mp4",
         features: [
           { bold: "Role-based compliance learning videos", text: "Deliver tailored training content to employees based on their specific roles, ensuring everyone understands their unique compliance responsibilities." },
           { bold: "Control assignment and ownership", text: "Clearly define who is responsible for each compliance task by assigning controls to specific owners across departments and teams." },
@@ -112,7 +112,7 @@ export const homeContent = {
         slug: "safe-gen",
         category: "products",
         image: "/products/e-pragati.mp4",
-        demoVideo: "/products/E-Pragati demo.mp4",
+        demoVideo: "/products/e-pragati-demo.mp4",
         description: "Help children become aware of their digital behavior, self-correct and gradually build healthier habits across home and school.",
         features: [
           { bold: "Behavioral Loop", text: "Awareness → Personalized Nudge → Child Reflects → Self-Correction" },
@@ -185,7 +185,7 @@ export const homeContent = {
         slug: "e-sehmati",
         category: "platforms",
         image: "/products/esehmati.mp4",
-        demoVideo: "/products/E-Pragati demo.mp4",
+        demoVideo: "/products/e-pragati-demo.mp4",
         features: [
           { bold: "Know where every piece of data lives", text: "Graph API-powered mapping that surfaces every system, vendor, and data point across your business, eliminating need for spreadsheets and guesswork" },
           { bold: "RoPA that is generated, not written from scratch", text: "Once your data is mapped, the legally required Record of Processing Activities builds itself, ready for any auditor" },
