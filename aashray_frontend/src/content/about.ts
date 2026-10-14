@@ -41,7 +41,7 @@ export const aboutContent = {
       {
         name: "Mrs. Mamta Girdhar",
         role: "Chief of Human Resources",
-        image: "/about/Mamta_Girdhar.png"
+        image: "/about/Mamta_Girdhar_updated.png"
       },
       {
         name: "Mrs. Anshu Kumar",
