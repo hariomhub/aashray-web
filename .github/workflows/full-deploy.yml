@@ -64,7 +64,7 @@ jobs:
   # ═══════════════════════════════════════════════════════════════
   backend-build-and-test:
     name: Backend → Build & Test
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'push'
+    if: secrets.AZUREAPPSERVICE_CLIENTID != '' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'push')
     runs-on: ubuntu-latest
 
     services:
@@ -141,7 +141,7 @@ jobs:
   backend-deploy:
     name: Backend → Deploy to Azure App Service
     needs: backend-build-and-test
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: secrets.AZUREAPPSERVICE_CLIENTID != '' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: production
