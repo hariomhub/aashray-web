@@ -91,8 +91,8 @@ jobs:
       JWT_SECRET: ci_only_jwt_secret
       STORAGE_MODE: local
       EMAIL_MODE: preview
-      LOCAL_UPLOAD_DIR: ${{ runner.temp }}/uploads
-      EMAIL_PREVIEW_DIR: ${{ runner.temp }}/email-previews
+      LOCAL_UPLOAD_DIR: /tmp/uploads
+      EMAIL_PREVIEW_DIR: /tmp/email-previews
 
     defaults:
       run:
