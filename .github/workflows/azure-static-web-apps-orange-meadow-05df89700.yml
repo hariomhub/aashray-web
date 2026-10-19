@@ -18,10 +18,20 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
+      - name: Install OIDC Client from Core Package
+        run: npm install --no-package-lock @actions/core@1.6.0 @actions/http-client
+      - name: Get Id Token
+        uses: actions/github-script@v6
+        id: idtoken
+        with:
+          script: |
+            const coredemo = require('@actions/core')
+            return await coredemo.getIDToken()
+          result-encoding: string
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -29,9 +39,14 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_MEADOW_05DF89700 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "aashray_frontend"
+          app_location: "/aashray_frontend"
           api_location: ""
           output_location: ""
+          github_id_token: ${{ steps.idtoken.outputs.result }}
+        env:
+          # Public URL of the admin_api App Service. next.config.ts proxies /api/* to it and fails the build if missing.
+          # Set it under Settings → Secrets and variables → Actions → Variables.
+          BACKEND_URL: ${{ vars.BACKEND_URL }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
