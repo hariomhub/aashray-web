@@ -53,8 +53,8 @@ jobs:
       # Keep CI hermetic: no real storage or mail
       STORAGE_MODE: local
       EMAIL_MODE: preview
-      LOCAL_UPLOAD_DIR: ${{ runner.temp }}/uploads
-      EMAIL_PREVIEW_DIR: ${{ runner.temp }}/email-previews
+      LOCAL_UPLOAD_DIR: /tmp/uploads
+      EMAIL_PREVIEW_DIR: /tmp/email-previews
 
     defaults:
       run:
