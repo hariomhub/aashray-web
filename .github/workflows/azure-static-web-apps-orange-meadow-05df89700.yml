@@ -19,22 +19,18 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
 
-      - name: Install OIDC Client from Core Package
-        run: npm install --no-package-lock @actions/core@1.6.0 @actions/http-client
-
-      - name: Get Id Token
-        uses: actions/github-script@v6
-        id: idtoken
-        with:
-          script: |
-            const coredemo = require('@actions/core')
-            return await coredemo.getIDToken()
-          result-encoding: string
+      - name: Check Token Secret
+        run: |
+          echo "## Token Check" >> $GITHUB_STEP_SUMMARY
+          TOKEN1="${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}"
+          TOKEN2="${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_MEADOW_05DF89700 }}"
+          echo "- AZURE_STATIC_WEB_APPS_API_TOKEN length: ${#TOKEN1}" >> $GITHUB_STEP_SUMMARY
+          echo "- AZURE_STATIC_WEB_APPS_API_TOKEN_ORANGE_MEADOW_05DF89700 length: ${#TOKEN2}" >> $GITHUB_STEP_SUMMARY
 
       - name: Build And Deploy
         id: builddeploy
@@ -46,14 +42,16 @@ jobs:
           app_location: "/aashray_frontend"
           api_location: ""
           output_location: ""
-          github_id_token: ${{ steps.idtoken.outputs.result }}
         env:
           BACKEND_URL: ${{ vars.BACKEND_URL }}
 
       - name: Print failure logs
         if: failure()
         run: |
-          find /home/runner/work/_temp/ /tmp/ -type f -name "*.log" -exec echo "=== Log: {} ===" \; -exec cat {} \; 2>/dev/null || true
+          echo "## Build Failure Logs" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          find /home/runner/work/_temp/ /tmp/ -type f -name "*.log" -exec cat {} + 2>/dev/null >> $GITHUB_STEP_SUMMARY || true
+          echo '```' >> $GITHUB_STEP_SUMMARY
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
