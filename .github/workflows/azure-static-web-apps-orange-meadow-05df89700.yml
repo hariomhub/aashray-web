@@ -50,6 +50,11 @@ jobs:
         env:
           BACKEND_URL: ${{ vars.BACKEND_URL }}
 
+      - name: Print failure logs
+        if: failure()
+        run: |
+          find /home/runner/work/_temp/ /tmp/ -type f -name "*.log" -exec echo "=== Log: {} ===" \; -exec cat {} \; 2>/dev/null || true
+
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
